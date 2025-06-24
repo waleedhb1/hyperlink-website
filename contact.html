@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Contact Us - Hyperlink" data-ar="تواصل معنا - هايبر لينك">تواصل معنا - هايبر لينك</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="تواصل مع فريق هايبر لينك للحصول على استشارة مجانية حول مشروعك التقني">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="logo.svg" alt="Hyperlink Logo" class="logo-img">
+                    <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
+                </a>
+                
+                <div class="nav-right">
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="index.html" class="nav-link" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                        <li><a href="services.html" class="nav-link" data-en="Services" data-ar="خدماتنا">خدماتنا</a></li>
+                        <li><a href="about.html" class="nav-link" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+                        <li><a href="contact.html" class="nav-link active" data-en="Contact" data-ar="تواصل معنا">تواصل معنا</a></li>
+                    </ul>
+                    
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="lang-btn active" onclick="toggleLanguage()" id="langToggle">
+                            <span class="lang-current">ع</span>
+                            <span class="lang-separator">/</span>
+                            <span class="lang-other">EN</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero contact-hero">
+            <div class="hero-content">
+                <h1 class="hero-title" data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</h1>
+                <p class="hero-subtitle" data-en="Let's build something amazing together. Reach out and start the conversation." data-ar="لنصنع شيئاً مذهلاً معاً. تواصل معنا الآن وابدأ الحوار.">لنصنع شيئاً مذهلاً معاً. تواصل معنا الآن وابدأ الحوار.</p>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-layout">
+                    <!-- Contact Form Container -->
+                    <div class="contact-form-container">
+                        <div class="section-header">
+                            <h2 class="section-title" data-en="Start Your Project" data-ar="ابدأ مشروعك">ابدأ مشروعك</h2>
+                            <p class="section-subtitle" data-en="Fill out the form below and we'll get back to you within 24 hours." data-ar="املأ النموذج أدناه وسنتواصل معك خلال 24 ساعة.">املأ النموذج أدناه وسنتواصل معك خلال 24 ساعة.</p>
+                        </div>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName" data-en="First Name *" data-ar="الاسم الأول *">الاسم الأول *</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName" data-en="Last Name *" data-ar="الاسم الأخير *">الاسم الأخير *</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email" data-en="Email Address *" data-ar="البريد الإلكتروني *">البريد الإلكتروني *</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-envelope"></i>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" data-en="Phone Number" data-ar="رقم الهاتف">رقم الهاتف</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-phone"></i>
+                                        <input type="tel" id="phone" name="phone">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="company" data-en="Company Name" data-ar="اسم الشركة">اسم الشركة</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-building"></i>
+                                    <input type="text" id="company" name="company">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="service" data-en="Service of Interest" data-ar="الخدمة المطلوبة">الخدمة المطلوبة</label>
+                                    <select id="service" name="service">
+                                        <option value="" data-en="Select a service" data-ar="اختر الخدمة">اختر الخدمة</option>
+                                        <option value="web-development" data-en="Web Development" data-ar="تطوير المواقع">تطوير المواقع</option>
+                                        <option value="mobile-apps" data-en="Mobile Apps" data-ar="تطبيقات الجوال">تطبيقات الجوال</option>
+                                        <option value="cloud-solutions" data-en="Cloud Solutions" data-ar="الحلول السحابية">الحلول السحابية</option>
+                                        <option value="cybersecurity" data-en="Cybersecurity" data-ar="الأمن السيبراني">الأمن السيبراني</option>
+                                        <option value="ui-ux-design" data-en="UI/UX Design" data-ar="تصميم واجهات المستخدم">تصميم واجهات المستخدم</option>
+                                        <option value="digital-marketing" data-en="Digital Marketing" data-ar="التسويق الرقمي">التسويق الرقمي</option>
+                                        <option value="database-management" data-en="Database Management" data-ar="إدارة قواعد البيانات">إدارة قواعد البيانات</option>
+                                        <option value="api-development" data-en="API Development" data-ar="تطوير واجهات البرمجة">تطوير واجهات البرمجة</option>
+                                        <option value="technical-support" data-en="Technical Support" data-ar="الدعم الفني">الدعم الفني</option>
+                                        <option value="training-consulting" data-en="Training & Consulting" data-ar="التدريب والاستشارات">التدريب والاستشارات</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="budget" data-en="Project Budget" data-ar="ميزانية المشروع">ميزانية المشروع</label>
+                                    <select id="budget" name="budget">
+                                        <option value="" data-en="Select a budget range" data-ar="اختر نطاق الميزانية">اختر نطاق الميزانية</option>
+                                        <option value="under-5k" data-en="Under $5,000" data-ar="أقل من 5,000$">أقل من 5,000$</option>
+                                        <option value="5k-10k" data-en="$5,000 - $10,000" data-ar="5,000$ - 10,000$">5,000$ - 10,000$</option>
+                                        <option value="10k-20k" data-en="$10,000 - $20,000" data-ar="10,000$ - 20,000$">10,000$ - 20,000$</option>
+                                        <option value="over-20k" data-en="Over $20,000" data-ar="أكثر من 20,000$">أكثر من 20,000$</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                            <div class="form-group full-width">
+                                <label for="message" data-en="Project Details *" data-ar="تفاصيل المشروع *">تفاصيل المشروع *</label>
+                                <textarea id="message" name="message" rows="6" required data-en="Tell us about your project, goals, and requirements..." data-ar="أخبرنا عن مشروعك وأهدافك ومتطلباتك..."></textarea>
+                            </div>
+    
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary btn-lg" data-en="Send Message" data-ar="إرسال الرسالة"><i class="fas fa-paper-plane"></i> إرسال الرسالة</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info Container -->
+                    <div class="contact-info-container">
+                        <div class="section-header">
+                            <h2 class="section-title" data-en="Let's Get in Touch" data-ar="لنتواصل">لنتواصل</h2>
+                            <p class="section-subtitle" data-en="Choose your preferred contact method. We're here to help!" data-ar="اختر الطريقة المفضلة للتواصل معنا. نحن هنا لمساعدتك!">اختر الطريقة المفضلة للتواصل معنا. نحن هنا لمساعدتك!</p>
+                        </div>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-content">
+                                    <h3 data-en="Email Us" data-ar="راسلنا">راسلنا</h3>
+                                    <a href="mailto:info@hyperlink.sa" class="contact-link">info@hyperlink.sa</a>
+                                    <a href="mailto:support@hyperlink.sa" class="contact-link">support@hyperlink.sa</a>
+                                    <p class="response-time" data-en="Response within 24 hours" data-ar="الرد خلال 24 ساعة">الرد خلال 24 ساعة</p>
+                                </div>
+                            </div>
+    
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="method-content">
+                                    <h3 data-en="Call Us" data-ar="اتصل بنا">اتصل بنا</h3>
+                                    <a href="tel:+966123456789" class="contact-link">+966 123 456 789</a>
+                                    <a href="tel:+966987654321" class="contact-link">+966 987 654 321</a>
+                                    <p class="availability" data-en="Available 9 AM - 6 PM (Sun-Thu)" data-ar="متاح من 9 ص - 6 م (الأحد-الخميس)">متاح من 9 ص - 6 م (الأحد-الخميس)</p>
+                                </div>
+                            </div>
+    
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="method-content">
+                                    <h3 data-en="Live Chat" data-ar="المحادثة المباشرة">المحادثة المباشرة</h3>
+                                    <p data-en="Get instant support through our website chat" data-ar="احصل على دعم فوري من خلال محادثة الموقع">احصل على دعم فوري من خلال محادثة الموقع</p>
+                                    <button class="chat-btn" data-en="Start Chat" data-ar="ابدأ المحادثة">ابدأ المحادثة</button>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="social-section">
+                            <h3 data-en="Follow Us" data-ar="تابعنا">تابعنا</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-link" aria-label="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spacer Div -->
+                <div class="section-spacer"></div>
+
+                <!-- FAQ -->
+                <div class="faq-container">
+                    <div class="section-header">
+                        <h2 class="section-title" data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">الأسئلة الشائعة</h2>
+                        <p class="section-subtitle" data-en="Find answers to common questions about our services and processes." data-ar="اعثر على إجابات للأسئلة الشائعة حول خدماتنا وعملياتنا.">اعثر على إجابات للأسئلة الشائعة حول خدماتنا وعملياتنا.</p>
+                    </div>
+                    
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 data-en="How long does it take to develop a website?" data-ar="كم يستغرق تطوير الموقع الإلكتروني؟">كم يستغرق تطوير الموقع الإلكتروني؟</h3>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p data-en="The timeline depends on project complexity, but typically ranges from 2-8 weeks for standard websites, and up to 12 weeks for complex projects." data-ar="يعتمد الوقت على تعقيد المشروع، لكن عادة ما يستغرق من 2-8 أسابيع للمواقع العادية، وقد يصل إلى 12 أسبوع للمشاريع المعقدة.">يعتمد الوقت على تعقيد المشروع، لكن عادة ما يستغرق من 2-8 أسابيع للمواقع العادية، وقد يصل إلى 12 أسبوع للمشاريع المعقدة.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 data-en="Do you provide technical support after delivery?" data-ar="هل تقدمون دعم فني بعد التسليم؟">هل تقدمون دعم فني بعد التسليم؟</h3>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p data-en="Yes, we provide free technical support for 3 months after delivery, and we also offer annual support packages at reasonable prices." data-ar="نعم، نقدم دعم فني مجاني لمدة 3 أشهر بعد التسليم، كما نوفر باقات دعم سنوية بأسعار مناسبة.">نعم، نقدم دعم فني مجاني لمدة 3 أشهر بعد التسليم، كما نوفر باقات دعم سنوية بأسعار مناسبة.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 data-en="What are the available payment methods?" data-ar="ما هي طرق الدفع المتاحة؟">ما هي طرق الدفع المتاحة؟</h3>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p data-en="We accept bank transfers, checks, and credit cards. We also offer installment payment options based on project milestones." data-ar="نقبل الدفع عبر التحويل البنكي، الشيكات، وبطاقات الائتمان. كما نوفر إمكانية الدفع على دفعات حسب مراحل المشروع.">نقبل الدفع عبر التحويل البنكي، الشيكات، وبطاقات الائتمان. كما نوفر إمكانية الدفع على دفعات حسب مراحل المشروع.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 data-en="Can I update the website myself after delivery?" data-ar="هل يمكنني تعديل الموقع بنفسي بعد التسليم؟">هل يمكنني تعديل الموقع بنفسي بعد التسليم؟</h3>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p data-en="Yes, we provide an easy-to-use content management system that allows you to manage content, and we offer free training on how to use it." data-ar="نعم، نوفر لوحة تحكم سهلة الاستخدام تمكنك من إدارة المحتوى، كما نقدم تدريب مجاني لاستخدامها.">نعم، نوفر لوحة تحكم سهلة الاستخدام تمكنك من إدارة المحتوى، كما نقدم تدريب مجاني لاستخدامها.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 data-en="Do you offer free consultation?" data-ar="هل تقدمون استشارة مجانية؟">هل تقدمون استشارة مجانية؟</h3>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p data-en="Yes, we offer a free initial consultation to discuss your project requirements and provide recommendations." data-ar="نعم، نقدم استشارة أولية مجانية لمناقشة متطلبات مشروعك وتقديم التوصيات.">نعم، نقدم استشارة أولية مجانية لمناقشة متطلبات مشروعك وتقديم التوصيات.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <h3 data-en="What makes Hyperlink different from other companies?" data-ar="ما الذي يميز هايبر لينك عن الشركات الأخرى؟">ما الذي يميز هايبر لينك عن الشركات الأخرى؟</h3>
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="faq-answer">
+                                <p data-en="Our commitment to innovation, personalized service, use of latest technologies, and comprehensive post-delivery support sets us apart." data-ar="التزامنا بالابتكار والخدمة الشخصية واستخدام أحدث التقنيات والدعم الشامل بعد التسليم هو ما يميزنا.">التزامنا بالابتكار والخدمة الشخصية واستخدام أحدث التقنيات والدعم الشامل بعد التسليم هو ما يميزنا.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <a href="index.html" class="logo">
+                        <img src="logo.svg" alt="Hyperlink Logo" class="logo-img">
+                        <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
+                    </a>
+                    <p class="footer-description" data-en="Innovative technical solutions for the digital future." data-ar="حلول تقنية مبتكرة للمستقبل الرقمي.">حلول تقنية مبتكرة للمستقبل الرقمي.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section links">
+                    <h3 class="footer-title" data-en="Quick Links" data-ar="روابط سريعة">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                        <li><a href="services.html" data-en="Services" data-ar="خدماتنا">خدماتنا</a></li>
+                        <li><a href="about.html" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+                        <li><a href="contact.html" data-en="Contact" data-ar="تواصل معنا">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h3 class="footer-title" data-en="Contact Info" data-ar="معلومات التواصل">معلومات التواصل</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+966 50 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@hyperlink.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-en="Riyadh, Saudi Arabia" data-ar="الرياض، المملكة العربية السعودية">الرياض، المملكة العربية السعودية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section newsletter">
+                    <h3 class="footer-title" data-en="Join Our Newsletter" data-ar="انضم لنشرتنا البريدية">انضم لنشرتنا البريدية</h3>
+                    <p class="footer-description" data-en="Get the latest news, updates, and special offers." data-ar="احصل على آخر الأخبار والتحديثات والعروض الخاصة."></p>
+                    <form class="newsletter-form">
+                        <input type="email" data-en-placeholder="Your Email Address" data-ar-placeholder="بريدك الإلكتروني" placeholder="بريدك الإلكتروني">
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-en="© 2024 Hyperlink. All rights reserved." data-ar="© 2024 هايبر لينك. جميع الحقوق محفوظة.">© 2024 هايبر لينك. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

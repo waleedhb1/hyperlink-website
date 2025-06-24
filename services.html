@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Our Services - Hyperlink" data-ar="خدماتنا - هايبر لينك">خدماتنا - هايبر لينك</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="خدمات هايبر لينك التقنية المتطورة - تطوير المواقع، تطبيقات الجوال، الحلول السحابية، والأمن السيبراني">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="logo.svg" alt="Hyperlink Logo" class="logo-img">
+                    <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
+                </a>
+                
+                <div class="nav-right">
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="index.html" class="nav-link" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                        <li><a href="services.html" class="nav-link active" data-en="Services" data-ar="خدماتنا">خدماتنا</a></li>
+                        <li><a href="about.html" class="nav-link" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+                        <li><a href="contact.html" class="nav-link" data-en="Contact" data-ar="تواصل معنا">تواصل معنا</a></li>
+                    </ul>
+                    
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="lang-btn active" onclick="toggleLanguage()" id="langToggle">
+                            <span class="lang-current">ع</span>
+                            <span class="lang-separator">/</span>
+                            <span class="lang-other">EN</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero services-hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title" data-en="Our Creative Solutions" data-ar="حلولنا الإبداعية">حلولنا الإبداعية</h1>
+                <p class="hero-subtitle" data-en="We transform your digital dreams into reality with cutting-edge technology and innovative design." data-ar="نحول أحلامك الرقمية إلى واقع بأحدث التقنيات والتصميم المبتكر.">
+                    نحول أحلامك الرقمية إلى واقع بأحدث التقنيات والتصميم المبتكر.
+                </p>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services -->
+    <section class="main-services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Our Core Services" data-ar="خدماتنا الأساسية">خدماتنا الأساسية</h2>
+                <p class="section-subtitle" data-en="Comprehensive digital solutions tailored to your business needs" data-ar="حلول رقمية شاملة مصممة خصيصاً لاحتياجات عملك">
+                    حلول رقمية شاملة مصممة خصيصاً لاحتياجات عملك
+                </p>
+            </div>
+            
+            <div class="services-tabs-container">
+                <!-- Tab Navigation - Row 1 -->
+                <div class="services-tabs-nav tabs-row-1">
+                    <button class="tab-link active" data-tab="web-dev">
+                        <i class="fas fa-code"></i>
+                        <span data-en="Web Development" data-ar="تطوير المواقع">تطوير المواقع</span>
+                    </button>
+                    <button class="tab-link" data-tab="mobile-app">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span data-en="Mobile Apps" data-ar="تطبيقات الجوال">تطبيقات الجوال</span>
+                    </button>
+                    <button class="tab-link" data-tab="cloud">
+                        <i class="fas fa-cloud"></i>
+                        <span data-en="Cloud Solutions" data-ar="الحلول السحابية">الحلول السحابية</span>
+                    </button>
+                    <button class="tab-link" data-tab="security">
+                        <i class="fas fa-shield-alt"></i>
+                        <span data-en="Cybersecurity" data-ar="الأمن السيبراني">الأمن السيبراني</span>
+                    </button>
+                    <button class="tab-link" data-tab="design">
+                        <i class="fas fa-palette"></i>
+                        <span data-en="UI/UX Design" data-ar="تصميم واجهات المستخدم">تصميم واجهات المستخدم</span>
+                    </button>
+                </div>
+
+                <!-- Tab Navigation - Row 2 -->
+                <div class="services-tabs-nav tabs-row-2">
+                    <button class="tab-link" data-tab="marketing">
+                        <i class="fas fa-chart-line"></i>
+                        <span data-en="Digital Marketing" data-ar="التسويق الرقمي">التسويق الرقمي</span>
+                    </button>
+                    <button class="tab-link" data-tab="database">
+                        <i class="fas fa-database"></i>
+                        <span data-en="Database Management" data-ar="إدارة قواعد البيانات">إدارة قواعد البيانات</span>
+                    </button>
+                    <button class="tab-link" data-tab="api">
+                        <i class="fas fa-cogs"></i>
+                        <span data-en="API Development" data-ar="تطوير واجهات البرمجة">تطوير واجهات البرمجة</span>
+                    </button>
+                    <button class="tab-link" data-tab="support">
+                        <i class="fas fa-headset"></i>
+                        <span data-en="Technical Support" data-ar="الدعم الفني">الدعم الفني</span>
+                    </button>
+                    <button class="tab-link" data-tab="consulting">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span data-en="Training & Consulting" data-ar="التدريب والاستشارات">التدريب والاستشارات</span>
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <!-- Web Development Tab -->
+                <div class="tab-content active" id="web-dev">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-code"></i>
+                    </div>
+                    <div class="service-content">
+                            <h3 data-en="Web Development Excellence" data-ar="تميز في تطوير المواقع">تميز في تطوير المواقع</h3>
+                        <p data-en="We create modern, responsive, and high-performance websites that deliver exceptional user experiences across all devices." data-ar="نطور مواقع حديثة ومتجاوبة وعالية الأداء تقدم تجارب استخدام استثنائية عبر جميع الأجهزة.">
+                            نطور مواقع حديثة ومتجاوبة وعالية الأداء تقدم تجارب استخدام استثنائية عبر جميع الأجهزة.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i><span data-en="Responsive Design" data-ar="تصميم متجاوب">تصميم متجاوب</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="SEO Optimization" data-ar="تحسين محركات البحث">تحسين محركات البحث</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Fast Loading Speed" data-ar="سرعة تحميل عالية">سرعة تحميل عالية</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Security Features" data-ar="ميزات الأمان">ميزات الأمان</span></li>
+                        </ul>
+                        <div class="tech-showcase">
+                            <h4 data-en="Technologies We Use:" data-ar="التقنيات التي نستخدمها:">التقنيات التي نستخدمها:</h4>
+                            <div class="tech-grid">
+                                <div class="tech-badge">React</div>
+                                <div class="tech-badge">Vue.js</div>
+                                <div class="tech-badge">Node.js</div>
+                                <div class="tech-badge">PHP</div>
+                                <div class="tech-badge">Laravel</div>
+                                <div class="tech-badge">WordPress</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Apps Tab -->
+                <div class="tab-content" id="mobile-app">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                    <div class="service-content">
+                            <h3 data-en="Mobile Applications" data-ar="تطبيقات الجوال">تطبيقات الجوال</h3>
+                        <p data-en="Native and cross-platform mobile applications with stunning design and seamless functionality for iOS and Android platforms." data-ar="تطبيقات جوال أصلية ومتعددة المنصات بتصميم مذهل ووظائف سلسة لمنصتي iOS وAndroid.">
+                            تطبيقات جوال أصلية ومتعددة المنصات بتصميم مذهل ووظائف سلسة لمنصتي iOS وAndroid.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i><span data-en="Native Development" data-ar="تطوير أصلي">تطوير أصلي</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Cross-platform Solutions" data-ar="حلول متعددة المنصات">حلول متعددة المنصات</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="UI/UX Design" data-ar="تصميم واجهات المستخدم">تصميم واجهات المستخدم</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="App Store Optimization" data-ar="تحسين متاجر التطبيقات">تحسين متاجر التطبيقات</span></li>
+                        </ul>
+                        <div class="tech-showcase">
+                            <h4 data-en="Technologies We Use:" data-ar="التقنيات التي نستخدمها:">التقنيات التي نستخدمها:</h4>
+                            <div class="tech-grid">
+                                <div class="tech-badge">React Native</div>
+                                <div class="tech-badge">Flutter</div>
+                                <div class="tech-badge">Swift</div>
+                                <div class="tech-badge">Kotlin</div>
+                                <div class="tech-badge">Xamarin</div>
+                                <div class="tech-badge">Ionic</div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Solutions Tab -->
+                <div class="tab-content" id="cloud">
+                    <div class="service-item">
+                    <div class="service-visual">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="service-content">
+                            <h3 data-en="Cloud Solutions" data-ar="الحلول السحابية">الحلول السحابية</h3>
+                        <p data-en="Scalable and secure cloud infrastructure solutions that help your business grow efficiently and reduce operational costs." data-ar="حلول بنية تحتية سحابية قابلة للتوسع وآمنة تساعد عملك على النمو بكفاءة وتقليل التكاليف التشغيلية.">
+                            حلول بنية تحتية سحابية قابلة للتوسع وآمنة تساعد عملك على النمو بكفاءة وتقليل التكاليف التشغيلية.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i><span data-en="Cloud Migration" data-ar="الهجرة السحابية">الهجرة السحابية</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Auto Scaling" data-ar="التوسع التلقائي">التوسع التلقائي</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Backup & Recovery" data-ar="النسخ الاحتياطي والاستعادة">النسخ الاحتياطي والاستعادة</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="24/7 Monitoring" data-ar="مراقبة 24/7">مراقبة 24/7</span></li>
+                        </ul>
+                        <div class="tech-showcase">
+                            <h4 data-en="Cloud Providers:" data-ar="مقدمو الخدمات السحابية:">مقدمو الخدمات السحابية:</h4>
+                            <div class="tech-grid">
+                                <div class="tech-badge">AWS</div>
+                                <div class="tech-badge">Azure</div>
+                                <div class="tech-badge">Google Cloud</div>
+                                <div class="tech-badge">Digital Ocean</div>
+                                <div class="tech-badge">Cloudflare</div>
+                                <div class="tech-badge">Heroku</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Tab -->
+                <div class="tab-content" id="security">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    <div class="service-content">
+                            <h3 data-en="Cybersecurity" data-ar="الأمن السيبراني">الأمن السيبراني</h3>
+                        <p data-en="Comprehensive cybersecurity solutions to protect your digital assets from threats and ensure business continuity." data-ar="حلول أمن سيبراني شاملة لحماية أصولك الرقمية من التهديدات وضمان استمرارية العمل.">
+                            حلول أمن سيبراني شاملة لحماية أصولك الرقمية من التهديدات وضمان استمرارية العمل.
+                        </p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i><span data-en="Threat Assessment" data-ar="تقييم التهديدات">تقييم التهديدات</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Firewall Configuration" data-ar="إعداد جدران الحماية">إعداد جدران الحماية</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Data Encryption" data-ar="تشفير البيانات">تشفير البيانات</span></li>
+                            <li><i class="fas fa-check"></i><span data-en="Security Training" data-ar="تدريب الأمان">تدريب الأمان</span></li>
+                        </ul>
+                        <div class="tech-showcase">
+                            <h4 data-en="Security Tools:" data-ar="أدوات الأمان:">أدوات الأمان:</h4>
+                            <div class="tech-grid">
+                                <div class="tech-badge">SSL/TLS</div>
+                                <div class="tech-badge">VPN</div>
+                                <div class="tech-badge">Antivirus</div>
+                                <div class="tech-badge">WAF</div>
+                                <div class="tech-badge">IDS/IPS</div>
+                                <div class="tech-badge">SIEM</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- UI/UX Design Tab -->
+                <div class="tab-content" id="design">
+                    <div class="service-item">
+                    <div class="service-visual">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 data-en="UI/UX Design" data-ar="تصميم واجهات المستخدم">تصميم واجهات المستخدم</h3>
+                            <p data-en="Creative and user-friendly interface designs that enhance user experience and drive engagement through intuitive design principles." data-ar="تصاميم واجهات إبداعية وسهلة الاستخدام تعزز تجربة المستخدم وتزيد التفاعل من خلال مبادئ التصميم البديهية.">
+                                تصاميم واجهات إبداعية وسهلة الاستخدم تعزز تجربة المستخدم وتزيد التفاعل من خلال مبادئ التصميم البديهية.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i><span data-en="User Research" data-ar="بحث المستخدمين">بحث المستخدمين</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Wireframing" data-ar="التخطيط الأولي">التخطيط الأولي</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Interactive Prototypes" data-ar="النماذج التفاعلية">النماذج التفاعلية</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Visual Design" data-ar="التصميم البصري">التصميم البصري</span></li>
+                            </ul>
+                            <div class="tech-showcase">
+                                <h4 data-en="Design Tools:" data-ar="أدوات التصميم:">أدوات التصميم:</h4>
+                                <div class="tech-grid">
+                                    <div class="tech-badge">Figma</div>
+                                    <div class="tech-badge">Adobe XD</div>
+                                    <div class="tech-badge">Sketch</div>
+                                    <div class="tech-badge">Photoshop</div>
+                                    <div class="tech-badge">Illustrator</div>
+                                    <div class="tech-badge">InVision</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Marketing Tab -->
+                <div class="tab-content" id="marketing">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 data-en="Digital Marketing" data-ar="التسويق الرقمي">التسويق الرقمي</h3>
+                            <p data-en="Comprehensive digital marketing strategies to boost your online presence, increase traffic, and drive conversions through targeted campaigns." data-ar="استراتيجيات تسويق رقمي شاملة لتعزيز حضورك الإلكتروني وزيادة الزيارات وتحفيز التحويلات من خلال حملات مستهدفة.">
+                                استراتيجيات تسويق رقمي شاملة لتعزيز حضورك الإلكتروني وزيادة الزيارات وتحفيز التحويلات من خلال حملات مستهدفة.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i><span data-en="SEO Optimization" data-ar="تحسين محركات البحث">تحسين محركات البحث</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Social Media Marketing" data-ar="التسويق عبر وسائل التواصل">التسويق عبر وسائل التواصل</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Content Marketing" data-ar="تسويق المحتوى">تسويق المحتوى</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="PPC Advertising" data-ar="الإعلانات المدفوعة">الإعلانات المدفوعة</span></li>
+                            </ul>
+                            <div class="tech-showcase">
+                                <h4 data-en="Marketing Platforms:" data-ar="منصات التسويق:">منصات التسويق:</h4>
+                                <div class="tech-grid">
+                                    <div class="tech-badge">Google Ads</div>
+                                    <div class="tech-badge">Facebook Ads</div>
+                                    <div class="tech-badge">Instagram</div>
+                                    <div class="tech-badge">LinkedIn</div>
+                                    <div class="tech-badge">Analytics</div>
+                                    <div class="tech-badge">SEMrush</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Management Tab -->
+                <div class="tab-content" id="database">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 data-en="Database Management" data-ar="إدارة قواعد البيانات">إدارة قواعد البيانات</h3>
+                            <p data-en="Professional database design, optimization, and management to ensure your data is secure, organized, and efficiently accessible for business operations." data-ar="تصميم وتحسين وإدارة قواعد البيانات بشكل احترافي لضمان أمان وتنظيم وإمكانية الوصول الفعال لبياناتك في العمليات التجارية.">
+                                تصميم وتحسين وإدارة قواعد البيانات بشكل احترافي لضمان أمان وتنظيم وإمكانية الوصول الفعال لبياناتك في العمليات التجارية.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i><span data-en="Database Design" data-ar="تصميم قواعد البيانات">تصميم قواعد البيانات</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Performance Optimization" data-ar="تحسين الأداء">تحسين الأداء</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Data Migration" data-ar="نقل البيانات">نقل البيانات</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Backup & Recovery" data-ar="النسخ الاحتياطي والاستعادة">النسخ الاحتياطي والاستعادة</span></li>
+                            </ul>
+                            <div class="tech-showcase">
+                                <h4 data-en="Database Technologies:" data-ar="تقنيات قواعد البيانات:">تقنيات قواعد البيانات:</h4>
+                                <div class="tech-grid">
+                                    <div class="tech-badge">MySQL</div>
+                                    <div class="tech-badge">PostgreSQL</div>
+                                    <div class="tech-badge">MongoDB</div>
+                                    <div class="tech-badge">Redis</div>
+                                    <div class="tech-badge">Oracle</div>
+                                    <div class="tech-badge">SQL Server</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Development Tab -->
+                <div class="tab-content" id="api">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 data-en="API Development" data-ar="تطوير واجهات البرمجة">تطوير واجهات البرمجة</h3>
+                            <p data-en="Custom API development and integration services to connect your applications, streamline workflows, and enable seamless data exchange between systems." data-ar="خدمات تطوير وتكامل واجهات البرمجة المخصصة لربط تطبيقاتك وتبسيط سير العمل وتمكين تبادل البيانات بسلاسة بين الأنظمة.">
+                                خدمات تطوير وتكامل واجهات البرمجة المخصصة لربط تطبيقاتك وتبسيط سير العمل وتمكين تبادل البيانات بسلاسة بين الأنظمة.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i><span data-en="RESTful APIs" data-ar="واجهات REST">واجهات REST</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="GraphQL APIs" data-ar="واجهات GraphQL">واجهات GraphQL</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="API Documentation" data-ar="توثيق الواجهات">توثيق الواجهات</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Third-party Integration" data-ar="التكامل مع الطرف الثالث">التكامل مع الطرف الثالث</span></li>
+                            </ul>
+                            <div class="tech-showcase">
+                                <h4 data-en="API Technologies:" data-ar="تقنيات الواجهات:">تقنيات الواجهات:</h4>
+                                <div class="tech-grid">
+                                    <div class="tech-badge">Express.js</div>
+                                    <div class="tech-badge">FastAPI</div>
+                                    <div class="tech-badge">Django REST</div>
+                                    <div class="tech-badge">Laravel API</div>
+                                    <div class="tech-badge">Swagger</div>
+                                    <div class="tech-badge">Postman</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Support Tab -->
+                <div class="tab-content" id="support">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 data-en="Technical Support" data-ar="الدعم الفني">الدعم الفني</h3>
+                            <p data-en="24/7 comprehensive technical support and maintenance services to keep your systems running smoothly, efficiently, and securely at all times." data-ar="خدمات الدعم الفني والصيانة الشاملة على مدار الساعة للحفاظ على عمل أنظمتك بسلاسة وكفاءة وأمان في جميع الأوقات.">
+                                خدمات الدعم الفني والصيانة الشاملة على مدار الساعة للحفاظ على عمل أنظمتك بسلاسة وكفاءة وأمان في جميع الأوقات.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i><span data-en="24/7 Support" data-ar="دعم على مدار الساعة">دعم على مدار الساعة</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="System Monitoring" data-ar="مراقبة النظام">مراقبة النظام</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Issue Resolution" data-ar="حل المشاكل">حل المشاكل</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Preventive Maintenance" data-ar="الصيانة الوقائية">الصيانة الوقائية</span></li>
+                            </ul>
+                            <div class="tech-showcase">
+                                <h4 data-en="Support Tools:" data-ar="أدوات الدعم:">أدوات الدعم:</h4>
+                                <div class="tech-grid">
+                                    <div class="tech-badge">Zendesk</div>
+                                    <div class="tech-badge">Jira</div>
+                                    <div class="tech-badge">ServiceNow</div>
+                                    <div class="tech-badge">Freshdesk</div>
+                                    <div class="tech-badge">Teams</div>
+                                    <div class="tech-badge">Slack</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training & Consulting Tab -->
+                <div class="tab-content" id="consulting">
+                    <div class="service-item">
+                        <div class="service-visual">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3 data-en="Training & Consulting" data-ar="التدريب والاستشارات">التدريب والاستشارات</h3>
+                            <p data-en="Professional training programs and expert consulting services to help your team master new technologies, implement best practices, and achieve digital transformation goals." data-ar="برامج تدريبية مهنية وخدمات استشارية متخصصة لمساعدة فريقك على إتقان التقنيات الجديدة وتطبيق أفضل الممارسات وتحقيق أهداف التحول الرقمي.">
+                                برامج تدريبية مهنية وخدمات استشارية متخصصة لمساعدة فريقك على إتقان التقنيات الجديدة وتطبيق أفضل الممارسات وتحقيق أهداف التحول الرقمي.
+                            </p>
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i><span data-en="Technology Training" data-ar="التدريب التقني">التدريب التقني</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="IT Consulting" data-ar="الاستشارات التقنية">الاستشارات التقنية</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Digital Transformation" data-ar="التحول الرقمي">التحول الرقمي</span></li>
+                                <li><i class="fas fa-check"></i><span data-en="Best Practices" data-ar="أفضل الممارسات">أفضل الممارسات</span></li>
+                            </ul>
+                            <div class="tech-showcase">
+                                <h4 data-en="Training Areas:" data-ar="مجالات التدريب:">مجالات التدريب:</h4>
+                                <div class="tech-grid">
+                                    <div class="tech-badge">Web Development</div>
+                                    <div class="tech-badge">Cloud Computing</div>
+                                    <div class="tech-badge">DevOps</div>
+                                    <div class="tech-badge">Cybersecurity</div>
+                                    <div class="tech-badge">Data Analytics</div>
+                                    <div class="tech-badge">AI/ML</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Process Timeline -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Our Professional Work Process" data-ar="عملية العمل الاحترافية لدينا">عملية العمل الاحترافية لدينا</h2>
+                <p class="section-subtitle" data-en="A comprehensive methodology that guarantees exceptional results through systematic execution and continuous collaboration." data-ar="منهجية شاملة تضمن نتائج استثنائية من خلال التنفيذ المنهجي والتعاون المستمر.">
+                    منهجية شاملة تضمن نتائج استثنائية من خلال التنفيذ المنهجي والتعاون المستمر.
+                </p>
+            </div>
+            
+            <div class="process-workflow">
+                <!-- Step 1 -->
+                <div class="workflow-step fade-in" data-step="1">
+                    <div class="step-details">
+                        <div class="step-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="step-title" data-en="Discovery & Analysis" data-ar="الاستكشاف والتحليل">الاستكشاف والتحليل</h3>
+                        <p class="step-description" data-en="We conduct comprehensive research and analysis to understand your business objectives, target audience, and technical requirements." data-ar="نقوم بإجراء بحث وتحليل شامل لفهم أهداف عملك والجمهور المستهدف والمتطلبات التقنية.">
+                            نقوم بإجراء بحث وتحليل شامل لفهم أهداف عملك والجمهور المستهدف والمتطلبات التقنية.
+                        </p>
+                        <div class="step-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Business Analysis" data-ar="تحليل الأعمال">تحليل الأعمال</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Market Research" data-ar="بحث السوق">بحث السوق</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Technical Assessment" data-ar="التقييم التقني">التقييم التقني</span>
+                            </div>
+                        </div>
+                        <div class="step-duration" data-en="Duration: 1-2 weeks" data-ar="المدة: 1-2 أسبوع">المدة: 1-2 أسبوع</div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="workflow-step fade-in" data-step="2">
+                    <div class="step-details">
+                        <div class="step-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <h3 class="step-title" data-en="Strategic Planning & Design" data-ar="التخطيط الاستراتيجي والتصميم">التخطيط الاستراتيجي والتصميم</h3>
+                        <p class="step-description" data-en="We create detailed project roadmaps, wireframes, and prototypes that align with your vision and user experience goals." data-ar="ننشئ خرائط طريق مفصلة للمشروع ومخططات أولية ونماذج تتماشى مع رؤيتك وأهداف تجربة المستخدم.">
+                            ننشئ خرائط طريق مفصلة للمشروع ومخططات أولية ونماذج تتماشى مع رؤيتك وأهداف تجربة المستخدم.
+                        </p>
+                        <div class="step-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Project Roadmap" data-ar="خريطة طريق المشروع">خريطة طريق المشروع</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="UI/UX Design" data-ar="تصميم واجهة المستخدم">تصميم واجهة المستخدم</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Interactive Prototypes" data-ar="النماذج التفاعلية">النماذج التفاعلية</span>
+                            </div>
+                        </div>
+                        <div class="step-duration" data-en="Duration: 2-3 weeks" data-ar="المدة: 2-3 أسابيع">المدة: 2-3 أسابيع</div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="workflow-step fade-in" data-step="3">
+                    <div class="step-details">
+                        <div class="step-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="step-title" data-en="Development & Implementation" data-ar="التطوير والتنفيذ">التطوير والتنفيذ</h3>
+                        <p class="step-description" data-en="Our expert developers bring your project to life using cutting-edge technologies, agile methodologies, and industry best practices." data-ar="يقوم مطورونا الخبراء بإحياء مشروعك باستخدام أحدث التقنيات والمنهجيات المرنة وأفضل ممارسات الصناعة.">
+                            يقوم مطورونا الخبراء بإحياء مشروعك باستخدام أحدث التقنيات والمنهجيات المرنة وأفضل ممارسات الصناعة.
+                        </p>
+                        <div class="step-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Agile Development" data-ar="التطوير المرن">التطوير المرن</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Code Reviews" data-ar="مراجعة الكود">مراجعة الكود</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Progress Updates" data-ar="تحديثات التقدم">تحديثات التقدم</span>
+                            </div>
+                        </div>
+                        <div class="step-duration" data-en="Duration: 4-8 weeks" data-ar="المدة: 4-8 أسابيع">المدة: 4-8 أسابيع</div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="workflow-step fade-in" data-step="4">
+                    <div class="step-details">
+                        <div class="step-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <h3 class="step-title" data-en="Quality Assurance & Testing" data-ar="ضمان الجودة والاختبار">ضمان الجودة والاختبار</h3>
+                        <p class="step-description" data-en="Comprehensive testing across all devices and platforms to ensure flawless performance, security, and user experience." data-ar="اختبار شامل عبر جميع الأجهزة والمنصات لضمان الأداء الخالي من العيوب والأمان وتجربة المستخدم.">
+                            اختبار شامل عبر جميع الأجهزة والمنصات لضمان الأداء الخالي من العيوب والأمان وتجربة المستخدم.
+                        </p>
+                        <div class="step-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Automated Testing" data-ar="الاختبار الآلي">الاختبار الآلي</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Security Testing" data-ar="اختبار الأمان">اختبار الأمان</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Performance Testing" data-ar="اختبار الأداء">اختبار الأداء</span>
+                            </div>
+                        </div>
+                        <div class="step-duration" data-en="Duration: 1-2 weeks" data-ar="المدة: 1-2 أسبوع">المدة: 1-2 أسبوع</div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="workflow-step fade-in" data-step="5">
+                    <div class="step-details">
+                        <div class="step-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="step-title" data-en="Launch & Deployment" data-ar="الإطلاق والنشر">الإطلاق والنشر</h3>
+                        <p class="step-description" data-en="Seamless deployment to production environment with monitoring, optimization, and post-launch support to ensure smooth operations." data-ar="نشر سلس لبيئة الإنتاج مع المراقبة والتحسين ودعم ما بعد الإطلاق لضمان العمليات السلسة.">
+                            نشر سلس لبيئة الإنتاج مع المراقبة والتحسين ودعم ما بعد الإطلاق لضمان العمليات السلسة.
+                        </p>
+                        <div class="step-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Production Deployment" data-ar="النشر الإنتاجي">النشر الإنتاجي</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Performance Monitoring" data-ar="مراقبة الأداء">مراقبة الأداء</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Post-Launch Support" data-ar="دعم ما بعد الإطلاق">دعم ما بعد الإطلاق</span>
+                            </div>
+                        </div>
+                        <div class="step-duration" data-en="Duration: 1 week" data-ar="المدة: أسبوع واحد">المدة: أسبوع واحد</div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="workflow-step fade-in" data-step="6">
+                    <div class="step-details">
+                        <div class="step-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="step-title" data-en="Maintenance & Growth" data-ar="الصيانة والنمو">الصيانة والنمو</h3>
+                        <p class="step-description" data-en="Ongoing maintenance, updates, and enhancements to keep your solution current, secure, and optimized for growth." data-ar="صيانة وتحديثات وتحسينات مستمرة للحفاظ على حلولك حديثة وآمنة ومحسنة للنمو.">
+                            صيانة وتحديثات وتحسينات مستمرة للحفاظ على حلولك حديثة وآمنة ومحسنة للنمو.
+                        </p>
+                        <div class="step-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Regular Updates" data-ar="التحديثات المنتظمة">التحديثات المنتظمة</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Security Patches" data-ar="تصحيحات الأمان">تصحيحات الأمان</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span data-en="Feature Enhancements" data-ar="تحسين الميزات">تحسين الميزات</span>
+                            </div>
+                        </div>
+                        <div class="step-duration" data-en="Duration: Ongoing" data-ar="المدة: مستمرة">المدة: مستمرة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-shapes">
+            <div class="cta-shape cta-shape-1"></div>
+            <div class="cta-shape cta-shape-2"></div>
+            <div class="cta-shape cta-shape-3"></div>
+        </div>
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title" data-en="Ready to Start Your Project?" data-ar="مستعد لبدء مشروعك؟">مستعد لبدء مشروعك؟</h2>
+                <p class="cta-description" data-en="Let's build something amazing together. Reach out to us now!" data-ar="لنصنع شيئاً مذهلاً معاً. تواصل معنا الآن!">لنصنع شيئاً مذهلاً معاً. تواصل معنا الآن!</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-en="Get a Quote" data-ar="اطلب عرض سعر">اطلب عرض سعر</span>
+                </a>
+                <a href="about.html" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    <span data-en="Learn More" data-ar="اعرف المزيد">اعرف المزيد</span>
+                </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <a href="index.html" class="logo">
+                        <img src="logo.svg" alt="Hyperlink Logo" class="logo-img">
+                        <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
+                    </a>
+                    <p class="footer-description" data-en="Innovative technical solutions for the digital future." data-ar="حلول تقنية مبتكرة للمستقبل الرقمي.">
+                        حلول تقنية مبتكرة للمستقبل الرقمي.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section links">
+                    <h3 class="footer-title" data-en="Quick Links" data-ar="روابط سريعة">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                        <li><a href="about.html" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+                        <li><a href="services.html" data-en="Services" data-ar="خدماتنا">خدماتنا</a></li>
+                        <li><a href="contact.html" data-en="Contact" data-ar="تواصل معنا">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h3 class="footer-title" data-en="Contact Info" data-ar="معلومات التواصل">معلومات التواصل</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+966 50 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@hyperlink.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-en="Riyadh, Saudi Arabia" data-ar="الرياض، المملكة العربية السعودية">الرياض، المملكة العربية السعودية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section newsletter">
+                    <h3 class="footer-title" data-en="Join Our Newsletter" data-ar="انضم لنشرتنا البريدية">انضم لنشرتنا البريدية</h3>
+                    <p class="footer-description" data-en="Get the latest news, updates, and special offers." data-ar="احصل على آخر الأخبار والتحديثات والعروض الخاصة."></p>
+                    <form class="newsletter-form">
+                        <input type="email" data-en-placeholder="Your Email Address" data-ar-placeholder="بريدك الإلكتروني" placeholder="بريدك الإلكتروني">
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-en="© 2024 Hyperlink. All rights reserved." data-ar="© 2024 هايبر لينك. جميع الحقوق محفوظة.">© 2024 هايبر لينك. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

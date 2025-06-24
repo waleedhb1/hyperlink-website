@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="About Us - Hyperlink" data-ar="من نحن - هايبر لينك">من نحن - هايبر لينك</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="logo">
+                    <img src="logo.svg" alt="Hyperlink Logo" class="logo-img">
+                    <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
+                </a>
+                
+                <div class="nav-right">
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="index.html" class="nav-link" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                        <li><a href="services.html" class="nav-link" data-en="Services" data-ar="خدماتنا">خدماتنا</a></li>
+                        <li><a href="about.html" class="nav-link active" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+                        <li><a href="contact.html" class="nav-link" data-en="Contact" data-ar="تواصل معنا">تواصل معنا</a></li>
+                    </ul>
+                    
+                    <!-- Language Switcher -->
+                    <div class="language-switcher">
+                        <button class="lang-btn active" onclick="toggleLanguage()" id="langToggle">
+                            <span class="lang-current">ع</span>
+                            <span class="lang-separator">/</span>
+                            <span class="lang-other">EN</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="hero about-hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1 class="hero-title" data-en="About Hyperlink" data-ar="من نحن">من نحن</h1>
+                <p class="hero-subtitle" data-en="Discover our journey, mission, and the passionate team behind innovative technical solutions" data-ar="اكتشف رحلتنا ورسالتنا والفريق المتحمس وراء الحلول التقنية المبتكرة">اكتشف رحلتنا ورسالتنا والفريق المتحمس وراء الحلول التقنية المبتكرة</p>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Story Section -->
+    <section class="company-story">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content slide-in-left">
+                    <h2 data-en="Our Story" data-ar="قصتنا">قصتنا</h2>
+                    <p data-en="Founded with a vision to bridge the gap between technology and business needs, Hyperlink has grown from a small startup to a trusted partner for businesses seeking innovative digital solutions." data-ar="تأسست برؤية لسد الفجوة بين التكنولوجيا واحتياجات الأعمال، نمت هايبر لينك من شركة ناشئة صغيرة إلى شريك موثوق للشركات التي تسعى للحصول على حلول رقمية مبتكرة.">تأسست برؤية لسد الفجوة بين التكنولوجيا واحتياجات الأعمال، نمت هايبر لينك من شركة ناشئة صغيرة إلى شريك موثوق للشركات التي تسعى للحصول على حلول رقمية مبتكرة.</p>
+                    <p data-en="Our journey began with a simple belief: technology should empower businesses, not complicate them. Today, we continue to uphold this principle in every project we undertake." data-ar="بدأت رحلتنا بإيمان بسيط: التكنولوجيا يجب أن تمكن الشركات، وليس أن تعقدها. اليوم، نواصل التمسك بهذا المبدأ في كل مشروع نقوم به.">بدأت رحلتنا بإيمان بسيط: التكنولوجيا يجب أن تمكن الشركات، وليس أن تعقدها. اليوم، نواصل التمسك بهذا المبدأ في كل مشروع نقوم به.</p>
+                </div>
+                <div class="story-visual slide-in-right">
+                    <div class="visual-card">
+                        <i class="fas fa-rocket"></i>
+                        <h3 data-en="Innovation First" data-ar="الابتكار أولاً">الابتكار أولاً</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 data-en="Our Mission" data-ar="رسالتنا">رسالتنا</h3>
+                    <p data-en="To deliver cutting-edge technological solutions that drive business growth and digital transformation, while maintaining the highest standards of quality and customer satisfaction." data-ar="تقديم حلول تكنولوجية متطورة تدفع نمو الأعمال والتحول الرقمي، مع الحفاظ على أعلى معايير الجودة ورضا العملاء.">تقديم حلول تكنولوجية متطورة تدفع نمو الأعمال والتحول الرقمي، مع الحفاظ على أعلى معايير الجودة ورضا العملاء.</p>
+                </div>
+                <div class="mv-card fade-in">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 data-en="Our Vision" data-ar="رؤيتنا">رؤيتنا</h3>
+                    <p data-en="To be the leading technology partner in the region, known for innovation, reliability, and exceptional service that transforms businesses and communities." data-ar="أن نكون الشريك التقني الرائد في المنطقة، المعروف بالابتكار والموثوقية والخدمة الاستثنائية التي تحول الشركات والمجتمعات.">أن نكون الشريك التقني الرائد في المنطقة، المعروف بالابتكار والموثوقية والخدمة الاستثنائية التي تحول الشركات والمجتمعات.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Our Values" data-ar="قيمنا">قيمنا</h2>
+                <p class="section-subtitle" data-en="The principles that guide everything we do" data-ar="المبادئ التي توجه كل ما نقوم به">المبادئ التي توجه كل ما نقوم به</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card fade-in">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 data-en="Innovation" data-ar="الابتكار">الابتكار</h3>
+                    <p data-en="We constantly explore new technologies and approaches to deliver groundbreaking solutions." data-ar="نستكشف باستمرار التقنيات والأساليب الجديدة لتقديم حلول رائدة.">نستكشف باستمرار التقنيات والأساليب الجديدة لتقديم حلول رائدة.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 data-en="Integrity" data-ar="النزاهة">النزاهة</h3>
+                    <p data-en="We build trust through transparency, honesty, and ethical business practices." data-ar="نبني الثقة من خلال الشفافية والصدق والممارسات التجارية الأخلاقية.">نبني الثقة من خلال الشفافية والصدق والممارسات التجارية الأخلاقية.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 data-en="Excellence" data-ar="التميز">التميز</h3>
+                    <p data-en="We strive for perfection in every project, exceeding expectations at every turn." data-ar="نسعى للكمال في كل مشروع، ونتجاوز التوقعات في كل منعطف.">نسعى للكمال في كل مشروع، ونتجاوز التوقعات في كل منعطف.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 data-en="Collaboration" data-ar="التعاون">التعاون</h3>
+                    <p data-en="We believe in the power of teamwork and partnerships to achieve extraordinary results." data-ar="نؤمن بقوة العمل الجماعي والشراكات لتحقيق نتائج استثنائية.">نؤمن بقوة العمل الجماعي والشراكات لتحقيق نتائج استثنائية.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 data-en="Quality" data-ar="الجودة">الجودة</h3>
+                    <p data-en="We are committed to the highest standards of quality, delivering robust and reliable solutions." data-ar="نلتزم بأعلى معايير الجودة في عملنا، ونقدم حلولاً قوية وموثوقة.">نلتزم بأعلى معايير الجودة في عملنا، ونقدم حلولاً قوية وموثوقة.</p>
+                </div>
+                <div class="value-card fade-in">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 data-en="Customer Centricity" data-ar="التركيز على العميل">التركيز على العميل</h3>
+                    <p data-en="We place our clients at the heart of everything we do, ensuring their success is our success." data-ar="نضع عملائنا في صميم كل ما نقوم به، مؤمنين بأن نجاحهم هو نجاحنا.">نضع عملائنا في صميم كل ما نقوم به، مؤمنين بأن نجاحهم هو نجاحنا.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-en="Meet Our Team" data-ar="تعرف على فريقنا">تعرف على فريقنا</h2>
+                <p class="section-subtitle" data-en="The talented individuals behind our success" data-ar="الأفراد الموهوبون وراء نجاحنا">الأفراد الموهوبون وراء نجاحنا</p>
+            </div>
+            <div class="team-grid">
+                <!-- المؤسس والرئيس -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Waleed Al-Habib" data-ar="وليد الحبيب">وليد الحبيب</h3>
+                        <p class="member-role" data-en="Founder & CEO" data-ar="المؤسس والرئيس التنفيذي">المؤسس والرئيس التنفيذي</p>
+                        <p class="member-description" data-en="Visionary founder and strategic leader driving innovation and business excellence across all company operations." data-ar="مؤسس ذو رؤية وقائد استراتيجي يقود الابتكار والتميز في جميع عمليات الشركة.">مؤسس ذو رؤية وقائد استراتيجي يقود الابتكار والتميز في جميع عمليات الشركة.</p>
+                    </div>
+                </div>
+                
+                <!-- مدير التطوير التقني -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-code"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Ahmed Allam" data-ar="أحمد علام">أحمد علام</h3>
+                        <p class="member-role" data-en="Chief Technology Officer" data-ar="مدير التطوير التقني">مدير التطوير التقني</p>
+                        <p class="member-description" data-en="Technical architect and development expert specializing in scalable software solutions and emerging technologies." data-ar="مهندس تقني وخبير تطوير متخصص في حلول البرمجيات القابلة للتوسع والتقنيات الناشئة.">مهندس تقني وخبير تطوير متخصص في حلول البرمجيات القابلة للتوسع والتقنيات الناشئة.</p>
+                    </div>
+                </div>
+                
+                <!-- مدير المشاريع -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Abdulmajeed Al-Zahrani" data-ar="عبدالمجيد الزهراني">عبدالمجيد الزهراني</h3>
+                        <p class="member-role" data-en="Project Manager" data-ar="مدير المشاريع">مدير المشاريع</p>
+                        <p class="member-description" data-en="Experienced project manager ensuring seamless delivery and client satisfaction through strategic planning and execution." data-ar="مدير مشاريع خبير يضمن التسليم السلس ورضا العملاء من خلال التخطيط والتنفيذ الاستراتيجي.">مدير مشاريع خبير يضمن التسليم السلس ورضا العملاء من خلال التخطيط والتنفيذ الاستراتيجي.</p>
+                    </div>
+                </div>
+                
+                <!-- مديرة التصميم -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Samar Adel" data-ar="سمر عادل">سمر عادل</h3>
+                        <p class="member-role" data-en="Creative Design Director" data-ar="مديرة التصميم الإبداعي">مديرة التصميم الإبداعي</p>
+                        <p class="member-description" data-en="Creative visionary crafting exceptional user experiences and innovative design solutions that captivate and engage." data-ar="رؤية إبداعية تصنع تجارب مستخدم استثنائية وحلول تصميم مبتكرة تأسر وتشارك.">رؤية إبداعية تصنع تجارب مستخدم استثنائية وحلول تصميم مبتكرة تأسر وتشارك.</p>
+                    </div>
+                </div>
+                
+                <!-- مطور واجهات أمامية -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Faisal Al-Mutairi" data-ar="فيصل المطيري">فيصل المطيري</h3>
+                        <p class="member-role" data-en="Senior Frontend Developer" data-ar="مطور واجهات أمامية أول">مطور واجهات أمامية أول</p>
+                        <p class="member-description" data-en="Frontend specialist creating responsive and interactive web experiences using modern frameworks and technologies." data-ar="متخصص واجهات أمامية ينشئ تجارب ويب متجاوبة وتفاعلية باستخدام أحدث الأطر والتقنيات.">متخصص واجهات أمامية ينشئ تجارب ويب متجاوبة وتفاعلية باستخدام أحدث الأطر والتقنيات.</p>
+                    </div>
+                </div>
+                
+                <!-- مطورة تطبيقات الجوال -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Nora Al-Ghamdi" data-ar="نورا الغامدي">نورا الغامدي</h3>
+                        <p class="member-role" data-en="Mobile App Developer" data-ar="مطورة تطبيقات الجوال">مطورة تطبيقات الجوال</p>
+                        <p class="member-description" data-en="Mobile development expert building native and cross-platform applications for iOS and Android platforms." data-ar="خبيرة تطوير تطبيقات الجوال تبني تطبيقات أصلية ومتعددة المنصات لأنظمة iOS وAndroid.">خبيرة تطوير تطبيقات الجوال تبني تطبيقات أصلية ومتعددة المنصات لأنظمة iOS وAndroid.</p>
+                    </div>
+                </div>
+                
+                <!-- مختص الأمن السيبراني -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Khalid Al-Rashid" data-ar="خالد الراشد">خالد الراشد</h3>
+                        <p class="member-role" data-en="Cybersecurity Specialist" data-ar="مختص الأمن السيبراني">مختص الأمن السيبراني</p>
+                        <p class="member-description" data-en="Security expert ensuring robust protection and compliance across all digital infrastructure and client solutions." data-ar="خبير أمني يضمن الحماية القوية والامتثال عبر جميع البنية التحتية الرقمية وحلول العملاء.">خبير أمني يضمن الحماية القوية والامتثال عبر جميع البنية التحتية الرقمية وحلول العملاء.</p>
+                    </div>
+                </div>
+                
+                <!-- مديرة التسويق الرقمي -->
+                <div class="team-member fade-in">
+                    <div class="member-image">
+                        <div class="member-avatar">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="member-info">
+                        <h3 data-en="Lina Al-Harbi" data-ar="لينا الحربي">لينا الحربي</h3>
+                        <p class="member-role" data-en="Digital Marketing Manager" data-ar="مديرة التسويق الرقمي">مديرة التسويق الرقمي</p>
+                        <p class="member-description" data-en="Marketing strategist developing comprehensive digital campaigns that drive growth and brand awareness." data-ar="استراتيجية تسويق تطور حملات رقمية شاملة تدفع النمو والوعي بالعلامة التجارية.">استراتيجية تسويق تطور حملات رقمية شاملة تدفع النمو والوعي بالعلامة التجارية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title" data-en="Ready to Work With Us?" data-ar="مستعد للعمل معنا؟">مستعد للعمل معنا؟</h2>
+                <p class="cta-description" data-en="Let's discuss how we can help transform your business with innovative technology solutions." data-ar="دعنا نناقش كيف يمكننا مساعدتك في تحويل عملك بحلول تكنولوجية مبتكرة.">دعنا نناقش كيف يمكننا مساعدتك في تحويل عملك بحلول تكنولوجية مبتكرة.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        <span data-en="Contact Us" data-ar="تواصل معنا">تواصل معنا</span>
+                    </a>
+                    <a href="services.html" class="btn btn-secondary">
+                        <i class="fas fa-arrow-right"></i>
+                        <span data-en="Our Services" data-ar="خدماتنا">خدماتنا</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="cta-shapes">
+            <div class="cta-shape cta-shape-1"></div>
+            <div class="cta-shape cta-shape-2"></div>
+            <div class="cta-shape cta-shape-3"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <a href="index.html" class="logo">
+                        <img src="logo.svg" alt="Hyperlink Logo" class="logo-img">
+                        <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
+                    </a>
+                    <p class="footer-description" data-en="Innovative technical solutions for the digital future." data-ar="حلول تقنية مبتكرة للمستقبل الرقمي.">
+                        حلول تقنية مبتكرة للمستقبل الرقمي.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section links">
+                    <h3 class="footer-title" data-en="Quick Links" data-ar="روابط سريعة">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-en="Home" data-ar="الرئيسية">الرئيسية</a></li>
+                        <li><a href="services.html" data-en="Services" data-ar="خدماتنا">خدماتنا</a></li>
+                        <li><a href="about.html" data-en="About Us" data-ar="من نحن">من نحن</a></li>
+                        <li><a href="contact.html" data-en="Contact" data-ar="تواصل معنا">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section contact">
+                    <h3 class="footer-title" data-en="Contact Info" data-ar="معلومات التواصل">معلومات التواصل</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+966 50 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@hyperlink.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span data-en="Riyadh, Saudi Arabia" data-ar="الرياض، المملكة العربية السعودية">الرياض، المملكة العربية السعودية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section newsletter">
+                    <h3 class="footer-title" data-en="Join Our Newsletter" data-ar="انضم لنشرتنا البريدية">انضم لنشرتنا البريدية</h3>
+                    <p class="footer-description" data-en="Get the latest news, updates, and special offers." data-ar="احصل على آخر الأخبار والتحديثات والعروض الخاصة."></p>
+                    <form class="newsletter-form">
+                        <input type="email" data-en-placeholder="Your Email Address" data-ar-placeholder="بريدك الإلكتروني" placeholder="بريدك الإلكتروني">
+                        <button type="submit" aria-label="Subscribe"><i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p data-en="© 2024 Hyperlink. All rights reserved." data-ar="© 2024 هايبر لينك. جميع الحقوق محفوظة.">© 2024 هايبر لينك. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

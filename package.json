@@ -1,0 +1,30 @@
+{
+  "name": "hyperlink-website",
+  "version": "1.0.0",
+  "description": "Hyperlink - Creative Technical Solutions Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "hyperlink",
+    "web-development",
+    "mobile-apps",
+    "cloud-solutions",
+    "cybersecurity",
+    "ui-ux-design"
+  ],
+  "author": "Hyperlink Team",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+} 

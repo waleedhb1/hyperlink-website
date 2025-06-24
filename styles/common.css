@@ -1,0 +1,514 @@
+/* ===== HYPERLINK - COSMIC DESIGN SYSTEM ===== */
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    line-height: 1.6;
+    color: #2c3e57;
+    background: linear-gradient(135deg, #0a0a0a 0%, #111111 25%, #1a1a2e 50%, #16213e 75%, #0a0a0a 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.02), transparent),
+        radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.015), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.025), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.01), transparent),
+        radial-gradient(1px 1px at 160px 30px, rgba(255, 255, 255, 0.02), transparent);
+    background-size: 200px 100px, 80px 120px, 150px 90px, 100px 140px, 180px 110px;
+    animation: twinkleStars 8s linear infinite;
+    pointer-events: none;
+    z-index: -999;
+    opacity: 0.05;
+}
+
+@keyframes twinkleStars {
+    0%, 100% { opacity: 0.02; }
+    50% { opacity: 0.08; }
+}
+
+/* ===== COSMIC VARIABLES ===== */
+:root {
+    /* Deep Space Color Palette */
+    --space-black: #0a0a0a;
+    --deep-space: #111111;
+    --space-gray: #1a1a2e;
+    --cosmic-blue: #16213e;
+    --stellar-silver: #c0c0c0;
+    --nebula-purple: #4a4a6a;
+    --galaxy-indigo: #2d3748;
+    --star-white: #ffffff;
+    --cosmic-accent: #4299e1;
+    --aurora-glow: #38b2ac;
+    
+    /* Brand Colors - Updated for Space Theme */
+    --primary-space: #2d3748;
+    --secondary-space: #4a5568;
+    --accent-space: #4299e1;
+    --light-space: #e2e8f0;
+    --dark-space: #1a202c;
+    --white: #ffffff;
+    --light-gray: #f7fafc;
+    --medium-gray: #718096;
+    --dark-gray: #2d3748;
+    
+    /* Typography */
+    --font-primary: 'Cairo', sans-serif;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --spacing-2xl: 4rem;
+    --spacing-3xl: 6rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-xl: 2rem;
+    --radius-2xl: 2.5rem;
+    --radius-full: 50%;
+    
+    /* Space Effects */
+    --cosmic-glow: 0 0 30px rgba(66, 153, 225, 0.3);
+    --stellar-glow: 0 0 20px rgba(192, 192, 192, 0.4);
+    --nebula-glow: 0 0 40px rgba(74, 74, 106, 0.3);
+    --aurora-glow: 0 0 25px rgba(56, 178, 172, 0.4);
+    
+    /* Transitions */
+    --transition-fast: all 0.2s ease;
+    --transition-medium: all 0.3s ease;
+    --transition-slow: all 0.5s ease;
+    
+    /* Space Gradients */
+    --gradient-cosmic: linear-gradient(135deg, #2d3748 0%, #4299e1 100%);
+    --gradient-nebula: linear-gradient(135deg, #1a202c 0%, #4a5568 100%);
+    --gradient-galaxy: radial-gradient(circle at 30% 70%, #2d3748 0%, #1a202c 50%, #0a0a0a 100%);
+    --gradient-aurora: linear-gradient(135deg, #38b2ac 0%, #4299e1 50%, #2d3748 100%);
+    --gradient-stardust: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    
+    /* Original Gradients - Updated */
+    --gradient-blue: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    --gradient-dark: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+    
+    /* Text Colors */
+    --text-primary: #e2e8f0;
+    --text-secondary: #a0aec0;
+    --text-muted: #718096;
+    --text-white: #ffffff;
+    --text-cosmic: #cbd5e0;
+    
+    /* Legacy compatibility */
+    --cosmic-purple: #4a5568;
+    --nebula-blue: #4299e1;
+    --stellar-indigo: #2d3748;
+    --galaxy-violet: #4a4a6a;
+    --star-gold: #ecc94b;
+    --cosmic-pink: #ed64a6;
+    --stardust: #e2e8f0;
+    --aurora-green: #38b2ac;
+}
+
+/* ===== UNIFIED ICON SYSTEM ===== */
+/* Base icon styles for consistency across all pages */
+.icon-container,
+.service-icon,
+.feature-icon,
+.value-icon,
+.mv-icon,
+.member-avatar,
+.method-icon,
+.step-icon,
+.stat-icon,
+.contact-icon {
+    background: var(--gradient-cosmic) !important;
+    color: var(--white) !important;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-medium);
+    box-shadow: 0 0 20px rgba(66, 153, 225, 0.3) !important;
+    position: relative;
+    z-index: 2;
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--spacing-lg);
+    font-size: 2rem;
+}
+
+/* Icon hover effects - unified across all pages */
+.icon-container:hover,
+.service-icon:hover,
+.feature-icon:hover,
+.value-icon:hover,
+.mv-icon:hover,
+.member-avatar:hover,
+.method-icon:hover,
+.step-icon:hover,
+.stat-icon:hover,
+.contact-icon:hover {
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 30px rgba(66, 153, 225, 0.5) !important;
+    background: var(--gradient-aurora) !important;
+}
+
+/* Icon inner elements (i tags) */
+.icon-container i,
+.service-icon i,
+.feature-icon i,
+.value-icon i,
+.mv-icon i,
+.member-avatar i,
+.method-icon i,
+.step-icon i,
+.stat-icon i,
+.contact-icon i {
+    color: var(--white) !important;
+    transition: var(--transition-medium);
+}
+
+.icon-container:hover i,
+.service-icon:hover i,
+.feature-icon:hover i,
+.value-icon:hover i,
+.mv-icon:hover i,
+.member-avatar:hover i,
+.method-icon:hover i,
+.step-icon:hover i,
+.stat-icon:hover i,
+.contact-icon:hover i {
+    color: var(--white) !important;
+    transform: scale(1.1);
+}
+
+/* Service cards unified styles */
+.service-card,
+.service-card-preview,
+.feature-card,
+.value-card,
+.mv-card,
+.team-member,
+.contact-method,
+.workflow-step .step-details,
+.testimonial-card {
+    background: rgba(45, 55, 72, 0.1) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(45, 55, 72, 0.2) !important;
+    border-radius: var(--radius-xl);
+    transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+    padding: var(--spacing-xl);
+}
+
+/* Default center alignment for most cards */
+.service-card,
+.service-card-preview,
+.feature-card,
+.value-card,
+.mv-card,
+.team-member,
+.workflow-step .step-details,
+.testimonial-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Contact method cards have different layout */
+.contact-method {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+/* Special handling for contact method icons */
+.contact-method .method-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+    margin-right: var(--spacing-lg);
+    flex-shrink: 0;
+}
+
+html[dir="rtl"] .contact-method .method-icon {
+    margin-right: 0;
+    margin-left: var(--spacing-lg);
+}
+
+/* Unified hover effects for cards */
+.service-card:hover,
+.service-card-preview:hover,
+.feature-card:hover,
+.value-card:hover,
+.mv-card:hover,
+.team-member:hover,
+.contact-method:hover,
+.workflow-step:hover .step-details,
+.testimonial-card:hover {
+    transform: translateY(-10px) !important;
+    border-color: rgba(45, 55, 72, 0.5) !important;
+    box-shadow: 0 20px 40px rgba(66, 153, 225, 0.15) !important;
+}
+
+/* Service features icons unified */
+.service-features i,
+.feature-list i,
+.step-features i {
+    color: #4299e1 !important;
+    font-size: 1.2rem;
+    transition: var(--transition-medium);
+}
+
+.service-features i:hover,
+.feature-list i:hover,
+.step-features i:hover {
+    color: #38b2ac !important;
+    transform: scale(1.1);
+}
+
+/* Tech badges unified */
+.tech-badge,
+.feature-tag,
+.skill-tag {
+    background: rgba(45, 55, 72, 0.3);
+    color: #e2e8f0;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: var(--transition-medium);
+    border: 1px solid rgba(45, 55, 72, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    display: inline-block !important;
+    white-space: nowrap;
+    text-shadow: none;
+    position: relative;
+    z-index: 50 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.tech-badge:hover,
+.feature-tag:hover,
+.skill-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    background: rgba(45, 55, 72, 0.5);
+    border-color: rgba(66, 153, 225, 0.3);
+}
+
+/* Social links unified */
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(45, 55, 72, 0.2) !important;
+    border: 1px solid rgba(45, 55, 72, 0.3) !important;
+    border-radius: var(--radius-full);
+    color: var(--text-cosmic) !important;
+    text-decoration: none;
+    transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-cosmic);
+    opacity: 0;
+    transition: var(--transition-medium);
+    border-radius: inherit;
+}
+
+.social-link:hover::before {
+    opacity: 1;
+}
+
+.social-link:hover {
+    color: var(--white) !important;
+    transform: translateY(-3px);
+    box-shadow: var(--cosmic-glow) !important;
+    border-color: rgba(66, 153, 225, 0.5) !important;
+}
+
+.social-link i {
+    position: relative;
+    z-index: 2;
+    font-size: 1.1rem;
+}
+
+/* Contact links unified */
+.contact-link {
+    color: var(--cosmic-accent) !important;
+    text-decoration: none;
+    transition: var(--transition-medium);
+    font-weight: var(--font-weight-medium);
+}
+
+.contact-link:hover {
+    color: var(--white) !important;
+    text-shadow: 0 0 10px rgba(66, 153, 225, 0.5);
+}
+
+/* Footer links arrow unified */
+.footer-links a::before {
+    content: '\f105';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    color: var(--cosmic-accent) !important;
+    transition: var(--transition-medium);
+}
+
+.footer-links a:hover::before {
+    opacity: 1;
+    right: -15px;
+}
+
+/* Member roles unified */
+.member-role,
+.author-position,
+.staff-position {
+    color: var(--cosmic-accent) !important;
+    font-weight: var(--font-weight-medium);
+    transition: var(--transition-medium);
+}
+
+/* Stats numbers unified */
+.stat-number {
+    background: var(--gradient-cosmic) !important;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: var(--font-weight-black);
+    transition: var(--transition-medium);
+}
+
+.stat-item:hover .stat-number {
+    text-shadow: 0 0 15px rgba(66, 153, 225, 0.5);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure all main sections are above stars */
+section, main, .hero, .services-preview, .cta-section, .footer, .team-section, .values-section, .main-services, .services-tabs-container, .tab-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure all content elements are above stars */
+h1, h2, h3, h4, h5, h6, p, a, button, .btn, .card, .service-card, .team-member, .nav-link, .tab-link, .service-item, .work-process-grid, .stats-grid, .tech-showcase, .tech-grid, .tech-badge {
+    position: relative;
+    z-index: 2;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition-slow);
+}
+
+.fade-in.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: var(--transition-slow);
+}
+
+.slide-in-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: var(--transition-slow);
+}
+
+.slide-in-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== SHARED SECTION STYLES ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-title {
+    font-size: 2.8rem;
+    font-weight: var(--font-weight-black);
+    color: var(--white);
+    margin-bottom: var(--spacing-md);
+    background: var(--gradient-cosmic);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-cosmic);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+} 

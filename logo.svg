@@ -1,0 +1,22 @@
+<svg width="78" height="74" viewBox="0 0 78 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="cosmic-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#2d3748;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#4299e1;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="nebula-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1a202c;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#4a5568;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="aurora-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#38b2ac;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#4299e1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#2d3748;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <g id="logo-icon">
+        <circle cx="50" cy="48" r="22" fill="url(#cosmic-gradient)" opacity="0.9"/>
+        <circle cx="28" cy="48" r="22" fill="url(#nebula-gradient)"/>
+        <circle cx="39" cy="26" r="22" fill="url(#aurora-gradient)"/>
+    </g>
+</svg> 
