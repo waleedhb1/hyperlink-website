@@ -8,15 +8,19 @@ let mousePosition = { x: 0, y: 0 };
 
 // تهيئة EmailJS
 (function() {
-    emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // سيتم تحديثه من متغيرات البيئة
+    // سيتم تحديث هذا المفتاح من متغيرات البيئة أو الإعدادات
+    emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // سيتم تحديثه لاحقاً
 })();
 
 // إعدادات Supabase
-const SUPABASE_URL = 'YOUR_SUPABASE_URL'; // سيتم تحديثه من متغيرات البيئة
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // سيتم تحديثه من متغيرات البيئة
+const SUPABASE_URL = 'YOUR_SUPABASE_URL'; // سيتم تحديثه لاحقاً
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // سيتم تحديثه لاحقاً
 
 // تهيئة Supabase Client
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let supabase;
+if (typeof window !== 'undefined' && window.supabase) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
 
 // Language Switching
 function setLanguage(lang) {
@@ -588,94 +592,45 @@ async function submitContactForm(event) {
         company: formData.get('company') || '',
         service: formData.get('service') || '',
         budget: formData.get('budget') || '',
-        message: formData.get('message'),
-        created_at: new Date().toISOString()
+        message: formData.get('message')
     };
 
     try {
         // حفظ في قاعدة البيانات
-        const { data, error } = await supabase
-            .from('contact_requests')
-            .insert([contactData]);
+        if (supabase) {
+            const { data, error } = await supabase
+                .from('contact_requests')
+                .insert([contactData]);
 
-        if (error) {
-            throw error;
+            if (error) {
+                console.error('خطأ في حفظ البيانات:', error);
+            } else {
+                console.log('تم حفظ البيانات بنجاح:', data);
+            }
         }
 
-        // إرسال إيميل عبر EmailJS
-        await emailjs.send(
-            'gmail_service', // Service ID
-            'contact_template', // Template ID
-            {
-                to_email: 'waleedalhabib@gmail.com',
-                from_name: `${contactData.first_name} ${contactData.last_name}`,
-                from_email: contactData.email,
-                phone: contactData.phone,
-                company: contactData.company,
-                service: contactData.service,
-                budget: contactData.budget,
-                message: contactData.message
-            }
-        );
+        // إرسال الإيميل
+        const emailParams = {
+            first_name: contactData.first_name,
+            last_name: contactData.last_name,
+            email: contactData.email,
+            phone: contactData.phone,
+            company: contactData.company,
+            service: contactData.service,
+            budget: contactData.budget,
+            message: contactData.message
+        };
 
-        // عرض رسالة نجاح
-        showSuccessMessage();
-        event.target.reset();
+        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailParams);
         
+        // إظهار رسالة نجاح
+        alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
+        event.target.reset();
+
     } catch (error) {
         console.error('خطأ في إرسال النموذج:', error);
-        showErrorMessage();
+        alert('حدث خطأ في إرسال الرسالة. الرجاء المحاولة مرة أخرى.');
     }
-}
-
-// عرض رسالة النجاح
-function showSuccessMessage() {
-    const successDiv = document.createElement('div');
-    successDiv.className = 'alert alert-success';
-    successDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #4CAF50;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 5px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
-        direction: rtl;
-        font-family: 'Cairo', sans-serif;
-    `;
-    successDiv.innerHTML = '✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
-    document.body.appendChild(successDiv);
-    
-    setTimeout(() => {
-        successDiv.remove();
-    }, 5000);
-}
-
-// عرض رسالة الخطأ
-function showErrorMessage() {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'alert alert-error';
-    errorDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #f44336;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 5px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 1000;
-        direction: rtl;
-        font-family: 'Cairo', sans-serif;
-    `;
-    errorDiv.innerHTML = '❌ حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى.';
-    document.body.appendChild(errorDiv);
-    
-    setTimeout(() => {
-        errorDiv.remove();
-    }, 5000);
 }
 
 // ربط النموذج بالدالة
