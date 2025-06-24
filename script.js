@@ -6,7 +6,17 @@ let animations = [];
 let cosmicParticles = [];
 let mousePosition = { x: 0, y: 0 };
 
+// تهيئة EmailJS
+(function() {
+    emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // سيتم تحديثه من متغيرات البيئة
+})();
 
+// إعدادات Supabase
+const SUPABASE_URL = 'YOUR_SUPABASE_URL'; // سيتم تحديثه من متغيرات البيئة
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // سيتم تحديثه من متغيرات البيئة
+
+// تهيئة Supabase Client
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Language Switching
 function setLanguage(lang) {
@@ -565,126 +575,116 @@ function initializeFAQ() {
     });
 }
 
-// Contact Form Enhancement
-function enhanceContactForm() {
-    const contactForm = document.getElementById('contactForm');
+// إرسال نموذج التواصل
+async function submitContactForm(event) {
+    event.preventDefault();
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // إظهار loading
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
-            submitBtn.disabled = true;
-            
-            try {
-                // Get form data
-                const formData = new FormData(this);
-                const data = {};
-                
-                for (let [key, value] of formData.entries()) {
-                    data[key] = value;
-                }
-                
-                // Validate required fields
-                const requiredFields = ['firstName', 'lastName', 'email', 'message'];
-                let isValid = true;
-                
-                requiredFields.forEach(field => {
-                    const input = this.querySelector(`[name="${field}"]`);
-                    if (!data[field] || data[field].trim() === '') {
-                        input.classList.add('error');
-                        isValid = false;
-                    } else {
-                        input.classList.remove('error');
-                    }
-                });
-                
-                // Email validation
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                const emailInput = this.querySelector('[name="email"]');
-                if (data.email && !emailRegex.test(data.email)) {
-                    emailInput.classList.add('error');
-                    isValid = false;
-                }
-                
-                if (!isValid) {
-                    showNotification(
-                        currentLanguage === 'ar' 
-                            ? 'يرجى ملء جميع الحقول المطلوبة بشكل صحيح.' 
-                            : 'Please fill in all required fields correctly.',
-                        'error'
-                    );
-                    return;
-                }
-                
-                // إرسال البيانات إلى API
-                const response = await fetch('/api/submit-contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok && result.success) {
-                    // إظهار رسالة نجاح
-                    showNotification(
-                        currentLanguage === 'ar' 
-                            ? 'تم إرسال طلبك بنجاح! سنتواصل معك قريباً.' 
-                            : 'Your request has been sent successfully! We will contact you soon.',
-                        'success'
-                    );
-                    
-                    // Reset form
-                    this.reset();
-                    
-                    // Track form submission
-                    trackEvent('Form', 'Submit', 'Contact Form');
-                } else {
-                    // إظهار رسالة خطأ
-                    showNotification(
-                        result.error || (currentLanguage === 'ar' 
-                            ? 'حدث خطأ أثناء إرسال الطلب. حاول مرة أخرى.' 
-                            : 'An error occurred while sending the request. Please try again.'),
-                        'error'
-                    );
-                }
-                
-            } catch (error) {
-                console.error('Form submission error:', error);
-                showNotification(
-                    currentLanguage === 'ar' 
-                        ? 'حدث خطأ في الاتصال. تأكد من اتصالك بالإنترنت وحاول مرة أخرى.' 
-                        : 'Connection error occurred. Check your internet connection and try again.',
-                    'error'
-                );
-            } finally {
-                // إعادة تعيين الزر
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
+    const formData = new FormData(event.target);
+    const contactData = {
+        first_name: formData.get('firstName'),
+        last_name: formData.get('lastName'),
+        email: formData.get('email'),
+        phone: formData.get('phone') || '',
+        company: formData.get('company') || '',
+        service: formData.get('service') || '',
+        budget: formData.get('budget') || '',
+        message: formData.get('message'),
+        created_at: new Date().toISOString()
+    };
+
+    try {
+        // حفظ في قاعدة البيانات
+        const { data, error } = await supabase
+            .from('contact_requests')
+            .insert([contactData]);
+
+        if (error) {
+            throw error;
+        }
+
+        // إرسال إيميل عبر EmailJS
+        await emailjs.send(
+            'gmail_service', // Service ID
+            'contact_template', // Template ID
+            {
+                to_email: 'waleedalhabib@gmail.com',
+                from_name: `${contactData.first_name} ${contactData.last_name}`,
+                from_email: contactData.email,
+                phone: contactData.phone,
+                company: contactData.company,
+                service: contactData.service,
+                budget: contactData.budget,
+                message: contactData.message
             }
-        });
+        );
+
+        // عرض رسالة نجاح
+        showSuccessMessage();
+        event.target.reset();
         
-        // Real-time validation
-        const inputs = contactForm.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                validateField(this);
-            });
-            
-            input.addEventListener('input', function() {
-                if (this.classList.contains('error')) {
-                    validateField(this);
-                }
-            });
-        });
+    } catch (error) {
+        console.error('خطأ في إرسال النموذج:', error);
+        showErrorMessage();
     }
 }
+
+// عرض رسالة النجاح
+function showSuccessMessage() {
+    const successDiv = document.createElement('div');
+    successDiv.className = 'alert alert-success';
+    successDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        direction: rtl;
+        font-family: 'Cairo', sans-serif;
+    `;
+    successDiv.innerHTML = '✅ تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.';
+    document.body.appendChild(successDiv);
+    
+    setTimeout(() => {
+        successDiv.remove();
+    }, 5000);
+}
+
+// عرض رسالة الخطأ
+function showErrorMessage() {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'alert alert-error';
+    errorDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #f44336;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 1000;
+        direction: rtl;
+        font-family: 'Cairo', sans-serif;
+    `;
+    errorDiv.innerHTML = '❌ حدث خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى.';
+    document.body.appendChild(errorDiv);
+    
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
+}
+
+// ربط النموذج بالدالة
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', submitContactForm);
+    }
+});
 
 // Chat Button Functionality
 function initializeChatButton() {
@@ -709,7 +709,6 @@ function initializeChatButton() {
 // Initialize all enhanced functionality
 document.addEventListener('DOMContentLoaded', function() {
     initializeFAQ();
-    enhanceContactForm();
     initializeChatButton();
 });
 
@@ -720,7 +719,7 @@ window.HyperlinkApp = {
     copyToClipboard,
     trackEvent,
     initializeFAQ,
-    enhanceContactForm
+    submitContactForm
 };
 
 // ===== COSMIC EFFECTS =====
