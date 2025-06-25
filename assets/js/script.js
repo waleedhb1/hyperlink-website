@@ -77,6 +77,15 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeParticleSystem();
     setupMouseTracking();
     setupTabs();
+    
+    // Force mobile navigation setup
+    setupMobileNavigation();
+    
+    // Force tabs setup with delay for proper initialization
+    setTimeout(function() {
+        setupTabs();
+        forceTabsInitialization();
+    }, 100);
 });
 
 // Enhanced Header Scroll Effect
@@ -1046,3 +1055,204 @@ function setupTabs() {
         }
     }
 }
+
+// Force Mobile Navigation Setup
+function setupMobileNavigation() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    
+    if (hamburger && navMenu) {
+        // Remove any existing event listeners
+        hamburger.replaceWith(hamburger.cloneNode(true));
+        const newHamburger = document.getElementById('hamburger');
+        
+        newHamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Hamburger clicked!'); // Debug log
+            
+            newHamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+            
+            // Force display
+            if (navMenu.classList.contains('active')) {
+                navMenu.style.display = 'flex';
+                navMenu.style.right = '0';
+            } else {
+                navMenu.style.right = '-100%';
+                setTimeout(() => {
+                    if (!navMenu.classList.contains('active')) {
+                        navMenu.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+        
+        // Close menu when clicking on links
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                newHamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                navMenu.style.right = '-100%';
+                
+                setTimeout(() => {
+                    navMenu.style.display = 'none';
+                }, 300);
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                newHamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                navMenu.style.right = '-100%';
+                
+                setTimeout(() => {
+                    if (!navMenu.classList.contains('active')) {
+                        navMenu.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+    }
+}
+
+// Force Tabs Initialization
+function forceTabsInitialization() {
+    console.log('Force tabs initialization called'); // Debug log
+    
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    console.log('Found tab links:', tabLinks.length); // Debug log
+    console.log('Found tab contents:', tabContents.length); // Debug log
+    
+    if (tabLinks.length > 0) {
+        // Remove existing event listeners and setup fresh ones
+        tabLinks.forEach(link => {
+            // Clone to remove all event listeners
+            const newLink = link.cloneNode(true);
+            link.parentNode.replaceChild(newLink, link);
+        });
+        
+        // Get fresh references after cloning
+        const freshTabLinks = document.querySelectorAll('.tab-link');
+        const freshTabContents = document.querySelectorAll('.tab-content');
+        
+        freshTabLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const targetTab = this.getAttribute('data-tab');
+                console.log('Tab clicked:', targetTab); // Debug log
+                
+                // Remove active class from all tabs and contents
+                freshTabLinks.forEach(l => {
+                    l.classList.remove('active');
+                    l.style.background = 'rgba(45, 55, 72, 0.1)';
+                });
+                
+                freshTabContents.forEach(c => {
+                    c.classList.remove('active');
+                    c.style.display = 'none';
+                });
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                this.style.background = 'linear-gradient(135deg, #2d3748 0%, #4299e1 100%)';
+                
+                const targetContent = document.getElementById(targetTab);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                    targetContent.style.display = 'block';
+                    console.log('Content displayed for:', targetTab); // Debug log
+                } else {
+                    console.log('No content found for:', targetTab); // Debug log
+                }
+            });
+        });
+        
+        // Set first tab as active by default
+        if (freshTabLinks.length > 0 && freshTabContents.length > 0) {
+            const firstTab = freshTabLinks[0];
+            const firstTabTarget = firstTab.getAttribute('data-tab');
+            const firstContent = document.getElementById(firstTabTarget);
+            
+            // Reset all first
+            freshTabLinks.forEach(l => {
+                l.classList.remove('active');
+                l.style.background = 'rgba(45, 55, 72, 0.1)';
+            });
+            
+            freshTabContents.forEach(c => {
+                c.classList.remove('active');
+                c.style.display = 'none';
+            });
+            
+            // Activate first
+            firstTab.classList.add('active');
+            firstTab.style.background = 'linear-gradient(135deg, #2d3748 0%, #4299e1 100%)';
+            
+            if (firstContent) {
+                firstContent.classList.add('active');
+                firstContent.style.display = 'block';
+                console.log('First tab activated:', firstTabTarget); // Debug log
+            }
+        }
+    }
+}
+
+// Enhanced setup with better error handling
+function enhancedSetup() {
+    try {
+        setupMobileNavigation();
+        forceTabsInitialization();
+        
+        // Setup FAQ if exists
+        const faqItems = document.querySelectorAll('.faq-item');
+        if (faqItems.length > 0) {
+            setupFAQAccordion();
+        }
+        
+        // Setup form handling if exists
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            setupFormHandling();
+        }
+        
+    } catch (error) {
+        console.error('Setup error:', error);
+    }
+}
+
+// Call enhanced setup when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhancedSetup);
+} else {
+    enhancedSetup();
+}
+
+// Also setup on window load as backup
+window.addEventListener('load', function() {
+    setTimeout(enhancedSetup, 500);
+});
+
+// Debug function to check elements
+function debugElements() {
+    console.log('=== DEBUG INFO ===');
+    console.log('Hamburger:', document.getElementById('hamburger'));
+    console.log('Nav Menu:', document.getElementById('navMenu'));
+    console.log('Tab Links:', document.querySelectorAll('.tab-link').length);
+    console.log('Tab Contents:', document.querySelectorAll('.tab-content').length);
+    console.log('==================');
+}
+
+// Call debug after a delay
+setTimeout(debugElements, 1000);
