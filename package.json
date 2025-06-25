@@ -2,7 +2,6 @@
   "name": "hyperlink-website",
   "version": "1.0.0",
   "description": "Hyperlink - Creative Technical Solutions Website",
-  "main": "index.html",
   "scripts": {
     "dev": "vercel dev",
     "build": "echo 'Static site - no build needed'",
@@ -23,8 +22,5 @@
   },
   "devDependencies": {
     "vercel": "^32.0.0"
-  },
-  "engines": {
-    "node": "18.x"
   }
 } 
