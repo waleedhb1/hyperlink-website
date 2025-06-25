@@ -77,10 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeParticleSystem();
     setupMouseTracking();
     setupTabs();
-    setupFormHandling();
-    
-    // Make the body visible now that the language is set and scripts are initialized
-    document.body.style.visibility = 'visible';
 });
 
 // Enhanced Header Scroll Effect
