@@ -1056,274 +1056,233 @@ function setupTabs() {
     }
 }
 
-// Force Mobile Navigation Setup
+// Enhanced Mobile Navigation
 function setupMobileNavigation() {
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
     
     if (hamburger && navMenu) {
-        // Initial setup - ensure menu is closed
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-        navMenu.style.display = 'none';
-        navMenu.style.right = '-100%';
-        navMenu.style.visibility = 'hidden';
-        navMenu.style.opacity = '0';
-        document.body.classList.remove('menu-open');
-        // Remove any existing event listeners
-        hamburger.replaceWith(hamburger.cloneNode(true));
-        const newHamburger = document.getElementById('hamburger');
-        
-        // Ensure initial state after replacement
-        const freshNavMenu = document.getElementById('navMenu');
-        freshNavMenu.classList.remove('active');
-        newHamburger.classList.remove('active');
-        freshNavMenu.style.display = 'none';
-        freshNavMenu.style.right = '-100%';
-        freshNavMenu.style.visibility = 'hidden';
-        freshNavMenu.style.opacity = '0';
-        
-        newHamburger.addEventListener('click', function(e) {
+        // Toggle mobile menu
+        hamburger.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            console.log('Hamburger clicked!'); // Debug log
-            
-            newHamburger.classList.toggle('active');
+            hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open');
             
-            // Force display
+            // Prevent body scroll when menu is open
             if (navMenu.classList.contains('active')) {
-                navMenu.style.display = 'flex';
-                navMenu.style.right = '0';
-                navMenu.style.visibility = 'visible';
-                navMenu.style.opacity = '1';
+                document.body.style.overflow = 'hidden';
             } else {
-                navMenu.style.right = '-100%';
-                navMenu.style.visibility = 'hidden';
-                navMenu.style.opacity = '0';
-                setTimeout(() => {
-                    if (!navMenu.classList.contains('active')) {
-                        navMenu.style.display = 'none';
-                    }
-                }, 300);
+                document.body.style.overflow = '';
             }
         });
         
-        // Close menu when clicking on links
-        const navLinks = navMenu.querySelectorAll('.nav-link');
+        // Close menu when clicking nav links
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                newHamburger.classList.remove('active');
+                hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                navMenu.style.right = '-100%';
-                
-                setTimeout(() => {
-                    navMenu.style.display = 'none';
-                }, 300);
+                document.body.style.overflow = '';
             });
         });
         
         // Close menu when clicking outside
         document.addEventListener('click', function(e) {
-            if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                newHamburger.classList.remove('active');
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-                navMenu.style.right = '-100%';
-                
-                setTimeout(() => {
-                    if (!navMenu.classList.contains('active')) {
-                        navMenu.style.display = 'none';
-                    }
-                }, 300);
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
             }
         });
     }
 }
 
-// Force Tabs Initialization
-function forceTabsInitialization() {
-    console.log('Force tabs initialization called'); // Debug log
+// Mobile Services Cards Handler
+function setupMobileServicesCards() {
+    const mobileCards = document.querySelectorAll('.service-card-mobile');
     
+    mobileCards.forEach(card => {
+        const header = card.querySelector('.service-card-header');
+        
+        if (header) {
+            header.addEventListener('click', function() {
+                // Close other cards
+                mobileCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current card
+                card.classList.toggle('active');
+            });
+        }
+    });
+}
+
+// Remove Email Icons Function
+function removeEmailIcons() {
+    // Remove email social links
+    const emailLinks = document.querySelectorAll('a[href*="mailto"], .social-link[href*="mailto"]');
+    emailLinks.forEach(link => {
+        link.style.display = 'none';
+        link.remove();
+    });
+    
+    // Remove email contact items
+    const emailContactItems = document.querySelectorAll('.contact-item[href^="mailto:"]');
+    emailContactItems.forEach(item => {
+        item.style.display = 'none';
+        item.remove();
+    });
+    
+    // Remove email icons from footer
+    const footerEmailIcons = document.querySelectorAll('.footer .fa-envelope, .footer .fa-mail-bulk');
+    footerEmailIcons.forEach(icon => {
+        const parentLink = icon.closest('a');
+        if (parentLink) {
+            parentLink.style.display = 'none';
+            parentLink.remove();
+        }
+    });
+}
+
+// Fix Footer Direction
+function fixFooterDirection() {
+    const contactItems = document.querySelectorAll('.contact-item');
+    contactItems.forEach(item => {
+        const spans = item.querySelectorAll('span');
+        spans.forEach(span => {
+            // Check if span contains phone number
+            if (span.textContent.includes('+') || span.textContent.match(/\d{3,}/)) {
+                span.style.direction = 'ltr';
+                span.style.textAlign = 'left';
+            }
+        });
+    });
+}
+
+// Enhanced Tab System for Desktop
+function setupEnhancedTabs() {
     const tabLinks = document.querySelectorAll('.tab-link');
     const tabContents = document.querySelectorAll('.tab-content');
     
-    console.log('Found tab links:', tabLinks.length); // Debug log
-    console.log('Found tab contents:', tabContents.length); // Debug log
-    
-    if (tabLinks.length > 0) {
-        // Remove existing event listeners and setup fresh ones
-        tabLinks.forEach(link => {
-            // Clone to remove all event listeners
-            const newLink = link.cloneNode(true);
-            link.parentNode.replaceChild(newLink, link);
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and contents
+            tabLinks.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Show corresponding content
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+                targetContent.classList.add('active');
+            }
         });
+    });
+}
+
+// Initialize Contact Info Container
+function initializeContactInfo() {
+    const contactInfoContainer = document.querySelector('.contact-info-container');
+    if (contactInfoContainer) {
+        // Force visibility
+        contactInfoContainer.style.display = 'block';
+        contactInfoContainer.style.visibility = 'visible';
+        contactInfoContainer.style.opacity = '1';
         
-        // Get fresh references after cloning
-        const freshTabLinks = document.querySelectorAll('.tab-link');
-        const freshTabContents = document.querySelectorAll('.tab-content');
-        
-        freshTabLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                const targetTab = this.getAttribute('data-tab');
-                console.log('Tab clicked:', targetTab); // Debug log
-                
-                // Remove active class from all tabs and contents
-                freshTabLinks.forEach(l => {
-                    l.classList.remove('active');
-                    l.style.background = 'rgba(45, 55, 72, 0.1)';
-                });
-                
-                freshTabContents.forEach(c => {
-                    c.classList.remove('active');
-                    c.style.display = 'none';
-                });
-                
-                // Add active class to clicked tab and corresponding content
-                this.classList.add('active');
-                this.style.background = 'linear-gradient(135deg, #2d3748 0%, #4299e1 100%)';
-                
-                const targetContent = document.getElementById(targetTab);
-                if (targetContent) {
-                    targetContent.classList.add('active');
-                    targetContent.style.display = 'block';
-                    console.log('Content displayed for:', targetTab); // Debug log
+        // Ensure proper mobile styling
+        if (window.innerWidth <= 768) {
+            contactInfoContainer.style.background = 'rgba(45, 55, 72, 0.03)';
+            contactInfoContainer.style.border = '1px solid rgba(66, 153, 225, 0.15)';
+            contactInfoContainer.style.borderRadius = '16px';
+            contactInfoContainer.style.padding = '2rem 1.5rem';
+            contactInfoContainer.style.marginBottom = '2rem';
+        }
+    }
+}
+
+// Responsive Services Handler
+function handleResponsiveServices() {
+    const tabsNav = document.querySelector('.services-tabs-nav');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const mobileCards = document.querySelector('.services-cards-mobile');
+    
+    function updateServicesDisplay() {
+        if (window.innerWidth <= 768) {
+            // Mobile view
+            if (tabsNav) tabsNav.style.display = 'none';
+            tabContents.forEach(content => content.style.display = 'none');
+            if (mobileCards) mobileCards.style.display = 'block';
+        } else {
+            // Desktop view
+            if (tabsNav) tabsNav.style.display = 'block';
+            if (mobileCards) mobileCards.style.display = 'none';
+            
+            // Show first tab content by default
+            tabContents.forEach((content, index) => {
+                if (index === 0) {
+                    content.style.display = 'block';
+                    content.classList.add('active');
                 } else {
-                    console.log('No content found for:', targetTab); // Debug log
+                    content.style.display = 'none';
+                    content.classList.remove('active');
                 }
             });
-        });
-        
-        // Set first tab as active by default
-        if (freshTabLinks.length > 0 && freshTabContents.length > 0) {
-            const firstTab = freshTabLinks[0];
-            const firstTabTarget = firstTab.getAttribute('data-tab');
-            const firstContent = document.getElementById(firstTabTarget);
-            
-            // Reset all first
-            freshTabLinks.forEach(l => {
-                l.classList.remove('active');
-                l.style.background = 'rgba(45, 55, 72, 0.1)';
-            });
-            
-            freshTabContents.forEach(c => {
-                c.classList.remove('active');
-                c.style.display = 'none';
-            });
-            
-            // Activate first
-            firstTab.classList.add('active');
-            firstTab.style.background = 'linear-gradient(135deg, #2d3748 0%, #4299e1 100%)';
-            
-            if (firstContent) {
-                firstContent.classList.add('active');
-                firstContent.style.display = 'block';
-                console.log('First tab activated:', firstTabTarget); // Debug log
-            }
         }
     }
-}
-
-// Enhanced setup with better error handling
-function enhancedSetup() {
-    try {
-        setupMobileNavigation();
-        forceTabsInitialization();
-        initializeMobileCards(); // Initialize mobile service cards
-        hideEmailIcons();
-        
-        // Setup FAQ if exists
-        const faqItems = document.querySelectorAll('.faq-item');
-        if (faqItems.length > 0) {
-            setupFAQAccordion();
-        }
-        
-        // Setup form handling if exists
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            setupFormHandling();
-        }
-        
-    } catch (error) {
-        console.error('Setup error:', error);
-    }
-}
-
-// Hide email sharing icons
-function hideEmailIcons() {
-    const emailLinks = document.querySelectorAll('a[href^="mailto:"], .contact-item[href^="mailto:"]');
-    emailLinks.forEach(link => {
-        link.style.display = 'none';
-        link.style.visibility = 'hidden';
-        if (link.parentNode) {
-            link.parentNode.style.display = 'none';
-        }
-    });
     
-    // Also hide any email icons by class or data attributes
-    const emailElements = document.querySelectorAll('[data-email], .email-share, .share-email');
-    emailElements.forEach(element => {
-        element.style.display = 'none';
-        element.style.visibility = 'hidden';
-    });
+    // Initial call
+    updateServicesDisplay();
+    
+    // Update on resize
+    window.addEventListener('resize', updateServicesDisplay);
 }
 
-// Call enhanced setup when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', enhancedSetup);
-} else {
-    enhancedSetup();
+// Initialize all mobile features
+function initializeMobileFeatures() {
+    setupMobileNavigation();
+    setupMobileServicesCards();
+    removeEmailIcons();
+    fixFooterDirection();
+    setupEnhancedTabs();
+    initializeContactInfo();
+    handleResponsiveServices();
 }
 
-// Also setup on window load as backup
-window.addEventListener('load', function() {
-    setTimeout(enhancedSetup, 500);
+// Updated DOMContentLoaded event
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all mobile features
+    initializeMobileFeatures();
+    
+    // Initialize animations and other features
+    initializeAnimations();
+    setupScrollEffects();
+    setupFAQAccordion();
+    setupFormHandling();
+    setupLanguageSwitcher();
+    
+    // Call periodic cleanup
+    setInterval(removeEmailIcons, 5000);
 });
-
-// Initialize Mobile Service Cards
-function initializeMobileCards() {
-    const mobileCards = document.querySelectorAll('.service-card-mobile');
-    
-    if (mobileCards.length > 0) {
-        console.log('Found mobile cards:', mobileCards.length);
-        
-        mobileCards.forEach((card, index) => {
-            const header = card.querySelector('.service-card-header');
-            
-            if (header) {
-                header.addEventListener('click', function() {
-                    console.log('Card clicked:', index);
-                    
-                    // Close all other cards
-                    mobileCards.forEach((otherCard, otherIndex) => {
-                        if (otherCard !== card) {
-                            otherCard.classList.remove('active');
-                        }
-                    });
-                    
-                    // Toggle current card
-                    card.classList.toggle('active');
-                    
-                    // Add smooth scrolling to the clicked card
-                    setTimeout(() => {
-                        if (card.classList.contains('active')) {
-                            card.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'nearest'
-                            });
-                        }
-                    }, 300);
-                });
-            }
-        });
-    }
-}
 
 // Debug function to check elements
 function debugElements() {

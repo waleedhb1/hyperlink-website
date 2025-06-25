@@ -6435,3 +6435,844 @@ html {
         min-width: 200px !important;
     }
 }
+
+/* ===== COMPREHENSIVE MOBILE FIXES ===== */
+
+/* 1. إصلاح الناف بار للجوال */
+@media (max-width: 768px) {
+    /* إصلاح الهيدر */
+    .header {
+        height: 60px !important;
+        padding: 0 !important;
+        background: rgba(10, 10, 10, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid rgba(66, 153, 225, 0.2) !important;
+    }
+    
+    .navbar {
+        height: 60px !important;
+        padding: 0 !important;
+    }
+    
+    .nav-container {
+        height: 60px !important;
+        padding: 0 1rem !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .logo {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+    
+    .logo-img {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    
+    .logo-text {
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        color: #ffffff !important;
+    }
+    
+    .nav-right {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1rem !important;
+    }
+    
+    /* إصلاح الهامبرغر مينيو */
+    .hamburger {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 30px !important;
+        height: 30px !important;
+        cursor: pointer !important;
+        z-index: 1002 !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+    
+    .hamburger .bar {
+        width: 20px !important;
+        height: 2px !important;
+        background: #ffffff !important;
+        margin: 2px 0 !important;
+        transition: all 0.3s ease !important;
+        border-radius: 1px !important;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(4px, 4px) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0 !important;
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(4px, -4px) !important;
+    }
+    
+    /* تصغير الناف مينيو */
+    .nav-menu {
+        position: fixed !important;
+        top: 60px !important;
+        right: -100% !important;
+        width: 280px !important;
+        height: calc(100vh - 60px) !important;
+        background: rgba(10, 10, 10, 0.98) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+        padding: 1.5rem 1rem !important;
+        transition: right 0.3s ease-in-out !important;
+        border-left: 1px solid rgba(66, 153, 225, 0.2) !important;
+        z-index: 1001 !important;
+        overflow-y: auto !important;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .nav-menu.active {
+        right: 0 !important;
+    }
+    
+    .nav-menu li {
+        width: 100% !important;
+        margin: 0.3rem 0 !important;
+        list-style: none !important;
+    }
+    
+    .nav-link {
+        display: block !important;
+        font-size: 1.1rem !important;
+        padding: 0.8rem 1rem !important;
+        text-align: right !important;
+        width: 100% !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+        color: #ffffff !important;
+        text-decoration: none !important;
+        background: transparent !important;
+        border: 1px solid transparent !important;
+    }
+    
+    .nav-link:hover,
+    .nav-link.active {
+        background: rgba(66, 153, 225, 0.15) !important;
+        border-color: rgba(66, 153, 225, 0.3) !important;
+        color: #4299e1 !important;
+        transform: translateX(-3px) !important;
+    }
+    
+    /* تحسين اللغة سويتشر */
+    .language-switcher {
+        position: relative !important;
+        z-index: 1002 !important;
+        order: 1 !important;
+    }
+    
+    .lang-btn {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.8rem !important;
+        background: rgba(66, 153, 225, 0.1) !important;
+        border: 1px solid rgba(66, 153, 225, 0.3) !important;
+        border-radius: 6px !important;
+        color: #ffffff !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .lang-btn:hover {
+        background: rgba(66, 153, 225, 0.2) !important;
+        border-color: rgba(66, 153, 225, 0.5) !important;
+    }
+}
+
+/* 2. إصلاح نظام الخدمات للجوال */
+@media (max-width: 768px) {
+    /* إخفاء التبويبات وإظهار البطاقات للجوال */
+    .services-tabs-nav {
+        display: none !important;
+    }
+    
+    .tab-content {
+        display: none !important;
+    }
+    
+    .services-cards-mobile {
+        display: block !important;
+        padding: 0 !important;
+        margin-top: 2rem !important;
+    }
+    
+    .service-card-mobile {
+        background: rgba(45, 55, 72, 0.05) !important;
+        border: 1px solid rgba(66, 153, 225, 0.2) !important;
+        border-radius: 12px !important;
+        margin-bottom: 1.5rem !important;
+        overflow: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .service-card-mobile:hover {
+        background: rgba(66, 153, 225, 0.08) !important;
+        border-color: rgba(66, 153, 225, 0.4) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(66, 153, 225, 0.15) !important;
+    }
+    
+    .service-card-header {
+        padding: 1.5rem !important;
+        background: linear-gradient(135deg, rgba(66, 153, 225, 0.1) 0%, rgba(45, 55, 72, 0.1) 100%) !important;
+        border-bottom: 1px solid rgba(66, 153, 225, 0.2) !important;
+        cursor: pointer !important;
+        position: relative !important;
+    }
+    
+    .service-card-header::after {
+        content: '+' !important;
+        position: absolute !important;
+        right: 1.5rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        font-size: 1.5rem !important;
+        color: #4299e1 !important;
+        transition: transform 0.3s ease !important;
+    }
+    
+    .service-card-mobile.active .service-card-header::after {
+        transform: translateY(-50%) rotate(45deg) !important;
+    }
+    
+    .service-card-title {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.8rem !important;
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+        color: #ffffff !important;
+        margin: 0 !important;
+    }
+    
+    .service-card-icon {
+        color: #4299e1 !important;
+        font-size: 1.3rem !important;
+    }
+    
+    .service-card-content {
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.3s ease !important;
+    }
+    
+    .service-card-mobile.active .service-card-content {
+        max-height: 500px !important;
+    }
+    
+    .service-card-body {
+        padding: 1.5rem !important;
+    }
+    
+    .service-card-description {
+        color: #a0aec0 !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1.5rem !important;
+        font-size: 0.95rem !important;
+    }
+    
+    .service-features-mobile {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .service-features-mobile .feature-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+        margin-bottom: 0.8rem !important;
+        color: #ffffff !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .service-features-mobile .feature-item i {
+        color: #4299e1 !important;
+        font-size: 0.8rem !important;
+    }
+    
+    .tech-showcase-mobile {
+        background: rgba(66, 153, 225, 0.05) !important;
+        border-radius: 8px !important;
+        padding: 1rem !important;
+        border: 1px solid rgba(66, 153, 225, 0.2) !important;
+    }
+    
+    .tech-showcase-mobile h4 {
+        color: #ffffff !important;
+        font-size: 0.9rem !important;
+        margin-bottom: 0.8rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .tech-grid-mobile {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
+    }
+    
+    .tech-badge-mobile {
+        background: rgba(66, 153, 225, 0.15) !important;
+        color: #4299e1 !important;
+        padding: 0.3rem 0.6rem !important;
+        border-radius: 6px !important;
+        font-size: 0.75rem !important;
+        font-weight: 500 !important;
+        border: 1px solid rgba(66, 153, 225, 0.3) !important;
+    }
+}
+
+/* 3. إصلاح الفوتر */
+@media (max-width: 768px) {
+    .footer {
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%) !important;
+        color: #ffffff !important;
+        padding: 2rem 0 1rem !important;
+        margin-top: 4rem !important;
+        position: relative !important;
+    }
+    
+    .footer::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 2px !important;
+        background: linear-gradient(90deg, transparent, #4299e1, transparent) !important;
+    }
+    
+    .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+        text-align: center !important;
+    }
+    
+    .footer-section {
+        width: 100% !important;
+    }
+    
+    /* إصلاح لوجو الفوتر */
+    .footer-logo {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .footer-logo-img {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    .footer-logo-text {
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+        font-weight: 700 !important;
+    }
+    
+    .footer-description {
+        color: #a0aec0 !important;
+        line-height: 1.6 !important;
+        margin-bottom: 1.5rem !important;
+        max-width: 300px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .footer-title {
+        color: #ffffff !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 1rem !important;
+        position: relative !important;
+    }
+    
+    .footer-links {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .footer-links li {
+        margin: 0.5rem 0 !important;
+    }
+    
+    .footer-links a {
+        color: #a0aec0 !important;
+        text-decoration: none !important;
+        transition: color 0.3s ease !important;
+        font-size: 0.9rem !important;
+    }
+    
+    .footer-links a:hover {
+        color: #4299e1 !important;
+    }
+    
+    .contact-info {
+        text-align: center !important;
+    }
+    
+    .contact-item {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        margin: 0.8rem 0 !important;
+        color: #ffffff !important;
+        font-size: 0.9rem !important;
+        transition: color 0.3s ease !important;
+    }
+    
+    .contact-item:hover {
+        color: #4299e1 !important;
+    }
+    
+    /* إصلاح اتجاه الرقم */
+    .contact-item i {
+        color: #4299e1 !important;
+        font-size: 1rem !important;
+        width: 16px !important;
+        text-align: center !important;
+    }
+    
+    .contact-item span {
+        direction: ltr !important;
+        color: #ffffff !important;
+    }
+    
+    /* إزالة أيقونة مشاركة الإيميل */
+    .contact-item[href^="mailto:"],
+    .social-link[href*="mailto"] {
+        display: none !important;
+    }
+    
+    /* تحسين الأيقونات الاجتماعية */
+    .social-links {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        margin-top: 1.5rem !important;
+    }
+    
+    .social-link {
+        width: 40px !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(66, 153, 225, 0.1) !important;
+        border: 1px solid rgba(66, 153, 225, 0.3) !important;
+        border-radius: 50% !important;
+        color: #4299e1 !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+        font-size: 1rem !important;
+    }
+    
+    .social-link:hover {
+        background: #4299e1 !important;
+        color: #ffffff !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3) !important;
+    }
+    
+    .footer-bottom {
+        text-align: center !important;
+        margin-top: 2rem !important;
+        padding-top: 1.5rem !important;
+        border-top: 1px solid rgba(66, 153, 225, 0.2) !important;
+        color: #a0aec0 !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+/* 4. إصلاح قسم "لنتواصل" في صفحة الاتصال */
+@media (max-width: 768px) {
+    /* إعادة تصميم كامل لقسم معلومات الاتصال */
+    .contact-info-container {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: rgba(45, 55, 72, 0.03) !important;
+        border: 1px solid rgba(66, 153, 225, 0.15) !important;
+        border-radius: 16px !important;
+        padding: 2rem 1.5rem !important;
+        margin-bottom: 2rem !important;
+        backdrop-filter: blur(10px) !important;
+    }
+    
+    .contact-info-container .section-header {
+        text-align: center !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .contact-info-container .section-title {
+        font-size: 1.6rem !important;
+        color: #ffffff !important;
+        margin-bottom: 0.5rem !important;
+        font-weight: 700 !important;
+        background: linear-gradient(135deg, #4299e1 0%, #ffffff 100%) !important;
+        background-clip: text !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+    
+    .contact-info-container .section-subtitle {
+        font-size: 1rem !important;
+        color: #a0aec0 !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* تحسين طرق الاتصال */
+    .contact-methods {
+        display: grid !important;
+        gap: 1.5rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .contact-method {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+        padding: 1.5rem !important;
+        background: rgba(66, 153, 225, 0.05) !important;
+        border: 1px solid rgba(66, 153, 225, 0.2) !important;
+        border-radius: 12px !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .contact-method::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 4px !important;
+        height: 100% !important;
+        background: linear-gradient(135deg, #4299e1 0%, #2d3748 100%) !important;
+        transition: width 0.3s ease !important;
+    }
+    
+    .contact-method:hover {
+        background: rgba(66, 153, 225, 0.1) !important;
+        border-color: rgba(66, 153, 225, 0.4) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 25px rgba(66, 153, 225, 0.15) !important;
+    }
+    
+    .contact-method:hover::before {
+        width: 100% !important;
+        opacity: 0.1 !important;
+    }
+    
+    .method-icon {
+        flex-shrink: 0 !important;
+        width: 50px !important;
+        height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: linear-gradient(135deg, #4299e1 0%, #2d3748 100%) !important;
+        border-radius: 50% !important;
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+        box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3) !important;
+    }
+    
+    .method-content {
+        flex: 1 !important;
+    }
+    
+    .method-content h3 {
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.8rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .contact-link {
+        display: block !important;
+        color: #4299e1 !important;
+        text-decoration: none !important;
+        font-size: 0.95rem !important;
+        margin-bottom: 0.5rem !important;
+        transition: all 0.3s ease !important;
+        direction: ltr !important;
+        text-align: left !important;
+    }
+    
+    .contact-link:hover {
+        color: #ffffff !important;
+        text-decoration: underline !important;
+        padding-left: 0.5rem !important;
+    }
+    
+    .response-time,
+    .availability {
+        color: #a0aec0 !important;
+        font-size: 0.85rem !important;
+        margin-top: 0.5rem !important;
+        font-style: italic !important;
+    }
+    
+    /* تحسين زر المحادثة */
+    .chat-btn {
+        background: linear-gradient(135deg, #4299e1 0%, #2d3748 100%) !important;
+        color: #ffffff !important;
+        border: none !important;
+        padding: 0.6rem 1.2rem !important;
+        border-radius: 25px !important;
+        font-size: 0.85rem !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        margin-top: 0.8rem !important;
+        box-shadow: 0 2px 8px rgba(66, 153, 225, 0.3) !important;
+    }
+    
+    .chat-btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4) !important;
+        background: linear-gradient(135deg, #2d3748 0%, #4299e1 100%) !important;
+    }
+    
+    /* تحسين القسم الاجتماعي */
+    .social-section {
+        text-align: center !important;
+        padding-top: 2rem !important;
+        border-top: 1px solid rgba(66, 153, 225, 0.2) !important;
+        position: relative !important;
+    }
+    
+    .social-section::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 50px !important;
+        height: 2px !important;
+        background: linear-gradient(90deg, transparent, #4299e1, transparent) !important;
+    }
+    
+    .social-section h3 {
+        color: #ffffff !important;
+        font-size: 1.1rem !important;
+        margin-bottom: 1.5rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .social-section .social-links {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+    }
+    
+    .social-section .social-link {
+        width: 45px !important;
+        height: 45px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(66, 153, 225, 0.1) !important;
+        border: 1px solid rgba(66, 153, 225, 0.3) !important;
+        border-radius: 50% !important;
+        color: #4299e1 !important;
+        font-size: 1.1rem !important;
+        transition: all 0.3s ease !important;
+        text-decoration: none !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .social-section .social-link::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(135deg, #4299e1 0%, #2d3748 100%) !important;
+        transform: scale(0) !important;
+        transition: transform 0.3s ease !important;
+        border-radius: 50% !important;
+    }
+    
+    .social-section .social-link:hover::before {
+        transform: scale(1) !important;
+    }
+    
+    .social-section .social-link:hover {
+        color: #ffffff !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4) !important;
+    }
+    
+    .social-section .social-link i {
+        position: relative !important;
+        z-index: 1 !important;
+    }
+}
+
+/* إضافة JavaScript للبطاقات التفاعلية */
+@media (max-width: 768px) {
+    .service-card-mobile.active {
+        border-color: rgba(66, 153, 225, 0.5) !important;
+        box-shadow: 0 8px 25px rgba(66, 153, 225, 0.2) !important;
+    }
+    
+    .service-card-mobile.active .service-card-header {
+        background: linear-gradient(135deg, rgba(66, 153, 225, 0.2) 0%, rgba(45, 55, 72, 0.2) 100%) !important;
+    }
+}
+
+/* إضافة إصلاحات للهيرو سكشن */
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 80px !important;
+        min-height: calc(100vh - 60px) !important;
+    }
+    
+    .services-hero {
+        padding-top: 80px !important;
+    }
+    
+    .contact-hero {
+        padding-top: 80px !important;
+    }
+    
+    .about-hero {
+        padding-top: 80px !important;
+    }
+    
+    /* إعادة تعيين الـ body padding */
+    body {
+        padding-top: 0 !important;
+    }
+}
+
+/* ===== FINAL COMPREHENSIVE FIXES ===== */
+
+/* إصلاح عام لضمان عمل النظام على جميع الأجهزة */
+@media (max-width: 768px) {
+    /* إصلاح نهائي للهيدر */
+    .header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        z-index: 1000 !important;
+    }
+    
+    /* إصلاح نهائي للناف مينيو */
+    .nav-menu {
+        transform: translateX(100%) !important;
+        transition: transform 0.3s ease-in-out !important;
+    }
+    
+    .nav-menu.active {
+        transform: translateX(0) !important;
+    }
+    
+    /* إخفاء الناف مينيو على الكمبيوتر */
+    @media (min-width: 769px) {
+        .nav-menu {
+            position: static !important;
+            transform: none !important;
+            width: auto !important;
+            height: auto !important;
+            background: transparent !important;
+            display: flex !important;
+            flex-direction: row !important;
+            padding: 0 !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+        
+        .hamburger {
+            display: none !important;
+        }
+    }
+    
+    /* إصلاح نهائي للفوتر */
+    .footer-content {
+        text-align: center !important;
+    }
+    
+    .contact-item[href^="tel:"] span,
+    .contact-item span {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+    }
+    
+    /* إصلاح نهائي لصفحة الاتصال */
+    .contact-layout {
+        display: block !important;
+    }
+    
+    .contact-info-container {
+        width: 100% !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    /* إصلاح البطاقات المحمولة */
+    .services-cards-mobile {
+        animation: fadeInUp 0.6s ease-out !important;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* إصلاحات إضافية للتوافق */
+    * {
+        -webkit-tap-highlight-color: transparent !important;
+    }
+    
+    input, textarea, select {
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        appearance: none !important;
+    }
+    
+    /* إصلاح Safari */
+    @supports (-webkit-appearance: none) {
+        .nav-menu {
+            -webkit-backdrop-filter: blur(20px) !important;
+        }
+        
+        .contact-info-container {
+            -webkit-backdrop-filter: blur(10px) !important;
+        }
+    }
+}
