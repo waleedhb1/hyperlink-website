@@ -7,20 +7,19 @@ let cosmicParticles = [];
 let mousePosition = { x: 0, y: 0 };
 
 // تهيئة EmailJS
-/* (function() {
-    // سيتم تحديث هذا المفتاح من متغيرات البيئة أو الإعدادات
-    emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // سيتم تحديثه لاحقاً
-})(); */
+(function() {
+    emailjs.init("YbM42o0zLvMiq-uR3");
+})();
 
 // إعدادات Supabase
-const SUPABASE_URL = 'YOUR_SUPABASE_URL'; // سيتم تحديثه لاحقاً
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // سيتم تحديثه لاحقاً
+const SUPABASE_URL = 'https://wpqifesvxoieavfcptyt.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndwcWlmZXN2eG9pZWF2ZmNwdHl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk5ODQyNzMsImV4cCI6MjA2NTU2MDI3M30.KMKRGfKmQuhbkP_ZG5OSlg_IuZE0GxugMuY-q9Lxgtc';
 
 // تهيئة Supabase Client
 let supabase;
-/* if (typeof window !== 'undefined' && window.supabase) {
+if (typeof window !== 'undefined' && window.supabase) {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-} */
+}
 
 // Language Switching
 function setLanguage(lang) {
@@ -197,45 +196,22 @@ window.addEventListener('scroll', function() {
 
 // Advanced Form Handling
 function setupFormHandling() {
-    const forms = document.querySelectorAll('form');
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', submitContactForm);
+    }
     
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-            
-            // Show loading state
-            const submitBtn = form.querySelector('[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = currentLanguage === 'ar' ? 'جاري الإرسال...' : 'Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(function() {
-                showNotification(
-                    currentLanguage === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Message sent successfully!',
-                    'success'
-                );
-                form.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+    // Enhanced form validation for contact form
+    const inputs = contactForm?.querySelectorAll('input, textarea');
+    inputs?.forEach(input => {
+        input.addEventListener('blur', function() {
+            validateField(this);
         });
         
-        // Enhanced form validation
-        const inputs = form.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
+        input.addEventListener('input', function() {
+            if (this.classList.contains('error')) {
                 validateField(this);
-            });
-            
-            input.addEventListener('input', function() {
-                if (this.classList.contains('error')) {
-                    validateField(this);
-                }
-            });
+            }
         });
     });
 }
@@ -583,69 +559,90 @@ function initializeFAQ() {
 async function submitContactForm(event) {
     event.preventDefault();
     const form = event.target;
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
-
-    // Show loading state
     const submitBtn = form.querySelector('[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.innerHTML = `<span class="spinner"></span> ${currentLanguage === 'ar' ? 'جاري الإرسال...' : 'Sending...'}`;
-    submitBtn.disabled = true;
+    const originalBtnText = submitBtn.innerHTML;
 
-    // --- TEMPORARILY DISABLED ---
-    showNotification(
-        currentLanguage === 'ar' ? 'تم تعطيل الإرسال مؤقتًا.' : 'Submission is temporarily disabled.',
-        'info'
-    );
-    form.reset();
-    submitBtn.innerHTML = originalText;
-    submitBtn.disabled = false;
-    return;
-    // --- END OF TEMPORARY DISABLE ---
+    // Validate all fields before submitting
+    let isFormValid = true;
+    const fields = form.querySelectorAll('input, textarea');
+    fields.forEach(field => {
+        if (!validateField(field)) {
+            isFormValid = false;
+        }
+    });
 
-    /*
-    if (!supabase) {
-        showNotification(currentLanguage === 'ar' ? 'خدمة قاعدة البيانات غير متاحة.' : 'Database service is not available.', 'error');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+    if (!isFormValid) {
+        showNotification(
+            currentLanguage === 'ar' ? 'يرجى تصحيح الأخطاء في النموذج.' : 'Please correct the errors in the form.',
+            'error'
+        );
         return;
     }
 
+    // Show loading state
+    submitBtn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ${currentLanguage === 'ar' ? 'جاري الإرسال...' : 'Sending...'}`;
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const contactData = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        subject: formData.get('subject'),
+        message: formData.get('message'),
+        created_at: new Date().toISOString()
+    };
+
     try {
-        const { error } = await supabase.from('contacts').insert([
-            { 
-                first_name: data.firstName,
-                last_name: data.lastName,
-                email: data.email,
-                phone: data.phone,
-                company: data.company,
-                service: data.service,
-                budget: data.budget,
-                message: data.message
-            }
-        ]);
+        // --- Step 1: Save data to Supabase ---
+        if (!supabase) {
+            throw new Error("Supabase client is not initialized.");
+        }
+        
+        const { data, error } = await supabase
+            .from('contacts')
+            .insert([contactData]);
 
         if (error) {
-            throw error;
+            console.error('Supabase error:', error);
+            throw new Error(`Supabase Error: ${error.message}`);
         }
 
+        console.log('Supabase response:', data);
+
+        // --- Step 2: Send email notification via EmailJS ---
+        const templateParams = {
+            from_name: contactData.name,
+            from_email: contactData.email,
+            phone_number: contactData.phone,
+            message_subject: contactData.subject,
+            message_body: contactData.message,
+            to_email: 'waleedalhabib@gmail.com' // Your notification email
+        };
+        
+        await emailjs.send(
+            'service_jxx60sf',  // EmailJS Service ID
+            'template_jdaev4n', // EmailJS Template ID
+            templateParams
+        );
+
         showNotification(
-            currentLanguage === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent successfully!',
+            currentLanguage === 'ar' ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.' : 'Your message has been sent successfully! We will contact you soon.',
             'success'
         );
         form.reset();
 
     } catch (error) {
-        console.error('Supabase Error:', error);
+        console.error('Form submission failed:', error);
         showNotification(
-            currentLanguage === 'ar' ? `حدث خطأ: ${error.message}` : `An error occurred: ${error.message}`,
+            currentLanguage === 'ar' ? 'فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.' : 'Failed to send message. Please try again.',
             'error'
         );
     } finally {
-        submitBtn.innerHTML = originalText;
+        // Restore button state
+        submitBtn.innerHTML = originalBtnText;
         submitBtn.disabled = false;
     }
-    */
 }
 
 // ربط النموذج بالدالة
