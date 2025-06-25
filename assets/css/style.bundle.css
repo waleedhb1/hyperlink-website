@@ -1135,6 +1135,8 @@ html[dir="rtl"] .method-content {
 
 .home-hero .hero-content {
     order: 1;
+    position: relative;
+    z-index: 2;
 }
 
 .home-hero .hero-visual {
@@ -1177,15 +1179,9 @@ html[dir="rtl"] .method-content {
 }
 
 /* Geometric Shape Container */
-.geometric-shape {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    pointer-events: none;
-    opacity: 0.4;
-    top: 20%;
-    left: -100px;
-    z-index: 1;
+[dir="ltr"] .geometric-shape {
+    left: auto;
+    right: -100px;
 }
 
 /* Central Energy Core */
