@@ -7,10 +7,10 @@ let cosmicParticles = [];
 let mousePosition = { x: 0, y: 0 };
 
 // تهيئة EmailJS
-(function() {
+/* (function() {
     // سيتم تحديث هذا المفتاح من متغيرات البيئة أو الإعدادات
     emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // سيتم تحديثه لاحقاً
-})();
+})(); */
 
 // إعدادات Supabase
 const SUPABASE_URL = 'YOUR_SUPABASE_URL'; // سيتم تحديثه لاحقاً
@@ -18,9 +18,9 @@ const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // سيتم تحديثه ل�
 
 // تهيئة Supabase Client
 let supabase;
-if (typeof window !== 'undefined' && window.supabase) {
+/* if (typeof window !== 'undefined' && window.supabase) {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-}
+} */
 
 // Language Switching
 function setLanguage(lang) {
@@ -582,55 +582,70 @@ function initializeFAQ() {
 // إرسال نموذج التواصل
 async function submitContactForm(event) {
     event.preventDefault();
-    
-    const formData = new FormData(event.target);
-    const contactData = {
-        first_name: formData.get('firstName'),
-        last_name: formData.get('lastName'),
-        email: formData.get('email'),
-        phone: formData.get('phone') || '',
-        company: formData.get('company') || '',
-        service: formData.get('service') || '',
-        budget: formData.get('budget') || '',
-        message: formData.get('message')
-    };
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    // Show loading state
+    const submitBtn = form.querySelector('[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.innerHTML = `<span class="spinner"></span> ${currentLanguage === 'ar' ? 'جاري الإرسال...' : 'Sending...'}`;
+    submitBtn.disabled = true;
+
+    // --- TEMPORARILY DISABLED ---
+    showNotification(
+        currentLanguage === 'ar' ? 'تم تعطيل الإرسال مؤقتًا.' : 'Submission is temporarily disabled.',
+        'info'
+    );
+    form.reset();
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+    return;
+    // --- END OF TEMPORARY DISABLE ---
+
+    /*
+    if (!supabase) {
+        showNotification(currentLanguage === 'ar' ? 'خدمة قاعدة البيانات غير متاحة.' : 'Database service is not available.', 'error');
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        return;
+    }
 
     try {
-        // حفظ في قاعدة البيانات
-        if (supabase) {
-            const { data, error } = await supabase
-                .from('contact_requests')
-                .insert([contactData]);
-
-            if (error) {
-                console.error('خطأ في حفظ البيانات:', error);
-            } else {
-                console.log('تم حفظ البيانات بنجاح:', data);
+        const { error } = await supabase.from('contacts').insert([
+            { 
+                first_name: data.firstName,
+                last_name: data.lastName,
+                email: data.email,
+                phone: data.phone,
+                company: data.company,
+                service: data.service,
+                budget: data.budget,
+                message: data.message
             }
+        ]);
+
+        if (error) {
+            throw error;
         }
 
-        // إرسال الإيميل
-        const emailParams = {
-            first_name: contactData.first_name,
-            last_name: contactData.last_name,
-            email: contactData.email,
-            phone: contactData.phone,
-            company: contactData.company,
-            service: contactData.service,
-            budget: contactData.budget,
-            message: contactData.message
-        };
-
-        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', emailParams);
-        
-        // إظهار رسالة نجاح
-        alert('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.');
-        event.target.reset();
+        showNotification(
+            currentLanguage === 'ar' ? 'تم إرسال رسالتك بنجاح!' : 'Your message has been sent successfully!',
+            'success'
+        );
+        form.reset();
 
     } catch (error) {
-        console.error('خطأ في إرسال النموذج:', error);
-        alert('حدث خطأ في إرسال الرسالة. الرجاء المحاولة مرة أخرى.');
+        console.error('Supabase Error:', error);
+        showNotification(
+            currentLanguage === 'ar' ? `حدث خطأ: ${error.message}` : `An error occurred: ${error.message}`,
+            'error'
+        );
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
     }
+    */
 }
 
 // ربط النموذج بالدالة

@@ -4,18 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyperlink - حلول تقنية إبداعية</title>
-    <!-- Bootstrap RTL CSS -->
-    <link rel="stylesheet" href="public/assets/vendor/webfonts/bootstrap.rtl.min.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="public/assets/vendor/webfonts/bootstrap-icons.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="public/assets/vendor/webfonts/all.min.css">
-    <!-- Arabic Fonts -->
-    <link rel="stylesheet" href="public/assets/vendor/webfonts/SSTArabic.css">
-    <link rel="stylesheet" href="public/assets/vendor/cairo.css">
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="public/css/style.css">
-    
+    <link rel="stylesheet" href="assets/css/style.bundle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="description" content="هايبر لينك - شركة رائدة في الحلول التقنية والتصميم الإبداعي">
 </head>
 <body>
@@ -24,7 +15,7 @@
         <nav class="navbar">
             <div class="nav-container">
                 <a href="index.html" class="logo">
-                    <img src="public/assets/logo.svg" alt="Hyperlink Logo" class="logo-img">
+                    <img src="assets/img/logo.svg" alt="Hyperlink Logo" class="logo-img">
                     <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
                 </a>
                 
@@ -264,7 +255,7 @@
             <div class="footer-content">
                 <div class="footer-section about">
                     <a href="index.html" class="logo">
-                        <img src="public/assets/logo.svg" alt="Hyperlink Logo" class="logo-img">
+                        <img src="assets/img/logo.svg" alt="Hyperlink Logo" class="logo-img">
                         <span class="logo-text" data-en="HYPERLINK" data-ar="هايبر لينك">هايبر لينك</span>
                     </a>
                     <p class="footer-description" data-en="Innovative technical solutions for the digital future." data-ar="حلول تقنية مبتكرة للمستقبل الرقمي.">
@@ -322,12 +313,11 @@
         </div>
     </footer>
 
-    <!-- Supabase -->
-    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
-    
-    <!-- EmailJS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    
-    <script src="public/js/script.js"></script>
+    <!-- External Libraries -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Main Script -->
+    <script src="assets/js/script.js"></script>
 </body>
 </html> 

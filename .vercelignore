@@ -1,6 +1,0 @@
-# This file tells Vercel which files and directories to ignore during the build.
-# We can leave it empty for now, as its existence is enough to trigger a change.
- 
-# For example, you could ignore setup files:
-# DEPLOY.md
-# DEPLOYMENT_GUIDE.md 
