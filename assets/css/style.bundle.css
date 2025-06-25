@@ -7823,35 +7823,36 @@ html {
         }
     }
     
-    /* إصلاح نهائي للناف بار - منع الظهور التلقائي */
+    /* إصلاح جذري للناف بار */
     .nav-menu {
         position: fixed !important;
         top: 70px !important;
         right: -100% !important;
-        width: 280px !important;
+        width: 250px !important;
         height: calc(100vh - 70px) !important;
-        background: rgba(45, 55, 72, 0.98) !important;
-        backdrop-filter: blur(25px) !important;
-        -webkit-backdrop-filter: blur(25px) !important;
-        border-left: 1px solid rgba(66, 153, 225, 0.2) !important;
-        padding: 2rem 1.5rem !important;
+        background: linear-gradient(135deg, rgba(45, 55, 72, 0.95), rgba(30, 41, 59, 0.98)) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border-left: 2px solid rgba(66, 153, 225, 0.3) !important;
+        padding: 1.5rem !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 1rem !important;
-        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        transform: none !important;
+        gap: 0.8rem !important;
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        transform: translateX(100%) !important;
         visibility: hidden !important;
         opacity: 0 !important;
         overflow-y: auto !important;
         box-sizing: border-box !important;
-        z-index: 999 !important;
+        z-index: 9999 !important;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3) !important;
     }
     
     .nav-menu.active {
         right: 0 !important;
         visibility: visible !important;
         opacity: 1 !important;
-        transform: none !important;
+        transform: translateX(0) !important;
     }
     
     /* إصلاح الهامبرغر مع X */
@@ -7888,12 +7889,57 @@ html {
         transform: rotate(45deg) translate(-5px, -6px) !important;
     }
     
-    /* إصلاح رقم الهاتف في الفوتر */
-    .contact-item[href^="tel:"],
-    .contact-item[href^="tel:"] span {
+    /* إصلاح شامل للفوتر وأرقام الهاتف */
+    .footer {
+        background: linear-gradient(135deg, #1a202c 0%, #2d3748 50%, #1a202c 100%) !important;
+        position: relative !important;
+        overflow: hidden !important;
+        padding: 3rem 0 1rem !important;
+    }
+    
+    .footer::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, transparent, #4299e1, transparent) !important;
+    }
+    
+    .contact-item,
+    .contact-item[href^="tel:"] {
         direction: ltr !important;
         text-align: left !important;
         unicode-bidi: isolate !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.8rem !important;
+        padding: 0.5rem 0 !important;
+        color: #e2e8f0 !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .contact-item span,
+    .contact-item[href^="tel:"] span {
+        direction: ltr !important;
+        unicode-bidi: isolate !important;
+        text-align: left !important;
+        font-family: 'Courier New', monospace !important;
+        font-weight: 500 !important;
+    }
+    
+    .contact-item i {
+        color: #4299e1 !important;
+        width: 18px !important;
+        text-align: center !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .contact-item:hover {
+        color: #4299e1 !important;
+        transform: translateX(-3px) !important;
     }
     
     /* إزالة المربع الفارغ نهائياً */
@@ -7907,35 +7953,68 @@ html {
         padding: 0 !important;
     }
     
-    /* إصلاح قسم لنتواصل - تأكيد العرض */
+    /* إصلاح شامل لقسم لنتواصل */
     .contact-info-container {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
         position: relative !important;
-        z-index: 1 !important;
+        z-index: 10 !important;
         width: 100% !important;
-        min-height: 400px !important;
-        padding: 2rem 1.5rem !important;
-        margin-bottom: 2rem !important;
-        background: rgba(45, 55, 72, 0.1) !important;
-        border: 1px solid rgba(66, 153, 225, 0.2) !important;
-        border-radius: 16px !important;
-        backdrop-filter: blur(10px) !important;
-        -webkit-backdrop-filter: blur(10px) !important;
+        min-height: 500px !important;
+        padding: 2.5rem 1.5rem !important;
+        margin: 2rem 0 !important;
+        background: linear-gradient(135deg, rgba(45, 55, 72, 0.15), rgba(30, 41, 59, 0.2)) !important;
+        border: 2px solid rgba(66, 153, 225, 0.3) !important;
+        border-radius: 20px !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
         box-sizing: border-box !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    }
+    
+    .contact-info-container::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 60px !important;
+        height: 4px !important;
+        background: linear-gradient(90deg, #4299e1, #63b3ed) !important;
+        border-radius: 2px !important;
     }
     
     .contact-info-container * {
         visibility: visible !important;
         opacity: 1 !important;
+        color: inherit !important;
+    }
+    
+    .contact-info-container .section-header {
+        text-align: center !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .contact-info-container .section-title {
+        color: #ffffff !important;
+        font-size: 1.8rem !important;
+        margin-bottom: 1rem !important;
+        font-weight: 700 !important;
+    }
+    
+    .contact-info-container .section-subtitle {
+        color: #cbd5e0 !important;
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
     }
     
     .contact-methods {
         display: flex !important;
         flex-direction: column !important;
-        gap: 1.5rem !important;
+        gap: 2rem !important;
         width: 100% !important;
+        margin-top: 2rem !important;
     }
     
     .contact-method {
@@ -7944,5 +8023,151 @@ html {
         opacity: 1 !important;
         width: 100% !important;
         box-sizing: border-box !important;
+        background: rgba(45, 55, 72, 0.3) !important;
+        border: 1px solid rgba(66, 153, 225, 0.2) !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        transition: all 0.3s ease !important;
+        align-items: flex-start !important;
+        gap: 1rem !important;
+    }
+    
+    .contact-method:hover {
+        background: rgba(66, 153, 225, 0.1) !important;
+        border-color: rgba(66, 153, 225, 0.4) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 25px rgba(66, 153, 225, 0.2) !important;
+    }
+    
+    .method-icon {
+        width: 50px !important;
+        height: 50px !important;
+        background: linear-gradient(135deg, #4299e1, #63b3ed) !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .method-icon i {
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+    }
+    
+    .method-content {
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+    
+    .method-content h3 {
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.8rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .contact-link {
+        color: #4299e1 !important;
+        text-decoration: none !important;
+        font-weight: 500 !important;
+        display: block !important;
+        margin-bottom: 0.5rem !important;
+        transition: color 0.3s ease !important;
+    }
+    
+    .contact-link:hover {
+        color: #63b3ed !important;
+        text-decoration: underline !important;
+    }
+    
+    .response-time,
+    .availability {
+        color: #a0aec0 !important;
+        font-size: 0.9rem !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    .chat-btn {
+        background: linear-gradient(135deg, #4299e1, #63b3ed) !important;
+        color: #ffffff !important;
+        border: none !important;
+        padding: 0.8rem 1.5rem !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        margin-top: 1rem !important;
+    }
+    
+    .chat-btn:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 5px 15px rgba(66, 153, 225, 0.4) !important;
+    }
+    
+    .social-section {
+        margin-top: 2.5rem !important;
+        text-align: center !important;
+        padding-top: 2rem !important;
+        border-top: 1px solid rgba(66, 153, 225, 0.2) !important;
+    }
+    
+    .social-section h3 {
+        color: #ffffff !important;
+        font-size: 1.2rem !important;
+        margin-bottom: 1.5rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .social-section .social-links {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .social-section .social-link {
+        width: 45px !important;
+        height: 45px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(66, 153, 225, 0.1) !important;
+        border: 1px solid rgba(66, 153, 225, 0.3) !important;
+        border-radius: 50% !important;
+        color: #4299e1 !important;
+        text-decoration: none !important;
+        transition: all 0.3s ease !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+    
+    .social-section .social-link::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(135deg, #4299e1, #63b3ed) !important;
+        transform: scale(0) !important;
+        transition: transform 0.3s ease !important;
+        border-radius: 50% !important;
+    }
+    
+    .social-section .social-link:hover::before {
+        transform: scale(1) !important;
+    }
+    
+    .social-section .social-link:hover {
+        color: #ffffff !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4) !important;
+    }
+    
+    .social-section .social-link i {
+        position: relative !important;
+        z-index: 1 !important;
     }
 }

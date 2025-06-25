@@ -1435,6 +1435,113 @@ setTimeout(initializeEnhancedSystem, 500);
 setTimeout(debugElements, 1000);
 
 // إصلاحات نهائية للمشاكل المتبقية
+function applyUltimateFixes() {
+    console.log('🔧 تطبيق الإصلاحات النهائية...');
+    
+    // إصلاح الناف بار
+    function fixNavigationFinal() {
+        const navMenu = document.querySelector('.nav-menu');
+        const hamburger = document.querySelector('.hamburger');
+        
+        if (navMenu && hamburger) {
+            // إزالة active class عند التحميل
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            
+            // إضافة مستمع للهامبرغر
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const isActive = navMenu.classList.contains('active');
+                
+                if (isActive) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                } else {
+                    navMenu.classList.add('active');
+                    hamburger.classList.add('active');
+                }
+            });
+            
+            // إغلاق المينيو عند النقر خارجه
+            document.addEventListener('click', function(e) {
+                if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+            
+            // إغلاق المينيو عند النقر على الروابط
+            const navLinks = navMenu.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        }
+    }
+    
+    // إزالة المربعات الفارغة
+    function removeEmptySpaces() {
+        const emptyElements = document.querySelectorAll('.section-spacer, .spacer-div, .empty-space, [class*="spacer"], [class*="space"]');
+        emptyElements.forEach(element => {
+            element.style.display = 'none';
+            element.style.visibility = 'hidden';
+            element.style.height = '0';
+            element.style.margin = '0';
+            element.style.padding = '0';
+            element.style.opacity = '0';
+        });
+    }
+    
+    // إصلاح أرقام الهاتف
+    function fixPhoneNumbers() {
+        const phoneElements = document.querySelectorAll('.contact-item[href^="tel:"], .contact-item[href^="tel:"] span');
+        phoneElements.forEach(element => {
+            element.style.direction = 'ltr';
+            element.style.textAlign = 'left';
+            element.style.unicodeBidi = 'isolate';
+        });
+    }
+    
+    // إصلاح قسم "لنتواصل"
+    function fixContactSection() {
+        const contactContainer = document.querySelector('.contact-info-container');
+        if (contactContainer) {
+            contactContainer.style.display = 'block';
+            contactContainer.style.visibility = 'visible';
+            contactContainer.style.opacity = '1';
+            contactContainer.style.zIndex = '10';
+            
+            // إصلاح جميع العناصر الفرعية
+            const allElements = contactContainer.querySelectorAll('*');
+            allElements.forEach(element => {
+                element.style.visibility = 'visible';
+                element.style.opacity = '1';
+            });
+        }
+    }
+    
+    // تطبيق الإصلاحات
+    fixNavigationFinal();
+    removeEmptySpaces();
+    fixPhoneNumbers();
+    fixContactSection();
+    
+    console.log('✅ تم تطبيق جميع الإصلاحات النهائية');
+}
+
+// تطبيق الإصلاحات النهائية
+setTimeout(applyUltimateFixes, 1000);
+
+// إعادة تطبيق الإصلاحات عند تغيير حجم النافذة
+window.addEventListener('resize', function() {
+    setTimeout(applyUltimateFixes, 300);
+});
+
+// إصلاحات نهائية للمشاكل المتبقية
 function applyFinalFixes() {
     // إصلاح الناف بار - منع الظهور التلقائي
     function fixNavigationBar() {
