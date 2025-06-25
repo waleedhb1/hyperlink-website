@@ -6599,7 +6599,33 @@ html {
     }
 }
 
-/* 2. إصلاح نظام الخدمات للجوال */
+/* 2. إصلاح نظام الخدمات - حل شامل */
+
+/* إصلاح للكمبيوتر */
+@media (min-width: 769px) {
+    .services-tabs-nav {
+        display: block !important;
+    }
+    
+    .tab-content {
+        display: block !important;
+    }
+    
+    .services-cards-mobile {
+        display: none !important;
+    }
+    
+    /* إصلاح التبويبات للكمبيوتر */
+    .tab-content:not(.active) {
+        display: none !important;
+    }
+    
+    .tab-content.active {
+        display: block !important;
+    }
+}
+
+/* إصلاح للجوال */
 @media (max-width: 768px) {
     /* إخفاء التبويبات وإظهار البطاقات للجوال */
     .services-tabs-nav {
@@ -6848,17 +6874,40 @@ html {
         color: #4299e1 !important;
     }
     
-    /* إصلاح اتجاه الرقم */
+    /* إصلاح اتجاه الرقم والأيقونات */
     .contact-item i {
         color: #4299e1 !important;
         font-size: 1rem !important;
         width: 16px !important;
         text-align: center !important;
+        order: 1 !important;
     }
     
     .contact-item span {
         direction: ltr !important;
         color: #ffffff !important;
+        order: 2 !important;
+    }
+    
+    .contact-item {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.5rem !important;
+        flex-direction: row !important;
+    }
+    
+    /* إصلاح ترتيب الأيقونات للعربية */
+    html[dir="rtl"] .contact-item {
+        flex-direction: row-reverse !important;
+    }
+    
+    html[dir="rtl"] .contact-item i {
+        order: 2 !important;
+    }
+    
+    html[dir="rtl"] .contact-item span {
+        order: 1 !important;
     }
     
     /* إزالة أيقونة مشاركة الإيميل */
@@ -6914,12 +6963,29 @@ html {
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
-        background: rgba(45, 55, 72, 0.03) !important;
-        border: 1px solid rgba(66, 153, 225, 0.15) !important;
+        background: rgba(45, 55, 72, 0.08) !important;
+        border: 2px solid rgba(66, 153, 225, 0.3) !important;
         border-radius: 16px !important;
         padding: 2rem 1.5rem !important;
         margin-bottom: 2rem !important;
         backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        box-shadow: 0 8px 32px rgba(66, 153, 225, 0.1) !important;
+        position: relative !important;
+        overflow: visible !important;
+        min-height: 400px !important;
+    }
+    
+    /* إضافة تأثير بصري للقسم */
+    .contact-info-container::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 3px !important;
+        background: linear-gradient(90deg, transparent, #4299e1, transparent) !important;
+        border-radius: 16px 16px 0 0 !important;
     }
     
     .contact-info-container .section-header {
@@ -7241,6 +7307,32 @@ html {
     /* إصلاح البطاقات المحمولة */
     .services-cards-mobile {
         animation: fadeInUp 0.6s ease-out !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1rem !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    .service-card-mobile {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 1.5rem !important;
+        box-sizing: border-box !important;
+    }
+    
+    .service-card-header {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        position: relative !important;
+    }
+    
+    .service-card-title {
+        width: calc(100% - 3rem) !important;
+        padding-right: 3rem !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
     
     @keyframes fadeInUp {

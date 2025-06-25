@@ -1220,22 +1220,47 @@ function initializeContactInfo() {
     }
 }
 
-// Responsive Services Handler
+// Enhanced Responsive Services Handler
 function handleResponsiveServices() {
     const tabsNav = document.querySelector('.services-tabs-nav');
     const tabContents = document.querySelectorAll('.tab-content');
     const mobileCards = document.querySelector('.services-cards-mobile');
+    const tabLinks = document.querySelectorAll('.tab-link');
     
     function updateServicesDisplay() {
         if (window.innerWidth <= 768) {
             // Mobile view
-            if (tabsNav) tabsNav.style.display = 'none';
-            tabContents.forEach(content => content.style.display = 'none');
-            if (mobileCards) mobileCards.style.display = 'block';
+            if (tabsNav) {
+                tabsNav.style.display = 'none';
+                tabsNav.style.visibility = 'hidden';
+            }
+            tabContents.forEach(content => {
+                content.style.display = 'none';
+                content.classList.remove('active');
+            });
+            if (mobileCards) {
+                mobileCards.style.display = 'block';
+                mobileCards.style.visibility = 'visible';
+            }
         } else {
             // Desktop view
-            if (tabsNav) tabsNav.style.display = 'block';
-            if (mobileCards) mobileCards.style.display = 'none';
+            if (tabsNav) {
+                tabsNav.style.display = 'block';
+                tabsNav.style.visibility = 'visible';
+            }
+            if (mobileCards) {
+                mobileCards.style.display = 'none';
+                mobileCards.style.visibility = 'hidden';
+            }
+            
+            // Ensure first tab is active
+            tabLinks.forEach((link, index) => {
+                if (index === 0) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
             
             // Show first tab content by default
             tabContents.forEach((content, index) => {
@@ -1253,8 +1278,64 @@ function handleResponsiveServices() {
     // Initial call
     updateServicesDisplay();
     
-    // Update on resize
-    window.addEventListener('resize', updateServicesDisplay);
+    // Update on resize with debounce
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateServicesDisplay, 250);
+    });
+}
+
+// Force Contact Info Visibility
+function forceContactInfoVisibility() {
+    const contactInfoContainer = document.querySelector('.contact-info-container');
+    if (contactInfoContainer) {
+        // Force all possible visibility properties
+        contactInfoContainer.style.display = 'block';
+        contactInfoContainer.style.visibility = 'visible';
+        contactInfoContainer.style.opacity = '1';
+        contactInfoContainer.style.position = 'relative';
+        contactInfoContainer.style.zIndex = '1';
+        contactInfoContainer.style.height = 'auto';
+        contactInfoContainer.style.minHeight = '400px';
+        contactInfoContainer.style.width = '100%';
+        contactInfoContainer.style.overflow = 'visible';
+        
+        // Force content visibility
+        const elements = contactInfoContainer.querySelectorAll('*');
+        elements.forEach(el => {
+            el.style.visibility = 'visible';
+            el.style.opacity = '1';
+        });
+    }
+}
+
+// Fix Footer Icons Direction
+function fixFooterIconsDirection() {
+    const footerContactItems = document.querySelectorAll('.footer .contact-item');
+    footerContactItems.forEach(item => {
+        const icon = item.querySelector('i');
+        const span = item.querySelector('span');
+        
+        if (icon && span) {
+            // Ensure proper order for RTL
+            if (document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar') {
+                item.style.flexDirection = 'row-reverse';
+                icon.style.order = '2';
+                span.style.order = '1';
+            } else {
+                item.style.flexDirection = 'row';
+                icon.style.order = '1';
+                span.style.order = '2';
+            }
+            
+            // Ensure phone numbers are LTR
+            if (span.textContent.includes('+') || span.textContent.match(/\d{3,}/)) {
+                span.style.direction = 'ltr';
+                span.style.unicodeBidi = 'isolate';
+            }
+        }
+    });
 }
 
 // Initialize all mobile features
@@ -1263,9 +1344,17 @@ function initializeMobileFeatures() {
     setupMobileServicesCards();
     removeEmailIcons();
     fixFooterDirection();
+    fixFooterIconsDirection();
     setupEnhancedTabs();
     initializeContactInfo();
+    forceContactInfoVisibility();
     handleResponsiveServices();
+    
+    // Additional safety checks
+    setTimeout(() => {
+        forceContactInfoVisibility();
+        fixFooterIconsDirection();
+    }, 1000);
 }
 
 // Updated DOMContentLoaded event
