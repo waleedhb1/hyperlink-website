@@ -5469,7 +5469,50 @@ html {
 
 /* ===== CRITICAL FINAL MOBILE FIXES ===== */
 
-/* Force Navigation Bar to Work Properly */
+/* Ensure Desktop Navigation Works */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none !important;
+    }
+    
+    .nav-menu {
+        position: static !important;
+        display: flex !important;
+        flex-direction: row !important;
+        background: transparent !important;
+        height: auto !important;
+        width: auto !important;
+        padding: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        right: auto !important;
+        top: auto !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        overflow: visible !important;
+    }
+    
+    .nav-menu li {
+        width: auto !important;
+        max-width: none !important;
+        margin: 0 1rem !important;
+    }
+    
+    .nav-menu .nav-link {
+        display: inline-block !important;
+        width: auto !important;
+        padding: 0.5rem 1rem !important;
+        background: transparent !important;
+        border: none !important;
+        border-radius: 0 !important;
+        font-size: 1rem !important;
+        color: #ffffff !important;
+        text-align: left !important;
+    }
+}
+
+/* Force Navigation Bar to Work Properly on Mobile */
 @media (max-width: 768px) {
     /* Ensure hamburger is always visible and clickable */
     .hamburger {
@@ -5497,21 +5540,21 @@ html {
         border-radius: 2px !important;
     }
     
-    /* Force navigation menu to work */
+    /* Mobile navigation menu only */
     .nav-menu {
         position: fixed !important;
         top: 70px !important;
         right: -100% !important;
-        width: 100vw !important;
+        width: 280px !important;
         height: calc(100vh - 70px) !important;
-        background: rgba(10, 10, 10, 0.98) !important;
+        background: rgba(10, 10, 10, 0.95) !important;
         backdrop-filter: blur(20px) !important;
         -webkit-backdrop-filter: blur(20px) !important;
         display: none !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: flex-start !important;
-        padding: 2rem 1rem !important;
+        padding: 1.5rem 1rem !important;
         transition: right 0.3s ease !important;
         z-index: 9998 !important;
         list-style: none !important;
@@ -5519,6 +5562,8 @@ html {
         overflow-y: auto !important;
         visibility: hidden !important;
         opacity: 0 !important;
+        border-left: 2px solid rgba(66, 153, 225, 0.3) !important;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.3) !important;
     }
     
     .nav-menu.active {
@@ -5906,22 +5951,35 @@ html {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.5rem !important;
-        margin: 0.75rem 0 !important;
-        color: #a0aec0 !important;
-        font-size: 0.9rem !important;
+        gap: 0.75rem !important;
+        margin: 1rem 0 !important;
+        color: #ffffff !important;
+        font-size: 1rem !important;
+        direction: ltr !important;
+        font-weight: 500 !important;
     }
     
     .contact-item i {
         color: #4299e1 !important;
-        font-size: 1rem !important;
+        font-size: 1.2rem !important;
+        min-width: 20px !important;
+        text-align: center !important;
+    }
+    
+    /* Hide email sharing icon */
+    .contact-item[href^="mailto:"] {
+        display: none !important;
     }
     
     .social-links {
         display: flex !important;
         justify-content: center !important;
-        gap: 1rem !important;
-        margin-top: 1rem !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 1rem !important;
+        width: 100% !important;
+        padding: 0 1rem !important;
     }
     
     .social-link {
@@ -5949,5 +6007,107 @@ html {
         border-top: 1px solid rgba(45, 55, 72, 0.3) !important;
         color: #a0aec0 !important;
         font-size: 0.8rem !important;
+    }
+}
+
+/* Desktop fixes for email sharing */
+@media (min-width: 769px) {
+    /* Hide email sharing icon on desktop too */
+    .contact-item[href^="mailto:"],
+    a[href^="mailto:"] {
+        display: none !important;
+    }
+    
+    /* Improve footer layout on desktop */
+    .footer-content {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        gap: 2rem !important;
+        align-items: start !important;
+    }
+    
+    .footer-section {
+        text-align: center !important;
+    }
+    
+    .social-links {
+        justify-content: center !important;
+        gap: 1rem !important;
+    }
+    
+    .contact-item {
+        direction: ltr !important;
+        justify-content: center !important;
+        color: #ffffff !important;
+        font-weight: 500 !important;
+    }
+    
+    .contact-item i {
+        color: #4299e1 !important;
+    }
+}
+
+/* Improved mobile services page */
+@media (max-width: 768px) {
+    .services-tabs-nav {
+        background: rgba(45, 55, 72, 0.1) !important;
+        border-radius: 16px !important;
+        padding: 8px !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .tabs-row-1,
+    .tabs-row-2 {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        margin-bottom: 8px !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+    }
+    
+    .tab-link {
+        flex: 1 1 calc(50% - 4px) !important;
+        min-width: calc(50% - 4px) !important;
+        max-width: calc(50% - 4px) !important;
+        padding: 12px 8px !important;
+        font-size: 0.75rem !important;
+        min-height: 75px !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(45, 55, 72, 0.4) !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(66, 153, 225, 0.2) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .tab-link i {
+        font-size: 1.1rem !important;
+        margin-bottom: 4px !important;
+        color: #4299e1 !important;
+    }
+    
+    .tab-link span {
+        font-size: 0.65rem !important;
+        line-height: 1.1 !important;
+        color: #ffffff !important;
+        font-weight: 500 !important;
+    }
+    
+    .tab-link.active {
+        background: linear-gradient(135deg, #4299e1 0%, #2d3748 100%) !important;
+        transform: scale(1.02) !important;
+        box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3) !important;
+        border-color: #4299e1 !important;
+    }
+    
+    .tab-link.active i,
+    .tab-link.active span {
+        color: #ffffff !important;
     }
 }

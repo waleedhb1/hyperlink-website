@@ -1235,6 +1235,7 @@ function enhancedSetup() {
     try {
         setupMobileNavigation();
         forceTabsInitialization();
+        hideEmailIcons();
         
         // Setup FAQ if exists
         const faqItems = document.querySelectorAll('.faq-item');
@@ -1251,6 +1252,25 @@ function enhancedSetup() {
     } catch (error) {
         console.error('Setup error:', error);
     }
+}
+
+// Hide email sharing icons
+function hideEmailIcons() {
+    const emailLinks = document.querySelectorAll('a[href^="mailto:"], .contact-item[href^="mailto:"]');
+    emailLinks.forEach(link => {
+        link.style.display = 'none';
+        link.style.visibility = 'hidden';
+        if (link.parentNode) {
+            link.parentNode.style.display = 'none';
+        }
+    });
+    
+    // Also hide any email icons by class or data attributes
+    const emailElements = document.querySelectorAll('[data-email], .email-share, .share-email');
+    emailElements.forEach(element => {
+        element.style.display = 'none';
+        element.style.visibility = 'hidden';
+    });
 }
 
 // Call enhanced setup when DOM is ready
