@@ -1433,3 +1433,119 @@ setTimeout(initializeEnhancedSystem, 500);
 
 // Call debug after a delay
 setTimeout(debugElements, 1000);
+
+// إصلاحات نهائية للمشاكل المتبقية
+function applyFinalFixes() {
+    // إصلاح الناف بار - منع الظهور التلقائي
+    function fixNavigationBar() {
+        const navMenu = document.querySelector('.nav-menu');
+        const hamburger = document.querySelector('.hamburger');
+        
+        if (navMenu && hamburger) {
+            // التأكد من إخفاء المينيو عند التحميل
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            
+            // إزالة أي مستمعات موجودة
+            const newHamburger = hamburger.cloneNode(true);
+            hamburger.parentNode.replaceChild(newHamburger, hamburger);
+            
+            // إضافة مستمع جديد
+            newHamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const menu = document.querySelector('.nav-menu');
+                if (menu) {
+                    menu.classList.toggle('active');
+                    newHamburger.classList.toggle('active');
+                }
+            });
+            
+            // إغلاق المينيو عند النقر خارجه
+            document.addEventListener('click', function(e) {
+                const menu = document.querySelector('.nav-menu');
+                const burger = document.querySelector('.hamburger');
+                
+                if (menu && burger && !menu.contains(e.target) && !burger.contains(e.target)) {
+                    menu.classList.remove('active');
+                    burger.classList.remove('active');
+                }
+            });
+            
+            // إغلاق المينيو عند النقر على الروابط
+            const navLinks = navMenu.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const menu = document.querySelector('.nav-menu');
+                    const burger = document.querySelector('.hamburger');
+                    
+                    if (menu && burger) {
+                        menu.classList.remove('active');
+                        burger.classList.remove('active');
+                    }
+                });
+            });
+        }
+    }
+    
+    // إصلاح أرقام الهاتف في الفوتر
+    function fixPhoneNumbersDirection() {
+        const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+        phoneLinks.forEach(link => {
+            link.style.direction = 'ltr';
+            link.style.textAlign = 'left';
+            link.style.unicodeBidi = 'isolate';
+            
+            const span = link.querySelector('span');
+            if (span) {
+                span.style.direction = 'ltr';
+                span.style.unicodeBidi = 'isolate';
+                span.style.textAlign = 'left';
+            }
+        });
+    }
+    
+    // إزالة المربعات الفارغة نهائياً
+    function removeEmptySpacers() {
+        const spacers = document.querySelectorAll('.section-spacer, .spacer-div, .empty-space');
+        spacers.forEach(spacer => {
+            spacer.remove();
+        });
+    }
+    
+    // تطبيق جميع الإصلاحات
+    fixNavigationBar();
+    fixPhoneNumbersDirection();
+    removeEmptySpacers();
+    
+    // إصلاح إضافي لقسم لنتواصل
+    const contactContainer = document.querySelector('.contact-info-container');
+    if (contactContainer) {
+        contactContainer.style.display = 'block';
+        contactContainer.style.visibility = 'visible';
+        contactContainer.style.opacity = '1';
+        contactContainer.style.minHeight = '400px';
+        contactContainer.style.width = '100%';
+        
+        // إظهار جميع العناصر الفرعية
+        const allElements = contactContainer.querySelectorAll('*');
+        allElements.forEach(el => {
+            el.style.visibility = 'visible';
+            el.style.opacity = '1';
+        });
+    }
+}
+
+// تطبيق الإصلاحات النهائية
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(applyFinalFixes, 1000);
+});
+
+// تطبيق الإصلاحات عند تغيير حجم الشاشة
+window.addEventListener('resize', function() {
+    setTimeout(applyFinalFixes, 500);
+});
+
+// تطبيق الإصلاحات بشكل دوري
+setInterval(applyFinalFixes, 3000);

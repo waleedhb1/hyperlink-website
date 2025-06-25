@@ -5066,8 +5066,6 @@ html {
     .nav-link.active {
         background: rgba(66, 153, 225, 0.2) !important;
         transform: translateX(-5px) !important;
-        border-color: rgba(66, 153, 225, 0.3) !important;
-        color: var(--white) !important;
     }
     
     /* Language switcher */
@@ -7823,5 +7821,128 @@ html {
         .contact-info-container {
             -webkit-backdrop-filter: blur(10px) !important;
         }
+    }
+    
+    /* إصلاح نهائي للناف بار - منع الظهور التلقائي */
+    .nav-menu {
+        position: fixed !important;
+        top: 70px !important;
+        right: -100% !important;
+        width: 280px !important;
+        height: calc(100vh - 70px) !important;
+        background: rgba(45, 55, 72, 0.98) !important;
+        backdrop-filter: blur(25px) !important;
+        -webkit-backdrop-filter: blur(25px) !important;
+        border-left: 1px solid rgba(66, 153, 225, 0.2) !important;
+        padding: 2rem 1.5rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transform: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        overflow-y: auto !important;
+        box-sizing: border-box !important;
+        z-index: 999 !important;
+    }
+    
+    .nav-menu.active {
+        right: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    /* إصلاح الهامبرغر مع X */
+    .hamburger {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 30px !important;
+        height: 30px !important;
+        cursor: pointer !important;
+        z-index: 1001 !important;
+        position: relative !important;
+    }
+    
+    .hamburger .bar {
+        width: 25px !important;
+        height: 3px !important;
+        background: #ffffff !important;
+        margin: 3px 0 !important;
+        transition: 0.3s ease !important;
+        border-radius: 2px !important;
+    }
+    
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0 !important;
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px) !important;
+    }
+    
+    /* إصلاح رقم الهاتف في الفوتر */
+    .contact-item[href^="tel:"],
+    .contact-item[href^="tel:"] span {
+        direction: ltr !important;
+        text-align: left !important;
+        unicode-bidi: isolate !important;
+    }
+    
+    /* إزالة المربع الفارغ نهائياً */
+    .section-spacer,
+    .spacer-div,
+    .empty-space {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* إصلاح قسم لنتواصل - تأكيد العرض */
+    .contact-info-container {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: relative !important;
+        z-index: 1 !important;
+        width: 100% !important;
+        min-height: 400px !important;
+        padding: 2rem 1.5rem !important;
+        margin-bottom: 2rem !important;
+        background: rgba(45, 55, 72, 0.1) !important;
+        border: 1px solid rgba(66, 153, 225, 0.2) !important;
+        border-radius: 16px !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        box-sizing: border-box !important;
+    }
+    
+    .contact-info-container * {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .contact-methods {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+        width: 100% !important;
+    }
+    
+    .contact-method {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 }
