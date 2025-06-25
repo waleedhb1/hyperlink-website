@@ -1062,9 +1062,26 @@ function setupMobileNavigation() {
     const navMenu = document.getElementById('navMenu');
     
     if (hamburger && navMenu) {
+        // Initial setup - ensure menu is closed
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        navMenu.style.display = 'none';
+        navMenu.style.right = '-100%';
+        navMenu.style.visibility = 'hidden';
+        navMenu.style.opacity = '0';
+        document.body.classList.remove('menu-open');
         // Remove any existing event listeners
         hamburger.replaceWith(hamburger.cloneNode(true));
         const newHamburger = document.getElementById('hamburger');
+        
+        // Ensure initial state after replacement
+        const freshNavMenu = document.getElementById('navMenu');
+        freshNavMenu.classList.remove('active');
+        newHamburger.classList.remove('active');
+        freshNavMenu.style.display = 'none';
+        freshNavMenu.style.right = '-100%';
+        freshNavMenu.style.visibility = 'hidden';
+        freshNavMenu.style.opacity = '0';
         
         newHamburger.addEventListener('click', function(e) {
             e.preventDefault();
@@ -1080,8 +1097,12 @@ function setupMobileNavigation() {
             if (navMenu.classList.contains('active')) {
                 navMenu.style.display = 'flex';
                 navMenu.style.right = '0';
+                navMenu.style.visibility = 'visible';
+                navMenu.style.opacity = '1';
             } else {
                 navMenu.style.right = '-100%';
+                navMenu.style.visibility = 'hidden';
+                navMenu.style.opacity = '0';
                 setTimeout(() => {
                     if (!navMenu.classList.contains('active')) {
                         navMenu.style.display = 'none';
