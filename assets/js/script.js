@@ -1235,6 +1235,7 @@ function enhancedSetup() {
     try {
         setupMobileNavigation();
         forceTabsInitialization();
+        initializeMobileCards(); // Initialize mobile service cards
         hideEmailIcons();
         
         // Setup FAQ if exists
@@ -1285,6 +1286,45 @@ window.addEventListener('load', function() {
     setTimeout(enhancedSetup, 500);
 });
 
+// Initialize Mobile Service Cards
+function initializeMobileCards() {
+    const mobileCards = document.querySelectorAll('.service-card-mobile');
+    
+    if (mobileCards.length > 0) {
+        console.log('Found mobile cards:', mobileCards.length);
+        
+        mobileCards.forEach((card, index) => {
+            const header = card.querySelector('.service-card-header');
+            
+            if (header) {
+                header.addEventListener('click', function() {
+                    console.log('Card clicked:', index);
+                    
+                    // Close all other cards
+                    mobileCards.forEach((otherCard, otherIndex) => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current card
+                    card.classList.toggle('active');
+                    
+                    // Add smooth scrolling to the clicked card
+                    setTimeout(() => {
+                        if (card.classList.contains('active')) {
+                            card.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'nearest'
+                            });
+                        }
+                    }, 300);
+                });
+            }
+        });
+    }
+}
+
 // Debug function to check elements
 function debugElements() {
     console.log('=== DEBUG INFO ===');
@@ -1292,6 +1332,7 @@ function debugElements() {
     console.log('Nav Menu:', document.getElementById('navMenu'));
     console.log('Tab Links:', document.querySelectorAll('.tab-link').length);
     console.log('Tab Contents:', document.querySelectorAll('.tab-content').length);
+    console.log('Mobile Cards:', document.querySelectorAll('.service-card-mobile').length);
     console.log('==================');
 }
 
