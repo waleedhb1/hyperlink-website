@@ -9,6 +9,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID;
 const EMAILJS_USER_ID = process.env.EMAILJS_USER_ID;
+const NOTIFICATION_EMAIL = process.env.NOTIFICATION_EMAIL;
 
 export default async function handler(req, res) {
   // السماح بـ CORS
@@ -75,7 +76,7 @@ export default async function handler(req, res) {
     // إرسال إيميل تنبيه
     try {
       const emailData = {
-        to_email: 'info@hyperlink.sa', // الإيميل الذي ستستقبل عليه التنبيهات
+        to_email: NOTIFICATION_EMAIL || 'info@hyperlink.sa', // الإيميل الذي ستستقبل عليه التنبيهات
         from_name: `${firstName} ${lastName}`,
         from_email: email,
         company: company || 'غير محدد',
