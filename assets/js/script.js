@@ -1384,5 +1384,52 @@ function debugElements() {
     console.log('==================');
 }
 
+// Enhanced system initialization
+function initializeEnhancedSystem() {
+    // Force proper display for services section
+    const servicesSection = document.querySelector('.main-services');
+    if (servicesSection) {
+        servicesSection.style.display = 'block';
+        servicesSection.style.visibility = 'visible';
+    }
+    
+    // Ensure proper responsive behavior
+    function checkAndFixDisplay() {
+        const isMobile = window.innerWidth <= 768;
+        const tabsContainer = document.querySelector('.services-tabs-container');
+        const mobileCards = document.querySelector('.services-cards-mobile');
+        
+        if (tabsContainer && mobileCards) {
+            if (isMobile) {
+                tabsContainer.style.display = 'none !important';
+                mobileCards.style.display = 'block !important';
+            } else {
+                tabsContainer.style.display = 'block !important';
+                mobileCards.style.display = 'none !important';
+                
+                // Ensure first tab is active
+                const firstTab = document.querySelector('.tab-link');
+                const firstContent = document.querySelector('.tab-content');
+                if (firstTab && !document.querySelector('.tab-link.active')) {
+                    firstTab.classList.add('active');
+                }
+                if (firstContent && !document.querySelector('.tab-content.active')) {
+                    firstContent.classList.add('active');
+                }
+            }
+        }
+    }
+    
+    // Check immediately and on resize
+    checkAndFixDisplay();
+    window.addEventListener('resize', checkAndFixDisplay);
+    
+    // Periodic check to ensure everything is working
+    setInterval(checkAndFixDisplay, 2000);
+}
+
+// Initialize enhanced system
+setTimeout(initializeEnhancedSystem, 500);
+
 // Call debug after a delay
 setTimeout(debugElements, 1000);
