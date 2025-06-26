@@ -69,10 +69,338 @@ function toggleLanguage() {
     setLanguage(newLang);
 }
 
+// ===== MOBILE-FIRST ENHANCEMENTS =====
+
+// Mobile Detection and Optimization
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
+}
+
+// Enhanced Mobile Navigation
+function initializeMobileNavigation() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const body = document.body;
+    
+    if (!hamburger || !navMenu) return;
+    
+    let isMenuOpen = false;
+    
+    // Enhanced hamburger toggle with haptic feedback
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        hamburger.classList.toggle('active', isMenuOpen);
+        navMenu.classList.toggle('active', isMenuOpen);
+        body.classList.toggle('nav-open', isMenuOpen);
+        
+        // Prevent body scroll when menu is open
+        if (isMenuOpen) {
+            body.style.overflow = 'hidden';
+            body.style.height = '100vh';
+            body.style.touchAction = 'none';
+        } else {
+            body.style.overflow = '';
+            body.style.height = '';
+            body.style.touchAction = '';
+        }
+        
+        // Haptic feedback for mobile devices
+        if (navigator.vibrate && isMobile()) {
+            navigator.vibrate(50);
+        }
+        
+        // Update ARIA attributes for accessibility
+        hamburger.setAttribute('aria-expanded', isMenuOpen);
+        navMenu.setAttribute('aria-hidden', !isMenuOpen);
+    }
+    
+    // Close menu function
+    function closeMenu() {
+        if (isMenuOpen) {
+            toggleMenu();
+        }
+    }
+    
+    // Event listeners
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        toggleMenu();
+    }, { passive: false });
+    
+    // Close menu when clicking nav links
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+        link.addEventListener('touchend', closeMenu);
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (isMenuOpen && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMenu();
+        }
+    });
+    
+    // Handle orientation change
+    window.addEventListener('orientationchange', function() {
+        setTimeout(closeMenu, 100);
+    });
+    
+    // Handle resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && isMenuOpen) {
+            closeMenu();
+        }
+    });
+}
+
+// Enhanced Tab System for Mobile
+function initializeMobileTabs() {
+    const tabLinks = document.querySelectorAll('.tab-link');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    if (!tabLinks.length || !tabContents.length) return;
+    
+    // Add touch feedback
+    tabLinks.forEach(link => {
+        link.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+        }, { passive: true });
+        
+        link.addEventListener('touchend', function() {
+            this.style.transform = '';
+        }, { passive: true });
+        
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Haptic feedback
+            if (navigator.vibrate && isMobile()) {
+                navigator.vibrate(30);
+            }
+            
+            const targetTab = this.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and contents
+            tabLinks.forEach(tab => tab.classList.remove('active'));
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                content.style.display = 'none';
+            });
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Show target content with animation
+            const targetContent = document.getElementById(targetTab);
+            if (targetContent) {
+                targetContent.style.display = 'block';
+                setTimeout(() => {
+                    targetContent.classList.add('active');
+                }, 10);
+            }
+            
+            // Scroll to content on mobile
+            if (isMobile()) {
+                setTimeout(() => {
+                    targetContent.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 300);
+            }
+        });
+    });
+}
+
+// Enhanced FAQ for Mobile
+function initializeMobileFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        if (!question || !answer) return;
+        
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active', !isActive);
+            
+            // Haptic feedback
+            if (navigator.vibrate && isMobile()) {
+                navigator.vibrate(40);
+            }
+            
+            // Smooth scroll to item if it's being opened
+            if (!isActive && isMobile()) {
+                setTimeout(() => {
+                    item.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+                }, 400);
+            }
+        });
+        
+        // Touch feedback
+        question.addEventListener('touchstart', function() {
+            this.style.backgroundColor = 'rgba(66, 153, 225, 0.1)';
+        }, { passive: true });
+        
+        question.addEventListener('touchend', function() {
+            setTimeout(() => {
+                this.style.backgroundColor = '';
+            }, 150);
+        }, { passive: true });
+    });
+}
+
+// Mobile Form Enhancements
+function initializeMobileFormEnhancements() {
+    const forms = document.querySelectorAll('form');
+    const inputs = document.querySelectorAll('input, textarea, select');
+    
+    // Enhanced input focus handling
+    inputs.forEach(input => {
+        // Smooth scroll to input when focused (iOS Safari fix)
+        input.addEventListener('focus', function() {
+            if (isMobile()) {
+                setTimeout(() => {
+                    this.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }, 300);
+            }
+        });
+        
+        // Visual feedback for touch
+        input.addEventListener('touchstart', function() {
+            this.style.borderColor = '#4299e1';
+            this.style.boxShadow = '0 0 0 3px rgba(66, 153, 225, 0.2)';
+        }, { passive: true });
+        
+        input.addEventListener('blur', function() {
+            if (!this.matches(':focus')) {
+                this.style.borderColor = '';
+                this.style.boxShadow = '';
+            }
+        });
+    });
+    
+    // Enhanced form submission
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn && isMobile()) {
+                // Visual feedback
+                submitBtn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    submitBtn.style.transform = '';
+                }, 150);
+                
+                // Haptic feedback
+                if (navigator.vibrate) {
+                    navigator.vibrate(100);
+                }
+            }
+        });
+    });
+}
+
+// Mobile Performance Optimizations
+function initializeMobileOptimizations() {
+    // Reduce animations on lower-end devices
+    if (isMobile() && navigator.hardwareConcurrency < 4) {
+        document.documentElement.style.setProperty('--animation-duration', '0.2s');
+        document.documentElement.style.setProperty('--transition-duration', '0.15s');
+    }
+    
+    // Optimize touch scrolling
+    if (isMobile()) {
+        document.body.style.webkitOverflowScrolling = 'touch';
+        document.body.style.overflowScrolling = 'touch';
+    }
+    
+    // Viewport height fix for mobile browsers
+    function setVH() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        document.documentElement.style.setProperty('--mobile-vh', `${window.innerHeight}px`);
+    }
+    
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(setVH, 100);
+    });
+}
+
+// Touch Gesture Support
+function initializeTouchGestures() {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', function(e) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        
+        // Detect swipe gestures
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu && navMenu.classList.contains('active')) {
+                if (deltaX > 0) {
+                    // Swipe right - close menu
+                    const hamburger = document.getElementById('hamburger');
+                    if (hamburger) {
+                        hamburger.click();
+                    }
+                }
+            }
+        }
+    }, { passive: true });
+}
+
 // Load saved language preference
 document.addEventListener('DOMContentLoaded', function() {
     const savedLang = localStorage.getItem('preferred-language') || 'ar';
     setLanguage(savedLang);
+    
+    // Initialize mobile-specific features
+    initializeMobileNavigation();
+    initializeMobileTabs();
+    initializeMobileFAQ();
+    initializeMobileFormEnhancements();
+    initializeMobileOptimizations();
+    initializeTouchGestures();
+    
+    // Initialize existing features
     initializeCosmicEffects();
     initializeParticleSystem();
     setupMouseTracking();
@@ -101,198 +429,27 @@ window.addEventListener('scroll', function() {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
 
-// Enhanced Mobile Menu System
-function initializeMobileMenu() {
-    console.log('Initializing mobile menu...');
-    
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    
-    if (!hamburger) {
-        console.error('Hamburger element not found!');
-        return;
-    }
-    
-    if (!navMenu) {
-        console.error('NavMenu element not found!');
-        return;
-    }
-    
-    console.log('Mobile menu elements found successfully');
-    
-    // State management
-    let isMenuOpen = false;
-    
-    // Function to open menu
-    function openMenu() {
-        hamburger.classList.add('active');
-        navMenu.classList.add('active');
-        document.body.classList.add('menu-open');
-        document.body.style.overflow = 'hidden';
-        isMenuOpen = true;
-        console.log('✅ Menu opened successfully');
-    }
-    
-    // Function to close menu
-    function closeMenu() {
+// Mobile Menu Toggle
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+
+if (hamburger) {
+    hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+}
+
+// Close mobile menu when clicking on a link
+const navLinks = document.querySelectorAll('.nav-link');
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.classList.remove('menu-open');
-        document.body.style.overflow = '';
-        isMenuOpen = false;
-        console.log('✅ Menu closed successfully');
-    }
-    
-    // Function to toggle menu
-    function toggleMenu() {
-        console.log('Toggle menu clicked, current state:', isMenuOpen);
-        if (isMenuOpen) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-    }
-    
-    // Multiple event handlers for better compatibility
-    hamburger.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('🖱️ Hamburger clicked');
-        toggleMenu();
     });
-    
-    hamburger.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.log('👆 Hamburger touched');
-        toggleMenu();
-    });
-    
-    // Prevent touchstart from interfering
-    hamburger.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(e) {
-        if (isMenuOpen && 
-            !hamburger.contains(e.target) && 
-            !navMenu.contains(e.target)) {
-            console.log('🔄 Closing menu - clicked outside');
-            closeMenu();
-        }
-    });
-    
-    // Close menu on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && isMenuOpen) {
-            console.log('⌨️ Closing menu - escape key');
-            closeMenu();
-        }
-    });
-    
-    // Close menu when clicking nav links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            console.log('🔗 Nav link clicked - closing menu');
-            closeMenu();
-        });
-    });
-    
-    // Force show hamburger on mobile
-    if (window.innerWidth <= 768) {
-        hamburger.style.display = 'flex';
-        hamburger.style.visibility = 'visible';
-        hamburger.style.opacity = '1';
-    }
-    
-    console.log('🎯 Mobile menu initialization complete');
-}
-
-// Enhanced Initialization System
-(function() {
-    'use strict';
-    
-    console.log('🚀 Starting enhanced initialization...');
-    
-    // Global state
-    window.HyperlinkApp = {
-        mobileMenu: null,
-        servicesSlider: null,
-        isInitialized: false
-    };
-    
-    // Initialize all components
-    function initializeApp() {
-        console.log('🔧 Initializing Hyperlink app components...');
-        
-        try {
-            // Initialize mobile menu
-            if (typeof initializeMobileMenu === 'function') {
-                initializeMobileMenu();
-                console.log('✅ Mobile menu initialized');
-            }
-            
-            // Initialize services slider
-            if (typeof initializeServicesSlider === 'function') {
-                window.HyperlinkApp.servicesSlider = initializeServicesSlider();
-                console.log('✅ Services slider initialized');
-            }
-            
-            // Initialize other components
-            if (typeof setupTabs === 'function') {
-                setupTabs();
-                console.log('✅ Tabs system initialized');
-            }
-            
-            if (typeof setupFormHandling === 'function') {
-                setupFormHandling();
-                console.log('✅ Form handling initialized');
-            }
-            
-            window.HyperlinkApp.isInitialized = true;
-            console.log('🎯 All components initialized successfully!');
-            
-        } catch (error) {
-            console.error('❌ Error during initialization:', error);
-        }
-    }
-    
-    // Multiple initialization triggers
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeApp);
-    } else {
-        // DOM already loaded
-        initializeApp();
-    }
-    
-    // Fallback initialization
-    window.addEventListener('load', function() {
-        if (!window.HyperlinkApp.isInitialized) {
-            console.log('🔄 Fallback initialization triggered');
-            initializeApp();
-        }
-    });
-    
-    // Force re-initialization on window resize (for responsive issues)
-    let resizeTimeout;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function() {
-            if (window.innerWidth <= 768) {
-                const hamburger = document.getElementById('hamburger');
-                if (hamburger) {
-                    hamburger.style.display = 'flex';
-                    hamburger.style.visibility = 'visible';
-                    hamburger.style.opacity = '1';
-                }
-            }
-        }, 250);
-    });
-    
-    console.log('📱 Enhanced initialization system ready');
-})();
+});
 
 // Smooth Scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1216,226 +1373,4 @@ function setupTabs() {
              if(target) target.classList.add('active');
         }
     }
-}
-
-// Enhanced Services Slider System
-function initializeServicesSlider() {
-    console.log('🎠 Initializing services slider...');
-    
-    const slider = document.querySelector('.services-slider');
-    const slides = document.querySelectorAll('.service-slide');
-    const prevBtn = document.querySelector('.slider-prev');
-    const nextBtn = document.querySelector('.slider-next');
-    const indicators = document.querySelector('.slider-indicators');
-    
-    console.log('Slider elements found:', {
-        slider: !!slider,
-        slides: slides.length,
-        prevBtn: !!prevBtn,
-        nextBtn: !!nextBtn,
-        indicators: !!indicators
-    });
-    
-    if (!slider) {
-        console.error('❌ Services slider container not found!');
-        return;
-    }
-    
-    if (slides.length === 0) {
-        console.error('❌ No service slides found!');
-        return;
-    }
-    
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-    let autoPlayInterval = null;
-    let isTransitioning = false;
-    
-    console.log(`📊 Found ${totalSlides} slides`);
-    
-    // Create indicators
-    if (indicators) {
-        indicators.innerHTML = '';
-        for (let i = 0; i < totalSlides; i++) {
-            const indicator = document.createElement('button');
-            indicator.classList.add('slider-indicator');
-            indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            if (i === 0) indicator.classList.add('active');
-            
-            indicator.addEventListener('click', () => {
-                console.log(`🎯 Indicator ${i + 1} clicked`);
-                goToSlide(i);
-            });
-            
-            indicators.appendChild(indicator);
-        }
-        console.log('✅ Indicators created successfully');
-    }
-    
-    function updateSlider() {
-        if (isTransitioning) return;
-        
-        isTransitioning = true;
-        console.log(`🔄 Updating slider to slide ${currentSlide + 1}`);
-        
-        slides.forEach((slide, index) => {
-            slide.classList.remove('active');
-            slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
-            
-            if (index === currentSlide) {
-                slide.classList.add('active');
-            }
-        });
-        
-        // Update indicators
-        const indicatorButtons = document.querySelectorAll('.slider-indicator');
-        indicatorButtons.forEach((btn, index) => {
-            btn.classList.toggle('active', index === currentSlide);
-        });
-        
-        // Reset transition flag after animation
-        setTimeout(() => {
-            isTransitioning = false;
-        }, 500);
-    }
-    
-    function goToSlide(index) {
-        if (index >= 0 && index < totalSlides && index !== currentSlide) {
-            currentSlide = index;
-            updateSlider();
-            resetAutoPlay();
-        }
-    }
-    
-    function nextSlide() {
-        console.log('➡️ Next slide');
-        currentSlide = (currentSlide + 1) % totalSlides;
-        updateSlider();
-    }
-    
-    function prevSlide() {
-        console.log('⬅️ Previous slide');
-        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-        updateSlider();
-    }
-    
-    function startAutoPlay() {
-        stopAutoPlay();
-        autoPlayInterval = setInterval(() => {
-            console.log('🔄 Auto-play: moving to next slide');
-            nextSlide();
-        }, 5000);
-        console.log('▶️ Auto-play started');
-    }
-    
-    function stopAutoPlay() {
-        if (autoPlayInterval) {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = null;
-            console.log('⏸️ Auto-play stopped');
-        }
-    }
-    
-    function resetAutoPlay() {
-        stopAutoPlay();
-        setTimeout(startAutoPlay, 1000);
-    }
-    
-    // Event listeners for navigation buttons
-    if (nextBtn) {
-        nextBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('🖱️ Next button clicked');
-            nextSlide();
-            resetAutoPlay();
-        });
-    }
-    
-    if (prevBtn) {
-        prevBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('🖱️ Previous button clicked');
-            prevSlide();
-            resetAutoPlay();
-        });
-    }
-    
-    // Pause auto-play on hover
-    slider.addEventListener('mouseenter', () => {
-        console.log('🐭 Mouse entered - pausing auto-play');
-        stopAutoPlay();
-    });
-    
-    slider.addEventListener('mouseleave', () => {
-        console.log('🐭 Mouse left - resuming auto-play');
-        startAutoPlay();
-    });
-    
-    // Touch/swipe support
-    let startX = 0;
-    let endX = 0;
-    let isSwiping = false;
-    
-    slider.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isSwiping = true;
-        stopAutoPlay();
-    }, { passive: true });
-    
-    slider.addEventListener('touchmove', (e) => {
-        if (!isSwiping) return;
-        endX = e.touches[0].clientX;
-    }, { passive: true });
-    
-    slider.addEventListener('touchend', (e) => {
-        if (!isSwiping) return;
-        
-        const diff = startX - endX;
-        const threshold = 50;
-        
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                console.log('👆 Swiped left - next slide');
-                nextSlide();
-            } else {
-                console.log('👆 Swiped right - previous slide');
-                prevSlide();
-            }
-        }
-        
-        isSwiping = false;
-        resetAutoPlay();
-    }, { passive: true });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (slider.getBoundingClientRect().top < window.innerHeight && 
-            slider.getBoundingClientRect().bottom > 0) {
-            
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                prevSlide();
-                resetAutoPlay();
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                nextSlide();
-                resetAutoPlay();
-            }
-        }
-    });
-    
-    // Initialize slider
-    updateSlider();
-    startAutoPlay();
-    
-    console.log('🎯 Services slider initialization complete');
-    
-    // Return control object for external access
-    return {
-        goToSlide,
-        nextSlide,
-        prevSlide,
-        getCurrentSlide: () => currentSlide,
-        getTotalSlides: () => totalSlides
-    };
 }
