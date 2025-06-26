@@ -105,11 +105,35 @@ window.addEventListener('scroll', function() {
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-if (hamburger) {
-    hamburger.addEventListener('click', function() {
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        console.log('Hamburger clicked'); // للتأكد من أن الحدث يعمل
+        
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
         document.body.classList.toggle('menu-open');
+        
+        // إضافة تأثير لمنع التمرير عند فتح القائمة
+        if (navMenu.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // إغلاق القائمة عند الضغط خارجها
+    document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('active') && 
+            !hamburger.contains(e.target) && 
+            !navMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            document.body.style.overflow = '';
+        }
     });
 }
 
