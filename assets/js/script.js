@@ -101,35 +101,36 @@ window.addEventListener('scroll', function() {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
 
-// Mobile Menu Toggle - Enhanced Version
+// Enhanced Mobile Menu System
 function initializeMobileMenu() {
+    console.log('Initializing mobile menu...');
+    
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
     
-    if (!hamburger || !navMenu) {
-        console.log('Hamburger or NavMenu not found');
+    if (!hamburger) {
+        console.error('Hamburger element not found!');
         return;
     }
     
-    // Function to toggle menu
-    function toggleMenu() {
-        const isActive = hamburger.classList.contains('active');
-        
-        if (!isActive) {
-            // Open menu
-            hamburger.classList.add('active');
-            navMenu.classList.add('active');
-            document.body.classList.add('menu-open');
-            document.body.style.overflow = 'hidden';
-            console.log('Menu opened');
-        } else {
-            // Close menu
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-            document.body.style.overflow = '';
-            console.log('Menu closed');
-        }
+    if (!navMenu) {
+        console.error('NavMenu element not found!');
+        return;
+    }
+    
+    console.log('Mobile menu elements found successfully');
+    
+    // State management
+    let isMenuOpen = false;
+    
+    // Function to open menu
+    function openMenu() {
+        hamburger.classList.add('active');
+        navMenu.classList.add('active');
+        document.body.classList.add('menu-open');
+        document.body.style.overflow = 'hidden';
+        isMenuOpen = true;
+        console.log('✅ Menu opened successfully');
     }
     
     // Function to close menu
@@ -138,34 +139,54 @@ function initializeMobileMenu() {
         navMenu.classList.remove('active');
         document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
+        isMenuOpen = false;
+        console.log('✅ Menu closed successfully');
     }
     
-    // Add click event to hamburger
+    // Function to toggle menu
+    function toggleMenu() {
+        console.log('Toggle menu clicked, current state:', isMenuOpen);
+        if (isMenuOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    }
+    
+    // Multiple event handlers for better compatibility
     hamburger.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
+        console.log('🖱️ Hamburger clicked');
         toggleMenu();
     });
     
-    // Add touch event for mobile
-    hamburger.addEventListener('touchstart', function(e) {
+    hamburger.addEventListener('touchend', function(e) {
         e.preventDefault();
         e.stopPropagation();
+        console.log('👆 Hamburger touched');
         toggleMenu();
+    });
+    
+    // Prevent touchstart from interfering
+    hamburger.addEventListener('touchstart', function(e) {
+        e.preventDefault();
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (navMenu.classList.contains('active') && 
+        if (isMenuOpen && 
             !hamburger.contains(e.target) && 
             !navMenu.contains(e.target)) {
+            console.log('🔄 Closing menu - clicked outside');
             closeMenu();
         }
     });
     
     // Close menu on escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            console.log('⌨️ Closing menu - escape key');
             closeMenu();
         }
     });
@@ -173,14 +194,105 @@ function initializeMobileMenu() {
     // Close menu when clicking nav links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        link.addEventListener('click', closeMenu);
+        link.addEventListener('click', function() {
+            console.log('🔗 Nav link clicked - closing menu');
+            closeMenu();
+        });
     });
+    
+    // Force show hamburger on mobile
+    if (window.innerWidth <= 768) {
+        hamburger.style.display = 'flex';
+        hamburger.style.visibility = 'visible';
+        hamburger.style.opacity = '1';
+    }
+    
+    console.log('🎯 Mobile menu initialization complete');
 }
 
-// Initialize mobile menu when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeMobileMenu);
-
-// Mobile menu initialization handled above
+// Enhanced Initialization System
+(function() {
+    'use strict';
+    
+    console.log('🚀 Starting enhanced initialization...');
+    
+    // Global state
+    window.HyperlinkApp = {
+        mobileMenu: null,
+        servicesSlider: null,
+        isInitialized: false
+    };
+    
+    // Initialize all components
+    function initializeApp() {
+        console.log('🔧 Initializing Hyperlink app components...');
+        
+        try {
+            // Initialize mobile menu
+            if (typeof initializeMobileMenu === 'function') {
+                initializeMobileMenu();
+                console.log('✅ Mobile menu initialized');
+            }
+            
+            // Initialize services slider
+            if (typeof initializeServicesSlider === 'function') {
+                window.HyperlinkApp.servicesSlider = initializeServicesSlider();
+                console.log('✅ Services slider initialized');
+            }
+            
+            // Initialize other components
+            if (typeof setupTabs === 'function') {
+                setupTabs();
+                console.log('✅ Tabs system initialized');
+            }
+            
+            if (typeof setupFormHandling === 'function') {
+                setupFormHandling();
+                console.log('✅ Form handling initialized');
+            }
+            
+            window.HyperlinkApp.isInitialized = true;
+            console.log('🎯 All components initialized successfully!');
+            
+        } catch (error) {
+            console.error('❌ Error during initialization:', error);
+        }
+    }
+    
+    // Multiple initialization triggers
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+        // DOM already loaded
+        initializeApp();
+    }
+    
+    // Fallback initialization
+    window.addEventListener('load', function() {
+        if (!window.HyperlinkApp.isInitialized) {
+            console.log('🔄 Fallback initialization triggered');
+            initializeApp();
+        }
+    });
+    
+    // Force re-initialization on window resize (for responsive issues)
+    let resizeTimeout;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function() {
+            if (window.innerWidth <= 768) {
+                const hamburger = document.getElementById('hamburger');
+                if (hamburger) {
+                    hamburger.style.display = 'flex';
+                    hamburger.style.visibility = 'visible';
+                    hamburger.style.opacity = '1';
+                }
+            }
+        }, 250);
+    });
+    
+    console.log('📱 Enhanced initialization system ready');
+})();
 
 // Smooth Scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1106,18 +1218,40 @@ function setupTabs() {
     }
 }
 
-// Services Slider System
+// Enhanced Services Slider System
 function initializeServicesSlider() {
+    console.log('🎠 Initializing services slider...');
+    
     const slider = document.querySelector('.services-slider');
     const slides = document.querySelectorAll('.service-slide');
     const prevBtn = document.querySelector('.slider-prev');
     const nextBtn = document.querySelector('.slider-next');
     const indicators = document.querySelector('.slider-indicators');
     
-    if (!slider || slides.length === 0) return;
+    console.log('Slider elements found:', {
+        slider: !!slider,
+        slides: slides.length,
+        prevBtn: !!prevBtn,
+        nextBtn: !!nextBtn,
+        indicators: !!indicators
+    });
+    
+    if (!slider) {
+        console.error('❌ Services slider container not found!');
+        return;
+    }
+    
+    if (slides.length === 0) {
+        console.error('❌ No service slides found!');
+        return;
+    }
     
     let currentSlide = 0;
     const totalSlides = slides.length;
+    let autoPlayInterval = null;
+    let isTransitioning = false;
+    
+    console.log(`📊 Found ${totalSlides} slides`);
     
     // Create indicators
     if (indicators) {
@@ -1125,16 +1259,32 @@ function initializeServicesSlider() {
         for (let i = 0; i < totalSlides; i++) {
             const indicator = document.createElement('button');
             indicator.classList.add('slider-indicator');
+            indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
             if (i === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToSlide(i));
+            
+            indicator.addEventListener('click', () => {
+                console.log(`🎯 Indicator ${i + 1} clicked`);
+                goToSlide(i);
+            });
+            
             indicators.appendChild(indicator);
         }
+        console.log('✅ Indicators created successfully');
     }
     
     function updateSlider() {
+        if (isTransitioning) return;
+        
+        isTransitioning = true;
+        console.log(`🔄 Updating slider to slide ${currentSlide + 1}`);
+        
         slides.forEach((slide, index) => {
+            slide.classList.remove('active');
             slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
-            slide.classList.toggle('active', index === currentSlide);
+            
+            if (index === currentSlide) {
+                slide.classList.add('active');
+            }
         });
         
         // Update indicators
@@ -1142,63 +1292,150 @@ function initializeServicesSlider() {
         indicatorButtons.forEach((btn, index) => {
             btn.classList.toggle('active', index === currentSlide);
         });
+        
+        // Reset transition flag after animation
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 500);
     }
     
     function goToSlide(index) {
-        currentSlide = index;
-        updateSlider();
+        if (index >= 0 && index < totalSlides && index !== currentSlide) {
+            currentSlide = index;
+            updateSlider();
+            resetAutoPlay();
+        }
     }
     
     function nextSlide() {
+        console.log('➡️ Next slide');
         currentSlide = (currentSlide + 1) % totalSlides;
         updateSlider();
     }
     
     function prevSlide() {
+        console.log('⬅️ Previous slide');
         currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
         updateSlider();
     }
     
-    // Event listeners
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(() => {
+            console.log('🔄 Auto-play: moving to next slide');
+            nextSlide();
+        }, 5000);
+        console.log('▶️ Auto-play started');
+    }
     
-    // Auto-play functionality
-    let autoPlayInterval = setInterval(nextSlide, 5000);
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            console.log('⏸️ Auto-play stopped');
+        }
+    }
+    
+    function resetAutoPlay() {
+        stopAutoPlay();
+        setTimeout(startAutoPlay, 1000);
+    }
+    
+    // Event listeners for navigation buttons
+    if (nextBtn) {
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('🖱️ Next button clicked');
+            nextSlide();
+            resetAutoPlay();
+        });
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('🖱️ Previous button clicked');
+            prevSlide();
+            resetAutoPlay();
+        });
+    }
     
     // Pause auto-play on hover
     slider.addEventListener('mouseenter', () => {
-        clearInterval(autoPlayInterval);
+        console.log('🐭 Mouse entered - pausing auto-play');
+        stopAutoPlay();
     });
     
     slider.addEventListener('mouseleave', () => {
-        autoPlayInterval = setInterval(nextSlide, 5000);
+        console.log('🐭 Mouse left - resuming auto-play');
+        startAutoPlay();
     });
     
     // Touch/swipe support
     let startX = 0;
     let endX = 0;
+    let isSwiping = false;
     
     slider.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
-    });
+        isSwiping = true;
+        stopAutoPlay();
+    }, { passive: true });
+    
+    slider.addEventListener('touchmove', (e) => {
+        if (!isSwiping) return;
+        endX = e.touches[0].clientX;
+    }, { passive: true });
     
     slider.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
+        if (!isSwiping) return;
         
-        if (Math.abs(diff) > 50) {
+        const diff = startX - endX;
+        const threshold = 50;
+        
+        if (Math.abs(diff) > threshold) {
             if (diff > 0) {
+                console.log('👆 Swiped left - next slide');
                 nextSlide();
             } else {
+                console.log('👆 Swiped right - previous slide');
                 prevSlide();
+            }
+        }
+        
+        isSwiping = false;
+        resetAutoPlay();
+    }, { passive: true });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (slider.getBoundingClientRect().top < window.innerHeight && 
+            slider.getBoundingClientRect().bottom > 0) {
+            
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+                resetAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextSlide();
+                resetAutoPlay();
             }
         }
     });
     
-    // Initialize
+    // Initialize slider
     updateSlider();
+    startAutoPlay();
+    
+    console.log('🎯 Services slider initialization complete');
+    
+    // Return control object for external access
+    return {
+        goToSlide,
+        nextSlide,
+        prevSlide,
+        getCurrentSlide: () => currentSlide,
+        getTotalSlides: () => totalSlides
+    };
 }
-
-// Initialize services slider when DOM is loaded
-document.addEventListener('DOMContentLoaded', initializeServicesSlider);

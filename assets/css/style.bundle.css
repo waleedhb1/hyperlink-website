@@ -5172,6 +5172,30 @@ html {
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
+        z-index: 1001 !important;
+        position: relative !important;
+        cursor: pointer !important;
+    }
+    
+    /* FORCE SHOW NAV MENU WHEN ACTIVE */
+    .nav-menu.active {
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important;
+    }
+    
+    /* HAMBURGER ANIMATION FIX */
+    .hamburger.active .bar:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px) !important;
+    }
+    
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0 !important;
+    }
+    
+    .hamburger.active .bar:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px) !important;
     }
     
     /* MOBILE MENU OVERLAY */
