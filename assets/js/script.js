@@ -101,51 +101,86 @@ window.addEventListener('scroll', function() {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
 
-// Mobile Menu Toggle
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
-
-if (hamburger && navMenu) {
-    hamburger.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        console.log('Hamburger clicked'); // للتأكد من أن الحدث يعمل
-        
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-        
-        // إضافة تأثير لمنع التمرير عند فتح القائمة
-        if (navMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    });
+// Mobile Menu Toggle - Enhanced Version
+function initializeMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
     
-    // إغلاق القائمة عند الضغط خارجها
-    document.addEventListener('click', function(e) {
-        if (navMenu.classList.contains('active') && 
-            !hamburger.contains(e.target) && 
-            !navMenu.contains(e.target)) {
+    if (!hamburger || !navMenu) {
+        console.log('Hamburger or NavMenu not found');
+        return;
+    }
+    
+    // Function to toggle menu
+    function toggleMenu() {
+        const isActive = hamburger.classList.contains('active');
+        
+        if (!isActive) {
+            // Open menu
+            hamburger.classList.add('active');
+            navMenu.classList.add('active');
+            document.body.classList.add('menu-open');
+            document.body.style.overflow = 'hidden';
+            console.log('Menu opened');
+        } else {
+            // Close menu
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             document.body.classList.remove('menu-open');
             document.body.style.overflow = '';
+            console.log('Menu closed');
         }
-    });
-}
-
-// Close mobile menu when clicking on a link
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', function() {
+    }
+    
+    // Function to close menu
+    function closeMenu() {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
         document.body.classList.remove('menu-open');
+        document.body.style.overflow = '';
+    }
+    
+    // Add click event to hamburger
+    hamburger.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
     });
-});
+    
+    // Add touch event for mobile
+    hamburger.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleMenu();
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('active') && 
+            !hamburger.contains(e.target) && 
+            !navMenu.contains(e.target)) {
+            closeMenu();
+        }
+    });
+    
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+    
+    // Close menu when clicking nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+}
+
+// Initialize mobile menu when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeMobileMenu);
+
+// Mobile menu initialization handled above
 
 // Smooth Scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1070,3 +1105,100 @@ function setupTabs() {
         }
     }
 }
+
+// Services Slider System
+function initializeServicesSlider() {
+    const slider = document.querySelector('.services-slider');
+    const slides = document.querySelectorAll('.service-slide');
+    const prevBtn = document.querySelector('.slider-prev');
+    const nextBtn = document.querySelector('.slider-next');
+    const indicators = document.querySelector('.slider-indicators');
+    
+    if (!slider || slides.length === 0) return;
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    
+    // Create indicators
+    if (indicators) {
+        indicators.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement('button');
+            indicator.classList.add('slider-indicator');
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
+            indicators.appendChild(indicator);
+        }
+    }
+    
+    function updateSlider() {
+        slides.forEach((slide, index) => {
+            slide.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+            slide.classList.toggle('active', index === currentSlide);
+        });
+        
+        // Update indicators
+        const indicatorButtons = document.querySelectorAll('.slider-indicator');
+        indicatorButtons.forEach((btn, index) => {
+            btn.classList.toggle('active', index === currentSlide);
+        });
+    }
+    
+    function goToSlide(index) {
+        currentSlide = index;
+        updateSlider();
+    }
+    
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    }
+    
+    function prevSlide() {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    }
+    
+    // Event listeners
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    
+    // Auto-play functionality
+    let autoPlayInterval = setInterval(nextSlide, 5000);
+    
+    // Pause auto-play on hover
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(autoPlayInterval);
+    });
+    
+    slider.addEventListener('mouseleave', () => {
+        autoPlayInterval = setInterval(nextSlide, 5000);
+    });
+    
+    // Touch/swipe support
+    let startX = 0;
+    let endX = 0;
+    
+    slider.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+    
+    slider.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    });
+    
+    // Initialize
+    updateSlider();
+}
+
+// Initialize services slider when DOM is loaded
+document.addEventListener('DOMContentLoaded', initializeServicesSlider);
