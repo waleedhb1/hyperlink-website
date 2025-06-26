@@ -5085,7 +5085,7 @@ html {
 
 /* ==== EMERGENCY MOBILE NAVBAR FIX ==== */
 @media (max-width: 768px) {
-    /* Force hamburger visibility */
+    /* Force hamburger visibility - default state */
     .hamburger {
         display: flex !important;
         visibility: visible !important;
@@ -5103,6 +5103,18 @@ html {
         z-index: 9999 !important;
         cursor: pointer !important;
         margin-left: 10px !important;
+    }
+    
+    /* Reset hamburger to normal state by default */
+    .hamburger:not(.active) {
+        background: rgba(66, 153, 225, 0.2) !important;
+        border-color: rgba(66, 153, 225, 0.6) !important;
+    }
+    
+    .hamburger:not(.active) .bar {
+        background: rgba(66, 153, 225, 1) !important;
+        transform: none !important;
+        opacity: 1 !important;
     }
     
     .hamburger:hover {
@@ -5164,12 +5176,14 @@ html {
         opacity: 0 !important;
         transform: translateY(-30px) !important;
         transition: all 0.4s ease !important;
+        visibility: hidden !important;
     }
     
     .nav-menu#navMenu.active {
         display: flex !important;
         opacity: 1 !important;
         transform: translateY(0) !important;
+        visibility: visible !important;
     }
     
     .nav-menu#navMenu .nav-link {
@@ -5202,10 +5216,25 @@ html {
         display: none !important;
     }
     
+    /* Default state - ensure menu is hidden */
+    .nav-menu#navMenu:not(.active) {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-30px) !important;
+    }
+    
     /* Body lock when menu is open */
     body.menu-open {
         overflow: hidden !important;
         position: fixed !important;
         width: 100% !important;
+    }
+    
+    /* Default body state */
+    body:not(.menu-open) {
+        position: static !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
     }
 }

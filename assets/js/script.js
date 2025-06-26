@@ -106,6 +106,13 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
 if (hamburger && navMenu) {
+    // Reset to default state on page load
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.classList.remove('menu-open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    navMenu.setAttribute('aria-hidden', 'true');
+    
     hamburger.addEventListener('click', function() {
         const isActive = hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
@@ -135,7 +142,11 @@ if (hamburger && navMenu) {
     document.addEventListener('click', function(event) {
         if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
             if (hamburger.classList.contains('active')) {
-                hamburger.click();
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                navMenu.setAttribute('aria-hidden', 'true');
             }
         }
     });
@@ -145,9 +156,13 @@ if (hamburger && navMenu) {
 const navLinks = document.querySelectorAll('.nav-link');
 navLinks.forEach(link => {
     link.addEventListener('click', function() {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.classList.remove('menu-open');
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            navMenu.setAttribute('aria-hidden', 'true');
+        }
     });
 });
 
